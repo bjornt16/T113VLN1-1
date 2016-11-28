@@ -5,16 +5,6 @@
 
 using namespace std;
 
-class Programmer
-{
-
-private:
-    string newName;
-    char newGender;
-    int newB_year;
-    int newD_year;
-};
-
 //ASDF
 void disp_funct()
 {
