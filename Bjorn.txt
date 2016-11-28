@@ -1,1 +1,5 @@
+<<<<<<< HEAD
 bah
+=======
+test
+>>>>>>> origin/master
