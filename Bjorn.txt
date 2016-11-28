@@ -1,1 +1,9 @@
+<<<<<<< HEAD
 solid
+=======
+<<<<<<< HEAD
+int main kkknnk
+=======
+wat?!
+>>>>>>> origin/master
+>>>>>>> origin/master
