@@ -1,5 +1,1 @@
-<<<<<<< HEAD
-int main kkknnk
-=======
-wat?!
->>>>>>> origin/master
+bah
