@@ -98,16 +98,4 @@ void UI::addPeople()
     // TODO:
     //service.addPerson(newPerson);
 }
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-=======
 
-void UI::init()
-{
-    Domain openSaved();
-
-    //openSaved.savedPeople();
-}
->>>>>>> origin/master
->>>>>>> origin/master
