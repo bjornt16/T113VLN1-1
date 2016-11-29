@@ -13,8 +13,8 @@ public:
     Person();
 
     Person(string n, char g, int bY, int dY, string nat);
-    Person(string n, char g, int bY, string nat);
 
+    Person(string n, char g, int bY, string nat);
 
     string getName() const;
 
