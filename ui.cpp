@@ -15,6 +15,8 @@ UI::UI()
 // Should not contain logic for individual commands, that should be in separate functions!
 void UI::mainMenu()
 {
+    string command;
+
     do
     {
     cout << "Please enter one of the following commands:" << endl;
@@ -23,36 +25,38 @@ void UI::mainMenu()
     cout << "delete - Removes an entry" << endl;
     cout << "edit - Edit an entry" << endl;
     cout << "search - Searches for given people" << endl;
-    cout << "q - for quit" << endl;
-    string command;
+    cout << "quit - for quit" << endl;
     cin >> command;
-    }
-    while(command != 'q');
+
+        if (command == "list")
+        {
+            ListPeople();
+        }
+        else if (command == "add")
+        {
+            addPeople();
+        }
+        else if (command == "search")
+        {
+            search();
+        }
+        else if (command == "delete")
+        {
+
+        }
+        else if (command == "edit"){
+
+        }
+        else if (command == "quit")
+        {
+            //þetta á að vera tómt
+        }
+        else{
+            cout << "Illegal move!" << endl;
+        }
 
 
-    if (command == "list")
-    {
-        ListPeople();
-    }
-    else if (command == "add")
-    {
-        addPeople();
-    }
-    else if (command == "search")
-    {
-        search();
-    }
-    else if (command == "delete")
-    {
-
-    }
-    else if (command == "edit"){
-
-    }
-    else {
-        cout << "Illegal move!" << endl;
-    }
-
+    } while( !(command == "quit"));
 }
 
 void UI::ListPeople()
