@@ -19,7 +19,7 @@ Person::Person()
 
  Person::Person(string n, char g, int bY, string nat)
 {
-    isAlive = 0;
+    isAlive = 1;
     name = n;
     gender = g;
     birthYear = bY;

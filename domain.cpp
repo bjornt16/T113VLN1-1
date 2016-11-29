@@ -1,4 +1,5 @@
 #include "domain.h"
+#include "data.h"
 #include <algorithm>
 #include <fstream>
 
@@ -13,6 +14,10 @@ struct PersonComparison {
 Domain::Domain()
 {
 
+}
+
+void Domain::addPerson(Person p){
+    data.writePersonToFile(p);
 }
 
 vector<Person> Domain::getPeople(/* TODO: parameters */)

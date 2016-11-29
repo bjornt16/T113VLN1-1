@@ -37,9 +37,15 @@ void UI::mainMenu()
     {
         // TODO
     }
-    else
+    else if (command == "delete")
     {
 
+    }
+    else if (command == "update"){
+
+    }
+    else {
+        cout << "Illegal move!" << endl;
     }
 
 }
