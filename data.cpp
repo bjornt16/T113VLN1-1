@@ -7,7 +7,6 @@
 
 using namespace std;
 //data layer
-    readPeopleFromFile();
 
 Data::Data()
 {
