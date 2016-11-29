@@ -15,15 +15,20 @@ UI::UI()
 // Should not contain logic for individual commands, that should be in separate functions!
 void UI::mainMenu()
 {
+    do
+    {
     cout << "Please enter one of the following commands:" << endl;
     cout << "list - This will list all people in the system" << endl;
     cout << "add - This will add a new person" << endl;
     cout << "delete - Removes an entry" << endl;
     cout << "edit - Edit an entry" << endl;
     cout << "search - Searches for given people" << endl;
-
+    cout << "q - for quit" << endl;
     string command;
     cin >> command;
+    }
+    while(command != 'q');
+
 
     if (command == "list")
     {
