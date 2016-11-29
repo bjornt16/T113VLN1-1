@@ -59,6 +59,4 @@ void Data::readPeopleFromFile(){
         list.push_back(newPerson);
 
     }
-
-
 }
