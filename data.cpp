@@ -7,7 +7,7 @@
 
 using namespace std;
 //data layer
-
+    readPeopleFromFile();
 Data::Data()
 {
 
@@ -18,7 +18,7 @@ vector<Person> Data::getList(){
 }
 
 void Data::writePersonToFile(Person p){
-    ifstream file;
+    ofstream file;
     file.open("database/people.txt");
 
     string name = p.getName();
@@ -27,11 +27,11 @@ void Data::writePersonToFile(Person p){
     int dYear = p.getDeathYear();
     string newLine = "\n";
 
-    file >> name;
-    file >> gender;
-    file >> bYear;
-    file >> dYear;
-    file >> newLine;
+    file << name;
+    file << gender;
+    file << bYear;
+    file << dYear;
+    file << newLine;
 
     list.push_back(p);
 
@@ -40,25 +40,26 @@ void Data::writePersonToFile(Person p){
 
 void Data::readPeopleFromFile(){
 
-    ofstream file;
-    file.open("database/people.txt");
+
+
+    ifstream file;
+    file.open("../T113VLN1/database/people.txt");
 
     string name, nationality;
     char gender;
     int bYear, dYear;
 
+    while(!file.eof() && file.is_open() && !file.fail()){
 
-    while(file << name){
-
-        file << gender;
-        file << bYear;
-        file << dYear;
-        file << nationality;
+        file >> name;
+        file >> gender;
+        file >> bYear;
+        file >> dYear;
+        file >> nationality;
 
         Person newPerson(name, gender, bYear, dYear, nationality);
         list.push_back(newPerson);
-
     }
-
+    file.close();
 
 }

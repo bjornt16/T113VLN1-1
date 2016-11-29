@@ -96,6 +96,7 @@ void UI::addPeople()
 
 
     // TODO:
-    //service.addPerson(newPerson);
+    domain.addPerson(newPerson);
+    ListPeople();
 }
 

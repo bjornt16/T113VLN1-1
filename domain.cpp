@@ -35,8 +35,8 @@ vector<Person> Domain::getPeople(/* TODO: parameters */)
     // TODO: business logic!
 
     // Sort by name:
-    PersonComparison cmp;
-    std::sort(people.begin(), people.end(), cmp);
+    //PersonComparison cmp;
+    //std::sort(people.begin(), people.end(), cmp);
 
     return people;
 }

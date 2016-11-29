@@ -8,6 +8,7 @@ Person::Person()
 
 }
 
+
  Person::Person(string n, char g, int bY, int dY, string nat)
 {
     isAlive = 0;
