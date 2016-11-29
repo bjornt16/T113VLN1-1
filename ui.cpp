@@ -31,25 +31,7 @@ void UI::mainMenu()
     }
     else if (command == "add")
     {
-        string name;
-        int birthYear;
-        int deathYear;
-        char gender;
-        string nationality;
-
-        cout << "Enter name: ";
-        cin >> name;
-        cout << "Enter gender(m/f): ";
-        cin >> gender;
-        cout << "Enter birth year: ";
-        cin >> birthYear;
-        cout << "Enter year of death: ";
-        cin >> deathYear;
-        cout << "Enter nationality: ";
-        cin >> nationality;
-
-
-        Person newPerson(name, gender, birthYear, deathYear, nationality);
+        addPeople();
 
         // TODO:
         //service.addPerson(newPerson);
@@ -85,5 +67,28 @@ void UI::ListPeople()
         cout << people[i].getNationality() << endl;
         cout << "===============" << endl;
     }
+}
+
+void UI::addPeople()
+{
+    string name;
+    int birthYear;
+    int deathYear;
+    char gender;
+    string nationality;
+
+    cout << "Enter name: ";
+    cin >> name;
+    cout << "Enter gender(m/f): ";
+    cin >> gender;
+    cout << "Enter birth year: ";
+    cin >> birthYear;
+    cout << "Enter year of death: ";
+    cin >> deathYear;
+    cout << "Enter nationality: ";
+    cin >> nationality;
+
+
+    Person newPerson(name, gender, birthYear, deathYear, nationality);
 }
 

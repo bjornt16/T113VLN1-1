@@ -17,6 +17,8 @@ private:
 
     void ListPeople();
 
+    void addPeople();
+
 private:
     Domain domain;
 };
