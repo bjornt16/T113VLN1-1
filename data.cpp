@@ -1,6 +1,7 @@
 #include "data.h"
 #include <iostream>
 #include <fstream>
+#include <vector>
 
 #include "person.h"
 
@@ -10,6 +11,10 @@ using namespace std;
 Data::Data()
 {
 
+}
+
+vector<Person> Data::getList(){
+    return list;
 }
 
 void Data::writePersonToFile(Person p){
@@ -28,5 +33,32 @@ void Data::writePersonToFile(Person p){
     file >> dYear;
     file >> newLine;
 
+    list.push_back(p);
+
     file.close();
 };
+
+void Data::readPeopleFromFile(){
+
+    ofstream file;
+    file.open("database/people.txt");
+
+    string name, nationality;
+    char gender;
+    int bYear, dYear;
+
+
+    while(file << name){
+
+        file << gender;
+        file << bYear;
+        file << dYear;
+        file << nationality;
+
+        Person newPerson(name, gender, bYear, dYear, nationality);
+        list.push_back(newPerson);
+
+    }
+
+
+}

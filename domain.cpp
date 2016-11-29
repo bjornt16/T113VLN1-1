@@ -21,7 +21,7 @@ void Domain::addPerson(Person p){
 
 vector<Person> Domain::getPeople(/* TODO: parameters */)
 {
-    vector<Person> people;
+    vector<Person> people = data.getList();
 
     //Person p("Duran Duran");
     //Person p2("Madonna");

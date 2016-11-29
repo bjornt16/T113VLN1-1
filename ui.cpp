@@ -97,4 +97,3 @@ void UI::addPeople()
 
     Person newPerson(name, gender, birthYear, deathYear, nationality);
 }
-
