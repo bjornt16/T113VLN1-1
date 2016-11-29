@@ -38,7 +38,7 @@ void UI::mainMenu()
     }
     else if (command == "search")
     {
-        // TODO
+        search();
     }
     else if (command == "delete")
     {
@@ -97,4 +97,34 @@ void UI::addPeople()
 
     Person newPerson(name, gender, birthYear, deathYear, nationality);
 }
+
+void UI::search()
+{
+    string colom;
+    string search;
+    cout << "what would you like to search by? ";
+    cout << "Name, gender, year of birth or year of death: ";
+    cin >> colom;
+    if(colom=="Name"||colom=="name")
+    {
+        //TODO
+    }
+    else if(colom=="Gender"||colom=="gender")
+    {
+
+    }
+    else if(colom=="Year of birth"||colom=="year of birth")
+    {
+
+    }
+    else if(colom=="Year of death"||colom=="year of death")
+    {
+
+    }
+    else
+    {
+
+    }
+}
+
 

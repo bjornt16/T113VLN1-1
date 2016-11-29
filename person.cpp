@@ -35,7 +35,7 @@ Person::Person()
  {
      if(isAlive)
      {
-        return (1900 + tm_year) - birthYear; //tm_year nær í ártal talið frá 1900.
+        //return (1900 + tm_year) - birthYear; //tm_year nær í ártal talið frá 1900.
      }
      return deathYear - birthYear;
  }
