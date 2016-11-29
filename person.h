@@ -20,7 +20,7 @@ public:
 
     int getBirthYear() const;
 
-    int getDeathYear() const;
+    string getDeathYear() const;
 
     char getGender() const;
 

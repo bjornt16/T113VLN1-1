@@ -59,6 +59,7 @@ void Data::readPeopleFromFile(){
 
         Person newPerson(name, gender, bYear, dYear, nationality);
         list.push_back(newPerson);
+
     }
     file.close();
 

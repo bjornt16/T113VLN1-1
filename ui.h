@@ -19,6 +19,8 @@ private:
 
     void addPeople();
 
+    void search();
+
 private:
     Domain domain;
 };
