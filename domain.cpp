@@ -1,5 +1,7 @@
 #include "domain.h"
+#include "data.h"
 #include <algorithm>
+#include <fstream>
 
 using namespace std;
 
@@ -14,9 +16,13 @@ Domain::Domain()
 
 }
 
+void Domain::addPerson(Person p){
+    data.writePersonToFile(p);
+}
+
 vector<Person> Domain::getPeople(/* TODO: parameters */)
 {
-    vector<Person> people;
+    vector<Person> people = data.getList();
 
     //Person p("Duran Duran");
     //Person p2("Madonna");

@@ -1,4 +1,5 @@
 #include "person.h"
+#include <time.h>
 
 //poco
 
@@ -35,7 +36,14 @@ Person::Person()
  {
      if(isAlive)
      {
+<<<<<<< HEAD
         //return (1900 + tm_year) - birthYear; //tm_year nær í ártal talið frá 1900.
+=======
+         time_t currentTime;
+         tm* lt = localtime(&currentTime);
+         int currentYear = 1900 + lt->tm_year;
+         return currentYear - birthYear; //tm_year nær í ártal talið frá 1900.
+>>>>>>> origin/master
      }
      return deathYear - birthYear;
  }

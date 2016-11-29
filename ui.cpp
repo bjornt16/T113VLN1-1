@@ -32,9 +32,6 @@ void UI::mainMenu()
     else if (command == "add")
     {
         addPeople();
-
-        // TODO:
-        //service.addPerson(newPerson);
     }
     else if (command == "search")
     {
@@ -96,6 +93,10 @@ void UI::addPeople()
 
 
     Person newPerson(name, gender, birthYear, deathYear, nationality);
+
+
+    // TODO:
+    //service.addPerson(newPerson);
 }
 
 void UI::search()
