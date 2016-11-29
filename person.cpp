@@ -1,5 +1,7 @@
 #include "person.h"
 #include <time.h>
+#include <stdlib.h>
+
 
 //poco
 
@@ -36,18 +38,10 @@ Person::Person()
  {
      if(isAlive)
      {
-//<<<<<<< HEAD
-        //return (1900 + tm_year) - birthYear; //tm_year nær í ártal talið frá 1900.
-//=======
          time_t currentTime;
          tm* lt = localtime(&currentTime);
          int currentYear = 1900 + lt->tm_year;
-//<<<<<<< HEAD
-         return currentYear - birthYear; //tm_year nær í ártal talið frá 1900.
-//>>>>>>> origin/master
-//=======
          return currentYear - birthYear;
-//>>>>>>> origin/master
      }
      return deathYear - birthYear;
  }
@@ -59,11 +53,14 @@ Person::Person()
 
  string Person::getDeathYear() const
  {
+     string strDYear;
      if(isAlive)
      {
-         return '-';
+         strDYear = '-';
+     }else{
+         strDYear = to_string(deathYear);
      }
-     return (string) deathYear;
+     return strDYear;
  }
 
  char Person::getGender() const
