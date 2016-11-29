@@ -27,36 +27,6 @@ void UI::mainMenu()
     cout << "search - Searches for given people" << endl;
     cout << "quit - for quit" << endl;
     cin >> command;
-<<<<<<< Updated upstream
-=======
-    }
-    while(command != 'q');
-
-
-    if (command == "list")
-    {
-        ListPeople();
-    }
-    else if (command == "add")
-    {
-        addPeople();
-    }
-    else if (command == "search")
-    {
-        search();
-    }
-    else if (command == "delete")
-    {
-
-    }
-    else if (command == "edit")
-    {
-
-    }
-    else {
-        cout << "Illegal move!" << endl;
-    }
->>>>>>> Stashed changes
 
         if (command == "list")
         {
