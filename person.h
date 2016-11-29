@@ -30,6 +30,7 @@ public:
 private:
     string name;
     int    birthYear;
+    bool   isAlive;
     int    deathYear;
     char   gender;
     string nationality;

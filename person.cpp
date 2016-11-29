@@ -9,10 +9,20 @@ Person::Person()
 
  Person::Person(string n, char g, int bY, int dY, string nat)
 {
+    isAlive = 0;
     name = n;
     gender = g;
     birthYear = bY;
     deathYear = dY;
+    nationality = nat;
+}
+
+ Person::Person(string n, char g, int bY, string nat)
+{
+    isAlive = 1;
+    name = n;
+    gender = g;
+    birthYear = bY;
     nationality = nat;
 }
 
@@ -23,6 +33,10 @@ Person::Person()
 
  int Person::getAge() const
  {
+     if(isAlive)
+     {
+        return (1900 + tm_year) - birthYear; //tm_year nær í ártal talið frá 1900.
+     }
      return deathYear - birthYear;
  }
 
