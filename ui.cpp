@@ -19,7 +19,7 @@ void UI::mainMenu()
     cout << "list - This will list all people in the system" << endl;
     cout << "add - This will add a new person" << endl;
     cout << "delete - Removes an entry" << endl;
-    cout << "update - Updates an entry" << endl;
+    cout << "edit - Edit an entry" << endl;
     cout << "search - Searches for given people" << endl;
 
     string command;
@@ -41,7 +41,7 @@ void UI::mainMenu()
     {
 
     }
-    else if (command == "update"){
+    else if (command == "edit"){
 
     }
     else {
