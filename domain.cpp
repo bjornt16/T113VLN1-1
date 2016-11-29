@@ -1,6 +1,7 @@
 #include "domain.h"
 #include "data.h"
 #include <algorithm>
+#include <fstream>
 
 using namespace std;
 

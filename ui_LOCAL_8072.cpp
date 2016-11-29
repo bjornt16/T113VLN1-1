@@ -32,6 +32,9 @@ void UI::mainMenu()
     else if (command == "add")
     {
         addPeople();
+
+        // TODO:
+        //service.addPerson(newPerson);
     }
     else if (command == "search")
     {
@@ -93,18 +96,4 @@ void UI::addPeople()
 
 
     Person newPerson(name, gender, birthYear, deathYear, nationality);
-
-
-    // TODO:
-    //service.addPerson(newPerson);
 }
-<<<<<<< HEAD
-=======
-
-void UI::init()
-{
-    Domain openSaved();
-
-    //openSaved.savedPeople();
-}
->>>>>>> origin/master

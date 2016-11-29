@@ -16,7 +16,12 @@ public:
 
     Data data;
     vector<Person> getPeople(/* TODO: parameters */);
+//<<<<<<< HEAD
+
+    vector<Person> savedPeople();
+//=======
     void addPerson(Person p);
+//>>>>>>> origin/master
 };
 
 #endif // Domain_H

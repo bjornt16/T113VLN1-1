@@ -98,8 +98,6 @@ void UI::addPeople()
     // TODO:
     //service.addPerson(newPerson);
 }
-<<<<<<< HEAD
-=======
 
 void UI::init()
 {
@@ -107,4 +105,3 @@ void UI::init()
 
     //openSaved.savedPeople();
 }
->>>>>>> origin/master
