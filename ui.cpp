@@ -9,13 +9,13 @@ using namespace std;
 
 UI::UI()
 {
-
 }
 
 // Should not contain logic for individual commands, that should be in separate functions!
 void UI::mainMenu()
 {
     string command;
+    Domoin domain;
 
     do
     {
@@ -30,22 +30,23 @@ void UI::mainMenu()
 
         if (command == "list")
         {
-            ListPeople();
+            domain.ListPeople();
         }
         else if (command == "add")
         {
-            addPeople();
+            domain.addPeople();
         }
         else if (command == "search")
         {
-            search();
+            domain.search();
         }
         else if (command == "delete")
         {
-
+            domain.delete();
         }
-        else if (command == "edit"){
-
+        else if (command == "edit")
+        {
+            domain.edit();
         }
         else if (command == "quit")
         {
@@ -149,5 +150,3 @@ void UI::search()
         cout << "Nationality: ";
     }
 }
-
-

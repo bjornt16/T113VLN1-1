@@ -2,9 +2,6 @@
 #include <time.h>
 #include <stdlib.h>
 
-
-//poco
-
 Person::Person()
 {
 
