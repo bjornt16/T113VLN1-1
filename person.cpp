@@ -39,7 +39,7 @@ Person::Person()
          time_t currentTime;
          tm* lt = localtime(&currentTime);
          int currentYear = 1900 + lt->tm_year;
-         return currentYear - birthYear; //tm_year nær í ártal talið frá 1900.
+         return currentYear - birthYear;
      }
      return deathYear - birthYear;
  }
