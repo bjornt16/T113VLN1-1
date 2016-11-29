@@ -102,11 +102,13 @@ void UI::addPeople()
     cin >> deadOrAlive;
     if (deadOrAlive == 'y'){
         Person newPerson(name, gender, birthYear, nationality);
+        domain.addPerson(newPerson);
     }
     else if (deadOrAlive == 'n'){
         cout << "Enter death year: ";
         cin >> deathYear;
         Person newPerson(name, gender, birthYear, deathYear, nationality);
+        domain.addPerson(newPerson);
 
     }
     else {
@@ -115,7 +117,6 @@ void UI::addPeople()
     }
 
     // TODO:
-    domain.addPerson(newPerson);
     ListPeople();
 }
 

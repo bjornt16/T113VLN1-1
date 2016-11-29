@@ -24,7 +24,7 @@ void Data::writePersonToFile(Person p){
     string name = p.getName();
     char gender = p.getGender();
     int bYear = p.getBirthYear();
-    int dYear = p.getDeathYear();
+    string dYear = p.getDeathYear();
     string newLine = "\n";
 
     file << name;
