@@ -51,7 +51,8 @@ void UI::mainMenu()
         {
             //þetta á að vera tómt
         }
-        else{
+        else
+        {
             cout << "Illegal move!" << endl;
         }
 
