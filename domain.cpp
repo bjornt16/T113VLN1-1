@@ -18,13 +18,13 @@ vector<Person> Domain::getPeople(/* TODO: parameters */)
 {
     vector<Person> people;
 
-    Person p("Duran Duran");
-    Person p2("Madonna");
-    Person p3("David Bowie");
+    //Person p("Duran Duran");
+    //Person p2("Madonna");
+    //Person p3("David Bowie");
 
-    people.push_back(p);
-    people.push_back(p2);
-    people.push_back(p3);
+    //people.push_back(p);
+    //people.push_back(p2);
+    //people.push_back(p3);
 
     // TODO: business logic!
 

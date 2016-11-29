@@ -11,7 +11,7 @@ class Person
 {
 public:
     Person();
-    Person(string n);
+    Person(string n, char g, int bY, int dY, string nat);
 
     string getName() const;
 

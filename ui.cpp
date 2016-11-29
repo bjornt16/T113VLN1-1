@@ -34,14 +34,22 @@ void UI::mainMenu()
         string name;
         int birthYear;
         int deathYear;
+        char gender;
+        string nationality;
+
         cout << "Enter name: ";
         cin >> name;
+        cout << "Enter gender(m/f): ";
+        cin >> gender;
         cout << "Enter birth year: ";
         cin >> birthYear;
         cout << "Enter year of death: ";
         cin >> deathYear;
+        cout << "Enter nationality: ";
+        cin >> nationality;
 
-        Person newPerson(name);
+
+        Person newPerson(name, gender, birthYear, deathYear, nationality);
 
         // TODO:
         //service.addPerson(newPerson);
