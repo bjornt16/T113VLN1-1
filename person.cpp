@@ -49,9 +49,13 @@ Person::Person()
      return birthYear;
  }
 
- int Person::getDeathYear() const
+ string Person::getDeathYear() const
  {
-     return deathYear;
+     if(isAlive)
+     {
+         return '-';
+     }
+     return (string) deathYear;
  }
 
  char Person::getGender() const
