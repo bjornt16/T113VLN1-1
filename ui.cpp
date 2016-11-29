@@ -19,7 +19,7 @@ void UI::mainMenu()
     cout << "list - This will list all people in the system" << endl;
     cout << "add - This will add a new person" << endl;
     cout << "delete - Removes an entry" << endl;
-    cout << "update - Updates an entry" << endl;
+    cout << "edit - Edit an entry" << endl;
     cout << "search - Searches for given people" << endl;
 
     string command;
@@ -41,7 +41,7 @@ void UI::mainMenu()
     {
 
     }
-    else if (command == "update"){
+    else if (command == "edit"){
 
     }
     else {
@@ -79,21 +79,31 @@ void UI::addPeople()
     int deathYear;
     char gender;
     string nationality;
+    char deadOrAlive;
 
     cout << "Enter name: ";
     cin >> name;
     cout << "Enter gender(m/f): ";
     cin >> gender;
-    cout << "Enter birth year: ";
-    cin >> birthYear;
-    cout << "Enter year of death: ";
-    cin >> deathYear;
     cout << "Enter nationality: ";
     cin >> nationality;
+    cout << "Enter birth year: ";
+    cin >> birthYear;
+    cout << "Is the the person still alive? Enter y for yes and n for no";
+    cin >> deadOrAlive;
+    if (deadOrAlive == 'y'){
+        Person newPerson(name, gender, birthYear, nationality);
+    }
+    else if (deadOrAlive == 'n'){
+        cout << "Enter death year: ";
+        cin >> deathYear;
+        Person newPerson(name, gender, birthYear, deathYear, nationality);
 
-
-    Person newPerson(name, gender, birthYear, deathYear, nationality);
-
+    }
+    else {
+        cout <<"Illegal command, want to enter again? ";
+        cin >> deadOrAlive;
+    }
 
     // TODO:
     //service.addPerson(newPerson);
