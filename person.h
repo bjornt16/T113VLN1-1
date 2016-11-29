@@ -13,21 +13,20 @@ public:
     Person();
     Person(string n);
 
-    string getName() const
-    {
-        return name;
-    }
+    string getName() const;
 
-    int getAge() const
-    {
-        return deathYear - birthYear;
-    }
+    int getAge() const;
+
+    char getGender() const;
+
+    string getNationality() const;
 
 private:
     string name;
     int    birthYear;
     int    deathYear;
     char   gender;
+    string nationality;
 
 };
 
