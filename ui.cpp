@@ -104,27 +104,27 @@ void UI::search()
     string colom;
     string search;
     cout << "what would you like to search by? ";
-    cout << "Name, gender, year of birth or year of death: ";
+    cout << "Name, gender, year of birth, year of death or nationality: ";
     cin >> colom;
     if(colom=="Name"||colom=="name")
     {
-        //TODO
+        cout << "Name: ";
     }
     else if(colom=="Gender"||colom=="gender")
     {
-
+        cout << "Gender: ";
     }
     else if(colom=="Year of birth"||colom=="year of birth")
     {
-
+        cout << "Year of birth: ";
     }
     else if(colom=="Year of death"||colom=="year of death")
     {
-
+        cout << "Year of death: ";
     }
-    else
+    else if(colom=="Nationality"||colom=="nationality")
     {
-
+        cout << "Nationality: ";
     }
 }
 
