@@ -17,6 +17,12 @@ public:
 
     int getAge() const;
 
+    int getBirthYear() const;
+
+
+    int getDeathYear() const;
+
+
     char getGender() const;
 
     string getNationality() const;

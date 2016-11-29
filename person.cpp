@@ -22,6 +22,16 @@ Person::Person()
      return deathYear - birthYear;
  }
 
+ int Person::getBirthYear() const
+ {
+     return birthYear;
+ }
+
+ int Person::getDeathYear() const
+ {
+     return deathYear;
+ }
+
  char Person::getGender() const
  {
      return gender;

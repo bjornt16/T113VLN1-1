@@ -32,9 +32,14 @@ void UI::mainMenu()
     else if (command == "add")
     {
         string name;
-        int age;
+        int birthYear;
+        int deathYear;
+        cout << "Enter name: ";
         cin >> name;
-        cin >> age;
+        cout << "Enter birth year: ";
+        cin >> birthYear;
+        cout << "Enter year of death: ";
+        cin >> deathYear;
 
         Person newPerson(name);
 
@@ -56,11 +61,21 @@ void UI::ListPeople()
 {
     vector<Person> people = domain.getPeople();
 
-    cout << "Person name:" << endl;
+    cout << "Displaying persons:" << endl;
     cout << "===============" << endl;
     for (size_t i = 0; i< people.size(); ++i)
     {
+        cout << "name: ";
         cout << people[i].getName() << endl;
+        cout << "gender: ";
+        cout << people[i].getGender() << endl;
+        cout << "birth year: ";
+        cout << people[i].getBirthYear() << endl;
+        cout << "death year: ";
+        cout << people[i].getDeathYear() << endl;
+        cout << "nationality: ";
+        cout << people[i].getNationality() << endl;
+        cout << "===============" << endl;
     }
 }
 
