@@ -1,3 +1,5 @@
+database/*.txt
+
 # C++ objects and libs
 
 *.slo
