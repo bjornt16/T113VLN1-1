@@ -103,6 +103,5 @@ void UI::init()
 {
     Domain openSaved();
 
-    openSaved.savedPeople();
+    //openSaved.savedPeople();
 }
-

@@ -40,23 +40,3 @@ vector<Person> Domain::getPeople(/* TODO: parameters */)
 
     return people;
 }
-
-vector<Person> Domain::savedPeople()
-{
-    vector<Person> people;
-    int counter = 0;
-    string name;
-    char gender;
-    int birthYear;
-    int deathYear;
-    string nationality;
-
-
-    ofstream theFile;
-    theFile.open("database/people");
-
-    while(theFile.eof())
-    {
-
-    }
-}
