@@ -13,8 +13,6 @@ public:
     // Displays the main menu of the program.
     void mainMenu();
 
-    void init();
-
 private:
 
     void ListPeople();
