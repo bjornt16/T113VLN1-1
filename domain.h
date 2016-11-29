@@ -15,6 +15,8 @@ public:
 
     //
     vector<Person> getPeople(/* TODO: parameters */);
+
+    vector<Person> savedPeople();
 };
 
 #endif // Domain_H

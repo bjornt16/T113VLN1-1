@@ -1,5 +1,6 @@
 #include "domain.h"
 #include <algorithm>
+#include <fstream>
 
 using namespace std;
 
@@ -33,4 +34,24 @@ vector<Person> Domain::getPeople(/* TODO: parameters */)
     std::sort(people.begin(), people.end(), cmp);
 
     return people;
+}
+
+vector<Person> Domain::savedPeople()
+{
+    vector<Person> people;
+    int counter = 0;
+    string name;
+    char gender;
+    int birthYear;
+    int deathYear;
+    string nationality;
+
+
+    ofstream theFile;
+    theFile.open("database/people");
+
+    while(theFile.eof())
+    {
+
+    }
 }
