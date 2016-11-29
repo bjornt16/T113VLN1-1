@@ -8,9 +8,10 @@
 using namespace std;
 //data layer
     readPeopleFromFile();
+
 Data::Data()
 {
-
+    readPeopleFromFile();
 }
 
 vector<Person> Data::getList(){
