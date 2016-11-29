@@ -19,7 +19,7 @@ vector<Person> Data::getList(){
 
 void Data::writePersonToFile(Person p){
     ofstream file;
-    file.open("database/people.txt");
+    file.open("../T113VLN1/database/people.txt");
 
     string name = p.getName();
     char gender = p.getGender();
@@ -28,8 +28,11 @@ void Data::writePersonToFile(Person p){
     string newLine = "\n";
 
     file << name;
+    file << " ";
     file << gender;
+    file << " ";
     file << bYear;
+    file << " ";
     file << dYear;
     file << newLine;
 
