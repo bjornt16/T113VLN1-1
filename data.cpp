@@ -33,6 +33,8 @@ void Data::writePersonToFile(Person p){
 
     replace( name.begin(), name.end(), ' ', '_');
     name.erase(name.begin());
+    replace( nationality.begin(), nationality.end(), ' ', '_');
+    nationality.erase(nationality.begin());
 
     file << "\n" << name << " " << gender << " " << bYear << " " << dYear << " " << nationality;
 
@@ -58,6 +60,7 @@ void Data::readPeopleFromFile(){
         file >> name >> gender >> bYear >> dYear >> nationality;
 
         replace( name.begin(), name.end(), '_', ' ');
+        replace( nationality.begin(), nationality.end(), '_', ' ');
 
         Person newPerson(name, gender, bYear, dYear, nationality);
         list.push_back(newPerson);

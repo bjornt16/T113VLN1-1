@@ -159,7 +159,6 @@ void UI::addPerson()
 
 
     cout << "Enter nationality: " << endl;
-    cin >> nationality;
     while(cin.good()){
         cin.get(c);
         if(c == '\n' && tempNation != ""){
