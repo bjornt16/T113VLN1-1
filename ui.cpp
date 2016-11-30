@@ -134,7 +134,9 @@ void UI::addPerson()
         name += " " + tempName;
     }
     do{
-        cout << "Enter gender(M/F): " << endl;
+        gender.clear();
+        tempChar = ' ';
+        cout << "Enter gender(M/F): " <<endl;
 
         while(cin.good()){
             if(gender.size() != 0){
@@ -143,7 +145,7 @@ void UI::addPerson()
             cin >> tempChar;
             tempChar = char(toupper(tempChar));
             gender.push_back(tempChar);
-            if (isdigit(tempChar)) {
+            if (isdigit(tempChar) || cin.fail() || !(tempChar == 'M' || tempChar == 'F')) {
                 cin.clear();
                 cin.ignore(numeric_limits<streamsize>::max(), '\n');
                 gender.clear();
