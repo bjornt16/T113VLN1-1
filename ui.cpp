@@ -53,8 +53,7 @@ void UI::mainMenu()
         }
         else if (command == "edit")
         {
-            //todo
-            //editPerson();
+            editPerson();
         }
         else if (command == "sort")
         {
@@ -78,43 +77,43 @@ void UI::ListPerson(vector<Person> people, bool search)
 {
 
     cout << "Displaying persons:" << endl;
+    if(search == true)
+    {
+        cout << "====";
+    }
+    cout << "==================================================================================" << endl;
+    if(search == true)
+    {
+        cout << "ID  ";
+    }
+    cout << "Name                       Gender   Birth year   Death year   Age    Nationality" << endl;
+    if(search == true)
+    {
+        cout << "----";
+    }
+    cout << "----------------------------------------------------------------------------------" << endl;
     for (size_t i = 0; i< people.size(); ++i)
     {
         if(search){
             cout << "Id: " << i << endl;
 
-        cout << "Name: ";
-        cout << people[i].getName() << endl;
-        cout << "Gender: ";
-        cout << people[i].getGender() << endl;
-        cout << "Birth year: ";
-        cout << people[i].getBirthYear() << endl;
-        cout << "Death year: ";
-        if(people[i].getDeathYear() == 0)
+        if(search == true)
         {
-            cout << "-" << endl;
+            cout << setw(4) << i;
         }
-        else
-        {
-            cout << people[i].getDeathYear() << endl;
-        }
-        //people[i].getDeathYear() == 0 ? cout << "-" << endl : cout << people[i].getDeathYear() << endl;
-        cout << "Age: ";
-        cout << people[i].getAge() << endl;
-        cout << "Nationality: ";
-        cout << people[i].getNationality() << endl;
-        }
-        cout << "==========================================================================" << endl;
-        cout << "Name       Gender      Birth year      Death year      Age     Nationality" << endl;
-        cout << "--------------------------------------------------------------------------" << endl;
-        cout << people[i].getName();
-        cout << people[i].getGender();
-        cout << people[i].getBirthYear();
-        people[i].getDeathYear() == 0 ? cout << "-" << endl: cout << people[i].getDeathYear();
-        cout << people[i].getAge();
-        cout << people[i].getNationality() << endl;
-        cout << "---------------------------------------------------------------------------" << endl;
+        cout << setw(27) << people[i].getName();
+        cout << setw(9) << people[i].getGender();
+        cout << setw(13) << people[i].getBirthYear();
+        people[i].getDeathYear() == 0 ? cout << setw(13) << "-" : cout << setw(13) << people[i].getDeathYear();
+        cout << setw(7) << people[i].getAge();
+        cout << setw(13) << people[i].getNationality() << endl;
+
     }
+    if(search == true)
+    {
+        cout << "====";
+    }
+    cout << "==================================================================================" << endl;
 }
 
 void UI::addPerson()
@@ -343,38 +342,38 @@ void UI::sortPeople()
             case 1 : //name sort
             {
                 //TODO
-                //SortPeopleByName();
+                ListPerson(domain.sortPeopleByName());
                 break;
             }
 
-            case 2 :
+            case 2 : //gender sort
             {
                 //TODO
-                //SortPeopleByGender();
+                ListPerson(domain.sortPeopleByGender());
                 break;
             }
 
-            case 3 :
+            case 3 : //birth year sort
             {
                 //TODO
-                //SortPeopleByBY();
+                ListPerson(domain.sortPeopleByBY());
                 break;
             }
 
-            case 4 :
+            case 4 : // death year sort
             {
                 //TODO
-                //SortPeopleByDY();
+                ListPerson(domain.sortPeopleByDY());
                 break;
             }
 
-            case 5 :
+            case 5 : // nationality sort
             {
                 //TODO
-                //SortPeopleByNat();
+                ListPerson(domain.sortPeopleByNat());
                 break;
             }
-            default :
+            default : // loop if incorrect input
             {
                 cout << "Not a valid choice, try again: ";
                 valid = false;
@@ -382,5 +381,57 @@ void UI::sortPeople()
             }
         }
     } while(valid == false);
+
+}
+
+
+void UI::removePerson(){
+
+    char answer = ' ';
+    int numberToRemove = 0;
+    int personToRemove = 0;
+
+    cout <<"Do you want to remove all of the list? Y for yes and N for no" << endl;
+    if(answer == 'Y' || answer == 'y'){
+
+        //Todo eyða öllum listanum
+    }
+    else if (answer =='N' || answer=='n') {
+        cout << "Search for the person you want to delete" << endl;
+        searchPerson();
+        cout << "Select id of the person you want to delete" << endl;
+        cin >> numberToRemove;
+        /*
+        //vantar lista, ca kóðinn....
+        for(int i = 0; i <= numberToRemove; i++){
+
+            if (Person [i].id == numberToRemove){
+                personToRemove = i;
+                person.erase();
+            }
+        }
+
+*/
+
+    }
+
+}
+
+void UI::editPerson(){
+
+    char answer;
+    int personToEdit = 0;
+    cout <<"Do you want to edit the list? Y for yes and N for no" << endl;
+    if(answer =='Y' || answer == 'y'){
+    }
+    else if (answer =='N' || answer=='n') {
+        cout << "Search for the person you want to edit" << endl;
+        searchPerson();
+        cout << "Select id of the person you want to edit" << endl;
+        cin >> personToEdit;
+
+        //vantar eitthvað meira hér....
+
+    }
 
 }
