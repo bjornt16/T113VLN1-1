@@ -113,7 +113,8 @@ void UI::addPerson()
     string name, tempName = "";
     int birthYear;
     int deathYear;
-    char gender;
+    vector<char> gender;
+    char tempChar;
     string nationality;
 
     char c = '\0';
@@ -129,10 +130,27 @@ void UI::addPerson()
     }
     do{
         cout << "Enter gender(M/F): " << endl;
-        cin >> gender;
-        gender = char(toupper(gender));
+
+        while(cin.good()){
+            if(gender.size() != 0){
+                break;
+            }
+            cin >> tempChar;
+            tempChar = char(toupper(tempChar));
+            gender.push_back(tempChar);
+            if (isdigit(tempChar)) {
+                cin.clear();
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                gender.clear();
+                break;
+            }
+        }
+
     }
-    while (!(gender == 'M') || !(gender =='F'));
+    while (!(gender[0] == 'M' || gender[0] == 'F'));
+    cin.clear();
+    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+
 
     cout << "Enter nationality: " << endl;
     cin >> nationality;
@@ -148,7 +166,7 @@ void UI::addPerson()
         deathYear = 0;
     }
 
-    Person newPerson(name, gender, birthYear, deathYear, nationality);
+    Person newPerson(name, gender[0], birthYear, deathYear, nationality);
     domain.addPerson(newPerson);
 
     // TODO:
