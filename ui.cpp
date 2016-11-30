@@ -173,7 +173,6 @@ void UI::addPerson()
         cin >> birthYear;
     }
 
-
     cout << "Enter year of death: ( . to skip)" << endl;
     cin >> deathYear;
 
@@ -372,5 +371,49 @@ void UI::sortPeople()
             }
         }
     } while(valid == false);
+
+}
+
+
+void UI::removePerson(){
+
+    char answer;
+    int numberToRemove = 0;
+    int personToRemove = 0;
+    cout <<"Do you want to remove all of the list? Y for yes and N for no" << endl;
+    if(answer =='Y' || answer == 'y'){
+
+        //Todo eyða öllum listanum
+    }
+    else if (answer =='N' || answer=='n') {
+        cout << "Serach for the person you want to delete" << endl;
+        searchPerson();
+        cout << "Select id of the person you want to delete" << endl;
+        cin >> numberToRemove;
+        //vantar lista, ca kóðinn....
+        for(int i = 0; i <= numberToRemove; i++){
+
+            if (Person [i].id == numberToRemove){
+                personToRemove = i;
+                person.erase();
+            }
+        }
+
+
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 }
