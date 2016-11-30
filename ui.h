@@ -27,6 +27,8 @@ private:
     void sortPeople();
 
     void removePerson();
+
+    void editPerson();
 public:
     UI();
 

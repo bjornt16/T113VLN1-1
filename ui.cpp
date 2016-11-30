@@ -53,8 +53,7 @@ void UI::mainMenu()
         }
         else if (command == "edit")
         {
-            //todo
-            //editPerson();
+            editPerson();
         }
         else if (command == "sort")
         {
@@ -385,7 +384,7 @@ void UI::removePerson(){
         //Todo eyða öllum listanum
     }
     else if (answer =='N' || answer=='n') {
-        cout << "Serach for the person you want to delete" << endl;
+        cout << "Search for the person you want to delete" << endl;
         searchPerson();
         cout << "Select id of the person you want to delete" << endl;
         cin >> numberToRemove;
@@ -400,6 +399,25 @@ void UI::removePerson(){
         }
 
 */
+
+    }
+
+}
+
+void UI::editPerson(){
+
+    char answer;
+    int personToEdit = 0;
+    cout <<"Do you want to edit the list? Y for yes and N for no" << endl;
+    if(answer =='Y' || answer == 'y'){
+    }
+    else if (answer =='N' || answer=='n') {
+        cout << "Search for the person you want to edit" << endl;
+        searchPerson();
+        cout << "Select id of the person you want to edit" << endl;
+        cin >> personToEdit;
+
+        //vantar eitthvað meira hér....
 
     }
 
