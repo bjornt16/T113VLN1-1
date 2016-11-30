@@ -1,7 +1,2 @@
-
-<<<<<<< Updated upstream
 Alan_Turing M 1900 2000 English
-dabs M 1970 0 Icelandic
-=======
-kalli M 1990 0 ale
->>>>>>> Stashed changes
+Petur_pall_jonsson M 1990 2005 Icelandic

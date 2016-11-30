@@ -79,6 +79,9 @@ void UI::ListPerson(vector<Person> people, bool search)
 {
 
     cout << "Displaying persons:" << endl;
+    cout << "========================================================================================" << endl;
+    cout << "Name                   Gender      Birth year      Death year      Age     Nationality" << endl;
+    cout << "----------------------------------------------------------------------------------------" << endl;
     for (size_t i = 0; i< people.size(); ++i)
     {
         if(search){
@@ -105,17 +108,16 @@ void UI::ListPerson(vector<Person> people, bool search)
         cout << "Nationality: ";
         cout << people[i].getNationality() << endl;
         }
-        cout << "==========================================================================" << endl;
-        cout << "Name       Gender      Birth year      Death year      Age     Nationality" << endl;
-        cout << "--------------------------------------------------------------------------" << endl;
-        cout << people[i].getName();
-        cout << people[i].getGender();
-        cout << people[i].getBirthYear();
-        people[i].getDeathYear() == 0 ? cout << "-" << endl: cout << people[i].getDeathYear();
-        cout << people[i].getAge();
-        cout << people[i].getNationality() << endl;
-        cout << "---------------------------------------------------------------------------" << endl;
+
+        cout << setw(15) << people[i].getName();
+        cout << setw(9) << right << people[i].getGender();
+        cout << setw(15) << right << people[i].getBirthYear();
+        people[i].getDeathYear() == 0 ? cout << setw(16) << right << "-" : cout << setw(16) << right << people[i].getDeathYear();
+        cout << setw(15) << right << people[i].getAge();
+        cout << setw(12) << right << people[i].getNationality() << endl;
+
     }
+    cout << "====================================================================================" << endl;
 }
 
 void UI::addPerson()
