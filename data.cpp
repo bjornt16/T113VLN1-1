@@ -26,15 +26,7 @@ void Data::writePersonToFile(Person p){
     ofstream file;
     file.open("../T113VLN1/database/people.txt", ios::out | ios::app);
 
-    string name = p.getName(), nationality = p.getNationality();
-    char gender = p.getGender();
-    int bYear = p.getBirthYear();
-    int dYear = p.getDeathYear();
-
-    replace( name.begin(), name.end(), ' ', '_');
-    name.erase(name.begin());
-
-    file << "\n" << name << " " << gender << " " << bYear << " " << dYear << " " << nationality;
+    writeSinglePersonToOpenFile(p, file);
 
     list.push_back(p);
 
@@ -78,6 +70,37 @@ void Data::removePersonFromDatabase(Person personToRemove)
         }
     }
 
- // TODO:   rewriteDatafile();
+    rewriteDatafile();
 }
+
+void Data::rewriteDatafile()
+{
+    remove("../T113VLN1/database/people.txt");
+
+    ofstream file;
+    file.open("../T113VLN1/database/people.txt", ios::out | ios::app);
+
+    int vectorSize = list.size();
+    for(int i=0; i < vectorSize; i++)
+    {
+        writeSinglePersonToOpenFile(list[i], file);
+    }
+
+    file.close();
+}
+
+void Data::writeSinglePersonToOpenFile(Person p, ofstream& out)
+{
+    string name = p.getName(), nationality = p.getNationality();
+    char gender = p.getGender();
+    int bYear = p.getBirthYear();
+    int dYear = p.getDeathYear();
+
+
+    replace( name.begin(), name.end(), ' ', '_');
+    name.erase(name.begin());
+
+    out << "\n" << name << " " << gender << " " << bYear << " " << dYear << " " << nationality;
+}
+
 

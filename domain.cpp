@@ -155,6 +155,7 @@ vector<Person> Domain::sortPeopleByName(string sortOrder)
     {
         PersonDesc cmp;
         sort(sortedName.begin(), sortedName.end(), cmp);
+    }
 
 
     return sortedName;

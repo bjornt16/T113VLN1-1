@@ -432,26 +432,21 @@ void UI::editPerson(){
 
     char answer;
     int personToEdit = 0;
-<<<<<<< Updated upstream
-    cout <<"Do you want to edit the list? Y for yes and N for no" << endl;
+
+    cout << "Do you want to edit the list? Y for yes and N for no" << endl;
     cin >> answer;
-    if(answer =='Y' || answer == 'y'){
-    }
-    else if (answer =='N' || answer=='n') {
-=======
-    cout <<"Do you want to edit the list? Y for yes and N for no." << endl;
-    cin >> answer;
+
     if(answer =='Y' || answer == 'y')
     {
->>>>>>> Stashed changes
         cout << "Search for the person you want to edit" << endl;
         searchPerson();
         cout << "Select id of the person you want to edit" << endl;
         cin >> personToEdit;
     }
-    else if (answer =='N' || answer=='n')
+     else if (answer =='N' || answer=='n')
     {
-        //vantar eitthvað hér....
-
+        //
     }
+
 }
+
