@@ -1,3 +1,12 @@
 
 Alan_Turing M 1900 2000 English
+<<<<<<< HEAD
 dabs M 1970 0 Icelandic
+=======
+dabs M 1970 0 Icelandic
+bjorn A 1955 0 a
+bj M 1500 1550 ama
+Bjorn_thors M 1900 1995 Icelandic
+bj M 5 10 lol
+bjorn M 1950 1955 icelandic
+>>>>>>> fb5f0fb906a25a8f99a7cdf9e427e1c781423239
