@@ -169,16 +169,31 @@ void UI::addPerson()
         yearFail = 0;
         cout << "Enter birth year: " << endl;
         cin >> birthYear;
+        if(cin.fail()){
+            cout << "Illegal entry, try again" << endl;
+            cin.clear();
+            cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+            yearFail = 1;
+        }
+    }while(yearFail);
 
-    cout << "Enter year of death: ( . to skip)" << endl;
-    cin >> deathYear;
+    do{
+        yearFail = 0;
+        cout << "Enter year of death: ( . to skip)" << endl;
+        cin >> deathYear;
+        if((deathYear.find_first_not_of("0123456789") == std::string::npos) || deathYear == "."){
+            if(deathYear == "."){
+                dYear = 0;
+            }else{
+                dYear = stoi( deathYear );
+            }
+        }
+        else{
+            yearFail = 1;
+        }
+    }while(yearFail);
 
-    if(cin.fail()){
-        cin.clear();
-        cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-        deathYear = 0;
-    }
-
+    Person newPerson(name, gender[0], birthYear, dYear, nationality);
     domain.addPerson(newPerson);
 
     // TODO:
