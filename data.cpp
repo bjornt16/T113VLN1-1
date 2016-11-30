@@ -66,3 +66,18 @@ void Data::readPeopleFromFile(){
     file.close();
 
 }
+
+void Data::removePersonFromDatabase(Person personToRemove)
+{
+    int vectorSize = list.size();
+    for(int i=0; i < vectorSize; i++)
+    {
+        if(list[i] == personToRemove)
+        {
+            list.erase(list.begin()+i);
+        }
+    }
+
+ // TODO:   rewriteDatafile();
+}
+

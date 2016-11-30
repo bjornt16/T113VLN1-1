@@ -17,6 +17,11 @@ public:
     Domain();
     vector<Person> getPersonList(/* TODO: parameters */);
 
+    Person isolatePerson(int inst, vector<Person>& vectorInput);
+        //skilar Person nr. inst í vectorInput vector.
+    void removePerson(Person personToRemove);
+        //Kallar í data.removePersonFromDatabase sem svo hendir út personToRemove úr vector og database.
+
     //Search functions based on what you want type of search you want to do
     vector<Person> searchPersonName(string search);           //name
     vector<Person> searchPersonNationality(string search);    //nationality

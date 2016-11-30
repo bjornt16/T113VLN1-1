@@ -48,8 +48,7 @@ void UI::mainMenu()
         }
         else if (command == "delete")
         {
-            //todo
-            //removePerson();
+            removePerson();
         }
         else if (command == "edit")
         {
@@ -187,7 +186,7 @@ void UI::addPerson()
     ListPerson(domain.getPersonList());
 }
 
-void UI::searchPerson()
+vector<Person> UI::searchPerson()
 {
     int column, tempYear = 9999;
     char cSearch;
@@ -203,11 +202,11 @@ void UI::searchPerson()
     cout << "5 : Nationality" << endl;
     cout << "0 : Cancel" << endl;
     cout << "Choose a number between 0-5 to select what column to search in: ";
+    vector<Person> listOfFound;
 
     do{
         valid = 1;
         cin >> column;
-
         if (cin.fail()) {
                 cin.clear();
                 cin.ignore(numeric_limits<streamsize>::max(), '\n');
@@ -233,7 +232,8 @@ void UI::searchPerson()
                     cin >> tempSearch;
                     search += " " + tempSearch;
                 }
-                ListPerson(domain.searchPersonName(search), true);
+                listOfFound = domain.searchPersonName(search);
+                ListPerson(listOfFound, true);
 
                 break;
             }
@@ -241,7 +241,8 @@ void UI::searchPerson()
             {
                 cout << "Gender: ";
                 cin >> cSearch;
-                ListPerson(domain.searchPersonGender(cSearch), true);
+                listOfFound = domain.searchPersonGender(cSearch);
+                ListPerson(listOfFound, true);
                 break;
             }
             case 3 : //birth
@@ -259,11 +260,13 @@ void UI::searchPerson()
                 }
                 if (yearSearch.size() > 1)
                 {
-                    ListPerson(domain.searchPersonBirth(yearSearch[0], yearSearch[1]), true);
+                    listOfFound = domain.searchPersonBirth(yearSearch[0], yearSearch[1]);
+                    ListPerson(listOfFound, true);
                 }
                 else
                 {
-                    ListPerson(domain.searchPersonBirth(yearSearch[0]), true);
+                    listOfFound = domain.searchPersonBirth(yearSearch[0]);
+                    ListPerson(listOfFound, true);
                 }
                 break;
             }
@@ -281,11 +284,13 @@ void UI::searchPerson()
                 }
                 if(yearSearch.size() > 1)
                 {
-                    ListPerson(domain.searchPersonDeath(yearSearch[0], yearSearch[1]), true);
+                    listOfFound = domain.searchPersonDeath(yearSearch[0], yearSearch[1]);
+                    ListPerson(listOfFound, true);
                 }
                 else
                 {
-                    ListPerson(domain.searchPersonDeath(yearSearch[0]), true);
+                    listOfFound = domain.searchPersonDeath(yearSearch[0]);
+                    ListPerson(listOfFound, true);
                 }
                 break;
             }
@@ -293,7 +298,8 @@ void UI::searchPerson()
             {
                 cout << "Nationality: ";
                 cin >> search;
-                ListPerson(domain.searchPersonNationality(search), true);
+                listOfFound = domain.searchPersonNationality(search);
+                ListPerson(listOfFound, true);
                 break;
             }
             default :{
@@ -301,8 +307,10 @@ void UI::searchPerson()
                 valid = false;
                 break;
             }
-        }
+        }    
     }while(!valid);
+
+    return listOfFound;
 }
 
 void UI::sortPeople()
@@ -373,33 +381,23 @@ void UI::sortPeople()
 }
 
 
-void UI::removePerson(){
+void UI::removePerson()
+{
 
     char answer;
     int numberToRemove = 0;
-    int personToRemove = 0;
-    cout <<"Do you want to remove all of the list? Y for yes and N for no" << endl;
+    cout <<"Do you want to remove all of the list? Y for yes and N for no:" << endl;
+    cin >> answer;
     if(answer =='Y' || answer == 'y'){
 
         //Todo eyða öllum listanum
     }
     else if (answer =='N' || answer=='n') {
-        cout << "Serach for the person you want to delete" << endl;
-        searchPerson();
-        cout << "Select id of the person you want to delete" << endl;
+        cout << "Serach for the person you want to delete:" << endl;
+        vector<Person> searchResult = searchPerson();
+        cout << "Select id of the person you want to delete:" << endl;
         cin >> numberToRemove;
-        /*
-        //vantar lista, ca kóðinn....
-        for(int i = 0; i <= numberToRemove; i++){
-
-            if (Person [i].id == numberToRemove){
-                personToRemove = i;
-                person.erase();
-            }
-        }
-
-*/
-
+        Person personToRemove  = domain.isolatePerson(numberToRemove, searchResult);
+        domain.removePerson(personToRemove);
     }
-
 }

@@ -17,7 +17,7 @@ private:
 
     void addPerson();
 
-    void searchPerson();
+    vector<Person> searchPerson();
 
     void sortPeople();
 

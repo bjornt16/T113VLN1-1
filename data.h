@@ -19,6 +19,10 @@ public:
     void writePersonToFile(Person P);
     void updateSort(vector<Person> pList);
     void readPeopleFromFile();
+
+    void removePersonFromDatabase(Person personToRemove);
+    // hendir personToRemove úr vectornum og database.
+
 };
 
 #endif // DATA_H
