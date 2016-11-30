@@ -126,3 +126,6 @@ vector<Person> Domain::searchPersonDeath(int from, int to){
 
     return searchList;
 }
+
+
+

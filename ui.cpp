@@ -155,6 +155,14 @@ void UI::addPerson()
 
     cout << "Enter birth year: " << endl;
     cin >> birthYear;
+    while(cin.fail()){
+        cout << "Illegal entry, try again" << endl;
+        cin.clear();
+        cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+        cin >> birthYear;
+    }
+
+
     cout << "Enter year of death: ( . to skip)" << endl;
     cin >> deathYear;
 
