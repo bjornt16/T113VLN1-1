@@ -390,6 +390,7 @@ void UI::removePerson(){
         searchPerson();
         cout << "Select id of the person you want to delete" << endl;
         cin >> numberToRemove;
+        /*
         //vantar lista, ca kóðinn....
         for(int i = 0; i <= numberToRemove; i++){
 
@@ -399,21 +400,8 @@ void UI::removePerson(){
             }
         }
 
-
+*/
 
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 }
