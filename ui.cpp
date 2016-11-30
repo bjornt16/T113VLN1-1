@@ -58,7 +58,6 @@ void UI::mainMenu()
         }
         else if (command == "sort")
         {
-            //TODO
             sortPeople();
         }
         else if (command == "quit")
@@ -79,7 +78,7 @@ void UI::ListPerson(vector<Person> people, bool search)
 {
 
     cout << "Displaying persons:" << endl;
-    cout << "===============" << endl;
+    cout << "==================" << endl;
     for (size_t i = 0; i< people.size(); ++i)
     {
         if(search){
@@ -105,7 +104,7 @@ void UI::ListPerson(vector<Person> people, bool search)
         cout << people[i].getAge() << endl;
         cout << "Nationality: ";
         cout << people[i].getNationality() << endl;
-        cout << "===============" << endl;
+        cout << "==================" << endl;
     }
 }
 
@@ -188,7 +187,7 @@ void UI::searchPerson()
                     cin >> tempSearch;
                     search += " " + tempSearch;
                 }
-                ListPerson(domain.searchPersonName(search));
+                ListPerson(domain.searchPersonName(search), true);
 
                 break;
             }
@@ -196,7 +195,7 @@ void UI::searchPerson()
             {
                 cout << "Gender: ";
                 cin >> cSearch;
-                ListPerson(domain.searchPersonGender(cSearch));
+                ListPerson(domain.searchPersonGender(cSearch), true);
                 break;
             }
             case 3 : //birth
@@ -212,8 +211,14 @@ void UI::searchPerson()
                     cin >> tempYear;
                     yearSearch.push_back(tempYear);
                 }
-                yearSearch.size() > 1 ? ListPerson(domain.searchPersonBirth(yearSearch[0], yearSearch[1])) :
-                                        ListPerson(domain.searchPersonBirth(yearSearch[0]));
+                if (yearSearch.size() > 1)
+                {
+                    ListPerson(domain.searchPersonBirth(yearSearch[0], yearSearch[1]), true);
+                }
+                else
+                {
+                    ListPerson(domain.searchPersonBirth(yearSearch[0]), true);
+                }
                 break;
             }
             case 4 : //death
@@ -230,11 +235,11 @@ void UI::searchPerson()
                 }
                 if(yearSearch.size() > 1)
                 {
-                    ListPerson(domain.searchPersonDeath(yearSearch[0], yearSearch[1]));
+                    ListPerson(domain.searchPersonDeath(yearSearch[0], yearSearch[1]), true);
                 }
                 else
                 {
-                    ListPerson(domain.searchPersonDeath(yearSearch[0]));
+                    ListPerson(domain.searchPersonDeath(yearSearch[0]), true);
                 }
                 break;
             }
@@ -242,7 +247,7 @@ void UI::searchPerson()
             {
                 cout << "Nationality: ";
                 cin >> search;
-                ListPerson(domain.searchPersonNationality(search));
+                ListPerson(domain.searchPersonNationality(search), true);
                 break;
             }
             default :{
