@@ -14,6 +14,7 @@ using namespace std;
 
 UI::UI()
 {
+
 }
 
 // Should not contain logic for individual commands, that should be in separate functions!
@@ -184,12 +185,17 @@ void UI::addPerson()
         yearFail = 0;
         cout << "Enter year of death: ( . to skip)" << endl;
         cin >> deathYear;
-        if((deathYear.find_first_not_of("0123456789") == std::string::npos) || deathYear == "." ){
-            if(deathYear == "."){
+        if((deathYear.find_first_not_of("0123456789") == std::string::npos) || deathYear == "." )
+        {
+            if(deathYear == ".")
+            {
                 dYear = 0;
-            }else{
+            }
+            else
+            {
                 dYear = stoi( deathYear );
-                if(birthYear < dYear){
+                if(birthYear > dYear)
+                {
                     yearFail = 1;
                 }
             }

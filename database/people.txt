@@ -1,19 +1,5 @@
-<<<<<<< Updated upstream
-
-dabs M 1970 0 Icelandic
-<<<<<<< Updated upstream
-Alan_Turing M 1900 2000 English
-
-=======
-<<<<<<< Updated upstream
-Alan_Turing M 1900 2000 English
-dabs M 1970 0 Icelandic
-=======
-Monglia F 192 0 United states of america
-Margret F 1995 0 Saudi Arabia
-asdas M 1992 0 askdask asd
-aksdka M 199 0 asjd asd
->>>>>>> Stashed changes
->>>>>>> Stashed changes
-
-MArgret F 1995 0 Celand
+dabs M 1970 0 iceland
+asdf M 1999 1999 celand
+fdas M 1970 2015 celand
+asfg M 1 1000 ce
+asdfg M 1 2000 celand

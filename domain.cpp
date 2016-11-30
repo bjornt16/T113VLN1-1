@@ -133,16 +133,27 @@ vector<Person> Domain::sortPeopleByName(string sortOrder)
 {
     vector<Person> sortedName = data.getList();
 
-    struct PersonAsc {
-      bool operator() (Person i,Person j) { return (i.getName()<j.getName());}
+    struct PersonAsc
+    {
+        bool operator() (Person i,Person j)
+        {
+        return (i.getName()<j.getName());
+        }
     };
-    struct PersonDesc {
-      bool operator() (Person i,Person j) { return (i.getName()>j.getName());}
+    struct PersonDesc
+    {
+        bool operator() (Person i,Person j)
+        {
+        return (i.getName()>j.getName());
+        }
     };
-    if(sortOrder == "asc"){
+    if(sortOrder == "asc")
+    {
         PersonAsc cmp;
         sort(sortedName.begin(), sortedName.end(), cmp);
-    }else if(sortOrder == "desc"){
+    }
+    else if(sortOrder == "desc")
+    {
         PersonDesc cmp;
         sort(sortedName.begin(), sortedName.end(), cmp);
     }
@@ -151,30 +162,135 @@ vector<Person> Domain::sortPeopleByName(string sortOrder)
     return sortedName;
 }
 
-vector<Person> Domain::sortPeopleByGender()
+vector<Person> Domain::sortPeopleByGender(string sortOrder)
 {
     vector<Person> sortedGender = data.getList();
+
+    struct PersonAsc
+    {
+        bool operator() (Person i,Person j)
+        {
+            return (i.getGender() < j.getGender());
+        }
+    };
+    struct PersonDesc
+    {
+        bool operator() (Person i,Person j)
+        {
+            return (i.getGender() > j.getGender());
+        }
+    };
+
+    if(sortOrder == "asc")
+    {
+        PersonAsc cmp;
+        sort(sortedGender.begin(), sortedGender.end(), cmp);
+    }
+    else if(sortOrder == "desc")
+    {
+        PersonDesc cmp;
+        sort(sortedGender.begin(), sortedGender.end(), cmp);
+    }
+
 
     return sortedGender;
 }
 
-vector<Person> Domain::sortPeopleByBY()
+vector<Person> Domain::sortPeopleByBY(string sortOrder)
 {
     vector<Person> sortedBY = data.getList();
+
+    struct PersonAsc
+    {
+        bool operator() (Person i,Person j)
+        {
+            return (i.getBirthYear() < j.getBirthYear());
+        }
+    };
+    struct PersonDesc
+    {
+        bool operator() (Person i,Person j)
+        {
+            return (i.getBirthYear() > j.getBirthYear());
+        }
+    };
+
+    if(sortOrder == "asc")
+    {
+        PersonAsc cmp;
+        sort(sortedBY.begin(), sortedBY.end(), cmp);
+    }
+    else if(sortOrder == "desc")
+    {
+        PersonDesc cmp;
+        sort(sortedBY.begin(), sortedBY.end(), cmp);
+    }
 
     return sortedBY;
 }
 
-vector<Person> Domain::sortPeopleByDY()
+vector<Person> Domain::sortPeopleByDY(string sortOrder)
 {
     vector<Person> sortedDY = data.getList();
+
+    struct PersonAsc
+    {
+        bool operator() (Person i,Person j)
+        {
+            return (i.getDeathYear() < j.getDeathYear());
+        }
+    };
+    struct PersonDesc
+    {
+        bool operator() (Person i,Person j)
+        {
+            return (i.getDeathYear() > j.getDeathYear());
+        }
+    };
+
+    if(sortOrder == "asc")
+    {
+        PersonAsc cmp;
+        sort(sortedDY.begin(), sortedDY.end(), cmp);
+    }
+    else if(sortOrder == "desc")
+    {
+        PersonDesc cmp;
+        sort(sortedDY.begin(), sortedDY.end(), cmp);
+    }
 
     return sortedDY;
 }
 
-vector<Person> Domain::sortPeopleByNat()
+vector<Person> Domain::sortPeopleByNat(string sortOrder)
 {
     vector<Person> sortedNat = data.getList();
+
+    struct PersonAsc
+    {
+        bool operator() (Person i,Person j)
+        {
+            return (i.getNationality() < j.getNationality());
+        }
+    };
+    struct PersonDesc
+    {
+        bool operator() (Person i,Person j)
+        {
+            return (i.getNationality() > j.getNationality());
+        }
+    };
+
+    if(sortOrder == "asc")
+    {
+        PersonAsc cmp;
+        sort(sortedNat.begin(), sortedNat.end(), cmp);
+    }
+    else if(sortOrder == "desc")
+    {
+        PersonDesc cmp;
+        sort(sortedNat.begin(), sortedNat.end(), cmp);
+    }
 
     return sortedNat;
 }
