@@ -16,11 +16,13 @@ private:
 public:
     Domain();
     vector<Person> getPersonList(/* TODO: parameters */);
+
     vector<Person> searchPersonName(string search);
     vector<Person> searchPersonNationality(string search);
     vector<Person> searchPersonGender(char search);
     vector<Person> searchPersonBirth(int from, int to = 9999);
     vector<Person> searchPersonDeath(int from, int to = 9999);
+
     void addPerson(Person p);
 };
 
