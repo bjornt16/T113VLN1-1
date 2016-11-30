@@ -96,7 +96,7 @@ void UI::ListPerson(vector<Person> people, bool search)
     {
         if(search){
             cout << "Id: " << i << endl;
-
+        }
         if(search == true)
         {
             cout << setw(4) << i;
@@ -433,5 +433,4 @@ void UI::editPerson(){
         //vantar eitthvað meira hér....
 
     }
-
 }
