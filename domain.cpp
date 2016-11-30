@@ -1,6 +1,5 @@
 #include "domain.h"
 #include "data.h"
-#include "person.h"
 #include <algorithm>
 #include <string>
 #include <fstream>
@@ -156,7 +155,6 @@ vector<Person> Domain::sortPeopleByName(string sortOrder)
     {
         PersonDesc cmp;
         sort(sortedName.begin(), sortedName.end(), cmp);
-    }
 
 
     return sortedName;
@@ -293,4 +291,14 @@ vector<Person> Domain::sortPeopleByNat(string sortOrder)
     }
 
     return sortedNat;
+}
+
+Person Domain::isolatePerson(int inst, vector<Person>& vectorInput)
+{
+    return vectorInput[inst];
+}
+
+void Domain::removePerson(Person personToRemove)
+{
+    data.removePersonFromDatabase(personToRemove);
 }
