@@ -115,7 +115,7 @@ void UI::ListPerson(vector<Person> people, bool search)
 
 void UI::addPerson()
 {
-    string name, tempName = "";
+    string name, tempName = "", tempNation = "";
     int birthYear, dYear;
     string deathYear;
     vector<char> gender;
@@ -160,6 +160,14 @@ void UI::addPerson()
 
     cout << "Enter nationality: " << endl;
     cin >> nationality;
+    while(cin.good()){
+        cin.get(c);
+        if(c == '\n' && tempNation != ""){
+            break;
+        }
+        cin >> tempNation;
+        nationality += " " + tempNation;
+    }
 
     do{
         yearFail = 0;
