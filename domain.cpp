@@ -129,7 +129,7 @@ vector<Person> Domain::searchPersonDeath(int from, int to){
 }
 
 
-vector<Person> Domain::sortPeopleByName()
+vector<Person> Domain::sortPeopleByName(string sortOrder)
 {
     vector<Person> sortedName = data.getList();
 
