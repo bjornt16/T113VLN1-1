@@ -14,7 +14,6 @@ using namespace std;
 
 UI::UI()
 {
-
 }
 
 // Should not contain logic for individual commands, that should be in separate functions!
