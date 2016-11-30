@@ -1,4 +1,9 @@
+<<<<<<< Updated upstream
 
 dabs M 1970 0 Icelandic
 Alan_Turing M 1900 2000 English
 
+=======
+Alan_Turing M 1900 2000 English
+dabs M 1970 0 Icelandic
+>>>>>>> Stashed changes
