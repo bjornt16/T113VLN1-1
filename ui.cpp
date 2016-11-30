@@ -17,22 +17,19 @@ UI::UI()
 }
 
 // Should not contain logic for individual commands, that should be in separate functions!
-void UI::mainMenu(bool init)
+void UI::mainMenu()
 {
     string command;
 
     do
     {
-        if(!init){
-            cout << endl;
-        }
-
         cout << "Please enter one of the following commands:" << endl;
         cout << "list - This will list all people in the system" << endl;
         cout << "add - This will add a new person" << endl;
         cout << "delete - Removes an entry" << endl;
         cout << "edit - Edit an entry" << endl;
         cout << "search - Searches for given people" << endl;
+        cout << "sort - Sort people in the system" << endl;
         cout << "quit - for quit" << endl;
         cin >> command;
         cout << endl;
@@ -59,6 +56,11 @@ void UI::mainMenu(bool init)
             //todo
             //editPerson();
         }
+        else if (command == "sort")
+        {
+            //TODO
+            sortPeople();
+        }
         else if (command == "quit")
         {
             //þetta á að vera tómt
@@ -68,9 +70,9 @@ void UI::mainMenu(bool init)
             cout << "Illegal move! \n" << endl  ;
         }
 
-        init = 0;
+        cout << endl;
 
-    } while( !(command == "quit"));
+    } while( !(command == "quit") );
 }
 
 void UI::ListPerson(vector<Person> people, bool search)
@@ -90,7 +92,15 @@ void UI::ListPerson(vector<Person> people, bool search)
         cout << "Birth year: ";
         cout << people[i].getBirthYear() << endl;
         cout << "Death year: ";
-        people[i].getDeathYear() == 0 ? cout << "-" << endl : cout << people[i].getDeathYear() << endl;
+        if(people[i].getDeathYear() == 0)
+        {
+            cout << "-" << endl;
+        }
+        else
+        {
+            cout << people[i].getDeathYear() << endl;
+        }
+        //people[i].getDeathYear() == 0 ? cout << "-" << endl : cout << people[i].getDeathYear() << endl;
         cout << "Age: ";
         cout << people[i].getAge() << endl;
         cout << "Nationality: ";
@@ -218,8 +228,14 @@ void UI::searchPerson()
                     cin >> tempYear;
                     yearSearch.push_back(tempYear);
                 }
-                yearSearch.size() > 1 ? ListPerson(domain.searchPersonDeath(yearSearch[0], yearSearch[1])) :
-                                        ListPerson(domain.searchPersonDeath(yearSearch[0]));
+                if(yearSearch.size() > 1)
+                {
+                    ListPerson(domain.searchPersonDeath(yearSearch[0], yearSearch[1]));
+                }
+                else
+                {
+                    ListPerson(domain.searchPersonDeath(yearSearch[0]));
+                }
                 break;
             }
             case 5 : //nationality
@@ -236,5 +252,71 @@ void UI::searchPerson()
             }
         }
     }while(!valid);
+}
+
+void UI::sortPeople()
+{
+    bool valid = true;
+    do{
+        valid = true;
+        int column = 0;
+        cout << "1 : Name" << endl;
+        cout << "2 : Gender" << endl;
+        cout << "3 : Year of Birth" << endl;
+        cout << "4 : Year of Death " << endl;
+        cout << "5 : Nationality" << endl;
+        cout << "0 : Cancel" << endl;
+        cout << "Select a column to sort by: ";
+        cin >> column;
+        switch(column)
+        {
+            case 0 : //cancel
+            {
+                cout << endl;
+                break;
+            }
+
+            case 1 : //name sort
+            {
+                //TODO
+                //SortPeopleByName();
+                break;
+            }
+
+            case 2 :
+            {
+                //TODO
+                //SortPeopleByGender();
+                break;
+            }
+
+            case 3 :
+            {
+                //TODO
+                //SortPeopleByBY();
+                break;
+            }
+
+            case 4 :
+            {
+                //TODO
+                //SortPeopleByDY();
+                break;
+            }
+
+            case 5 :
+            {
+                //TODO
+                //SortPeopleByNat();
+                break;
+            }
+            default :
+            {
+                cout << "Not a valid choice, try again: ";
+                valid = false;
+                break;
+            }
+        }
+    } while(valid == false);
 
 }

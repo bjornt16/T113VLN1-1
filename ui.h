@@ -18,11 +18,13 @@ private:
     void addPerson();
 
     void searchPerson();
+
+    void sortPeople();
 public:
     UI();
 
     // Displays the main menu of the program.
-    void mainMenu(bool init = 0);
+    void mainMenu();
 };
 
 #endif // CONSOLEUI_H
