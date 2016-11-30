@@ -82,17 +82,17 @@ void UI::ListPerson(vector<Person> people, bool search)
     {
         cout << "====";
     }
-    cout << "========================================================================================" << endl;
+    cout << "==================================================================================" << endl;
     if(search == true)
     {
         cout << "ID  ";
     }
-    cout << "Name                       Gender      Birth year      Death year    Age   Nationality" << endl;
+    cout << "Name                       Gender   Birth year   Death year   Age    Nationality" << endl;
     if(search == true)
     {
         cout << "----";
     }
-    cout << "----------------------------------------------------------------------------------------" << endl;
+    cout << "----------------------------------------------------------------------------------" << endl;
     for (size_t i = 0; i< people.size(); ++i)
     {
 
@@ -101,18 +101,18 @@ void UI::ListPerson(vector<Person> people, bool search)
             cout << setw(4) << i;
         }
         cout << setw(27) << people[i].getName();
-        cout << setw(12) << people[i].getGender();
-        cout << setw(16) << people[i].getBirthYear();
-        people[i].getDeathYear() == 0 ? cout << setw(14) << "-" : cout << setw(14) << people[i].getDeathYear();
-        cout << setw(6) << people[i].getAge();
-        cout << setw(11) << people[i].getNationality() << endl;
+        cout << setw(9) << people[i].getGender();
+        cout << setw(13) << people[i].getBirthYear();
+        people[i].getDeathYear() == 0 ? cout << setw(13) << "-" : cout << setw(13) << people[i].getDeathYear();
+        cout << setw(7) << people[i].getAge();
+        cout << setw(13) << people[i].getNationality() << endl;
 
     }
     if(search == true)
     {
         cout << "====";
     }
-    cout << "========================================================================================" << endl;
+    cout << "==================================================================================" << endl;
 }
 
 void UI::addPerson()
