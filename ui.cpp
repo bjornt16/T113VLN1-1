@@ -52,8 +52,7 @@ void UI::mainMenu()
         }
         else if (command == "edit")
         {
-            //todo
-            //editPerson();
+            editPerson();
         }
         else if (command == "sort")
         {
@@ -94,7 +93,6 @@ void UI::ListPerson(vector<Person> people, bool search)
     cout << "----------------------------------------------------------------------------------" << endl;
     for (size_t i = 0; i< people.size(); ++i)
     {
-
         if(search == true)
         {
             cout << setw(4) << i;
@@ -116,12 +114,13 @@ void UI::ListPerson(vector<Person> people, bool search)
 
 void UI::addPerson()
 {
-    string name, tempName = "";
-    int birthYear;
-    int deathYear;
+    string name, tempName = "", tempNation = "";
+    int birthYear, dYear;
+    string deathYear;
     vector<char> gender;
     char tempChar;
     string nationality;
+    bool yearFail = 0;
 
     char c = '\0';
 
@@ -160,26 +159,47 @@ void UI::addPerson()
 
     cout << "Enter nationality: " << endl;
     cin >> nationality;
+    while(cin.good()){
+        cin.get(c);
+        if(c == '\n' && tempNation != ""){
+            break;
+        }
+        cin >> tempNation;
+        nationality += " " + tempNation;
+    }
 
-    cout << "Enter birth year: " << endl;
-    cin >> birthYear;
-    while(cin.fail()){
-        cout << "Illegal entry, try again" << endl;
-        cin.clear();
-        cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+    do{
+        yearFail = 0;
+        cout << "Enter birth year: " << endl;
         cin >> birthYear;
-    }
+        if(cin.fail()){
+            cout << "Illegal entry, try again" << endl;
+            cin.clear();
+            cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+            yearFail = 1;
+        }
+    }while(yearFail);
 
-    cout << "Enter year of death: ( . to skip)" << endl;
-    cin >> deathYear;
+    do{
+        yearFail = 0;
+        cout << "Enter year of death: ( . to skip)" << endl;
+        cin >> deathYear;
+        if((deathYear.find_first_not_of("0123456789") == std::string::npos) || deathYear == "." ){
+            if(deathYear == "."){
+                dYear = 0;
+            }else{
+                dYear = stoi( deathYear );
+                if(birthYear < dYear){
+                    yearFail = 1;
+                }
+            }
+        }
+        else{
+            yearFail = 1;
+        }
+    }while(yearFail);
 
-    if(cin.fail()){
-        cin.clear();
-        cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-        deathYear = 0;
-    }
-
-    Person newPerson(name, gender[0], birthYear, deathYear, nationality);
+    Person newPerson(name, gender[0], birthYear, dYear, nationality);
     domain.addPerson(newPerson);
 
     // TODO:
@@ -384,20 +404,34 @@ void UI::sortPeople()
 void UI::removePerson()
 {
 
-    char answer;
+    char answer = ' ';
     int numberToRemove = 0;
     cout <<"Do you want to remove all of the list? Y for yes and N for no:" << endl;
     cin >> answer;
-    if(answer =='Y' || answer == 'y'){
-
+    if(answer == 'Y' || answer == 'y'){
         //Todo eyða öllum listanum
     }
     else if (answer =='N' || answer=='n') {
         cout << "Serach for the person you want to delete:" << endl;
         vector<Person> searchResult = searchPerson();
         cout << "Select id of the person you want to delete:" << endl;
-        cin >> numberToRemove;
-        Person personToRemove  = domain.isolatePerson(numberToRemove, searchResult);
-        domain.removePerson(personToRemove);
+    }
+}
+
+void UI::editPerson(){
+
+    char answer;
+    int personToEdit = 0;
+    cout <<"Do you want to edit the list? Y for yes and N for no" << endl;
+    if(answer =='Y' || answer == 'y'){
+    }
+    else if (answer =='N' || answer=='n') {
+        cout << "Search for the person you want to edit" << endl;
+        searchPerson();
+        cout << "Select id of the person you want to edit" << endl;
+        cin >> personToEdit;
+
+        //vantar eitthvað meira hér....
+
     }
 }
