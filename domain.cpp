@@ -1,5 +1,6 @@
 #include "domain.h"
 #include "data.h"
+#include "person.h"
 #include <algorithm>
 #include <string>
 #include <fstream>
@@ -8,10 +9,6 @@
 using namespace std;
 
 //domain layer
-
-struct PersonComparison {
-  bool operator() (Person i,Person j) { return (i.getName()<j.getName());}
-};
 
 Domain::Domain()
 {
@@ -128,35 +125,23 @@ vector<Person> Domain::searchPersonDeath(int from, int to){
 }
 
 
-vector<Person> Domain::sortPeopleByName()
+vector<Person> Domain::sortPeopleByName(string sortOrder)
 {
     vector<Person> sortedName = data.getList();
 
-    string name;
-    char gender;
-    int BY = 0;
-    int DY = 0;
-    string nat;
-
-    int j = 0;
-    Person temporary();
-    for (size_t i = 1; i < sortedName.size(); i++)
-    {
-        j = i;
-        while(j > 0 && sortedName[j-1].getName() > sortedName[j].getName())
-        {
-            name = sortedName[j].getName();
-            temporary.setName(name);
-            temporary.setGender() = sortedName[j].getGender();
-            temporary.setBY() = sortedName[j].getBirthYear();
-            temporary.setDY() = sortedName[j].getDeathYear();
-            temporary.setNationality(); = sortedName[j].getNationality();
-            sortedName[j] = sortedName[j-1];
-            sortedName[j-1] = temporary;
-            j = j-1;
-        }
+    struct PersonAsc {
+      bool operator() (Person i,Person j) { return (i.getName()<j.getName());}
+    };
+    struct PersonDesc {
+      bool operator() (Person i,Person j) { return (i.getName()>j.getName());}
+    };
+    if(sortOrder == "asc"){
+        PersonAsc cmp;
+        sort(sortedName.begin(), sortedName.end(), cmp);
+    }else if(sortOrder == "desc"){
+        PersonDesc cmp;
+        sort(sortedName.begin(), sortedName.end(), cmp);
     }
-
 
     return sortedName;
 }
