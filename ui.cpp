@@ -1,4 +1,5 @@
 #include <iostream>
+#include <iomanip>
 #include <string>
 #include <sstream>
 #include <limits>
@@ -13,7 +14,6 @@ using namespace std;
 
 UI::UI()
 {
-
 }
 
 // Should not contain logic for individual commands, that should be in separate functions!
@@ -24,13 +24,13 @@ void UI::mainMenu()
     do
     {
         cout << "Please enter one of the following commands:" << endl;
-        cout << "list - This will list all people in the system" << endl;
-        cout << "add - This will add a new person" << endl;
-        cout << "delete - Removes an entry" << endl;
-        cout << "edit - Edit an entry" << endl;
-        cout << "search - Searches for given people" << endl;
-        cout << "sort - Sort people in the system" << endl;
-        cout << "quit - for quit" << endl;
+        cout << setw(7) << left << "list" << "This will list all people in the system" << endl;
+        cout << setw(7) << "add" << "This will add a new person" << endl;
+        cout << setw(7) <<"delete" << "Removes an entry" << endl;
+        cout << setw(7) <<"edit" << "Edit an entry" << endl;
+        cout << setw(7) <<"search" << "Searches for given people" << endl;
+        cout << setw(7) <<"sort" << "Sort people in the system" << endl;
+        cout << setw(7) <<"quit" <<"For quit" << endl;
         cin >> command;
         cout << endl;
 
@@ -78,12 +78,11 @@ void UI::ListPerson(vector<Person> people, bool search)
 {
 
     cout << "Displaying persons:" << endl;
-    cout << "==================" << endl;
     for (size_t i = 0; i< people.size(); ++i)
     {
         if(search){
             cout << "Id: " << i << endl;
-        }
+
         cout << "Name: ";
         cout << people[i].getName() << endl;
         cout << "Gender: ";
@@ -104,7 +103,17 @@ void UI::ListPerson(vector<Person> people, bool search)
         cout << people[i].getAge() << endl;
         cout << "Nationality: ";
         cout << people[i].getNationality() << endl;
-        cout << "==================" << endl;
+        }
+        cout << "==========================================================================" << endl;
+        cout << "Name       Gender      Birth year      Death year      Age     Nationality" << endl;
+        cout << "--------------------------------------------------------------------------" << endl;
+        cout << people[i].getName();
+        cout << people[i].getGender();
+        cout << people[i].getBirthYear();
+        people[i].getDeathYear() == 0 ? cout << "-" << endl: cout << people[i].getDeathYear();
+        cout << people[i].getAge();
+        cout << people[i].getNationality() << endl;
+        cout << "---------------------------------------------------------------------------" << endl;
     }
 }
 
@@ -139,6 +148,14 @@ void UI::addPerson()
 
     cout << "Enter birth year: " << endl;
     cin >> birthYear;
+    while(cin.fail()){
+        cout << "Illegal entry, try again" << endl;
+        cin.clear();
+        cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+        cin >> birthYear;
+    }
+
+
     cout << "Enter year of death: ( . to skip)" << endl;
     cin >> deathYear;
 
@@ -163,16 +180,25 @@ void UI::searchPerson()
     vector<int> yearSearch;
     bool valid = 1;
     char c = '\0';
+
+    cout << "1 : Name" << endl;
+    cout << "2 : Gender" << endl;
+    cout << "3 : Year of Birth" << endl;
+    cout << "4 : Year of Death " << endl;
+    cout << "5 : Nationality" << endl;
+    cout << "0 : Cancel" << endl;
+    cout << "Choose a number between 0-5 to select what column to search in: ";
+
     do{
         valid = 1;
-        cout << "1 : Name" << endl;
-        cout << "2 : Gender" << endl;
-        cout << "3 : Year of Birth" << endl;
-        cout << "4 : Year of Death " << endl;
-        cout << "5 : Nationality" << endl;
-        cout << "0 : Cancel" << endl;
-        cout << "Select a column to search by: ";
         cin >> column;
+
+        if (cin.fail()) {
+                cin.clear();
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                column = 6;
+        }
+
         switch(column){
 
             case 0 : //cancel

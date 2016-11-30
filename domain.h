@@ -31,8 +31,6 @@ public:
     vector<Person> sortPeopleByDY();    // death year
     vector<Person> sortPeopleByNat();   // nationality
 
-
-
     void addPerson(Person p);
 };
 

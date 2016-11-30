@@ -1,4 +1,6 @@
 database\*.txt
+database/*.txt
+
 
 # C++ objects and libs
 

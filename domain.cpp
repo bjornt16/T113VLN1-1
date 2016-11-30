@@ -127,6 +127,7 @@ vector<Person> Domain::searchPersonDeath(int from, int to){
     return searchList;
 }
 
+
 vector<Person> Domain::sortPeopleByName()
 {
     vector<Person> sortedName = data.getList();
