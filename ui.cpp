@@ -289,30 +289,35 @@ void UI::sortPeople()
             case 1 : //name sort
             {
                 //TODO
+                ListPerson(domain.sortPeopleByName());
                 break;
             }
 
             case 2 : //gender sort
             {
                 //TODO
+                ListPerson(domain.sortPeopleByGender());
                 break;
             }
 
             case 3 : //birth year sort
             {
                 //TODO
+                ListPerson(domain.sortPeopleByBY());
                 break;
             }
 
             case 4 : // death year sort
             {
                 //TODO
+                ListPerson(domain.sortPeopleByDY());
                 break;
             }
 
             case 5 : // nationality sort
             {
                 //TODO
+                ListPerson(domain.sortPeopleByNat());
                 break;
             }
             default : // loop if incorrect input
