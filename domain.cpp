@@ -10,6 +10,10 @@ using namespace std;
 
 //domain layer
 
+struct PersonComparison {
+  bool operator() (Person i,Person j) { return (i.getName()<j.getName());}
+};
+
 Domain::Domain()
 {
 
@@ -125,7 +129,7 @@ vector<Person> Domain::searchPersonDeath(int from, int to){
 }
 
 
-vector<Person> Domain::sortPeopleByName(string sortOrder)
+vector<Person> Domain::sortPeopleByName()
 {
     vector<Person> sortedName = data.getList();
 
@@ -142,6 +146,7 @@ vector<Person> Domain::sortPeopleByName(string sortOrder)
         PersonDesc cmp;
         sort(sortedName.begin(), sortedName.end(), cmp);
     }
+
 
     return sortedName;
 }
