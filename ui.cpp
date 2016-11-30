@@ -127,11 +127,16 @@ void UI::addPerson()
         cin >> tempName;
         name += " " + tempName;
     }
-    cout << "Enter gender(m/f): " << endl;
-    cin >> gender;
-    gender = char(toupper(gender));
+    do{
+        cout << "Enter gender(M/F): " << endl;
+        cin >> gender;
+        gender = char(toupper(gender));
+    }
+    while (!(gender == 'M') || !(gender =='F'));
+
     cout << "Enter nationality: " << endl;
     cin >> nationality;
+
     cout << "Enter birth year: " << endl;
     cin >> birthYear;
     cout << "Enter year of death: ( . to skip)" << endl;
