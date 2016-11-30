@@ -131,17 +131,24 @@ vector<Person> Domain::searchPersonDeath(int from, int to){
 vector<Person> Domain::sortPeopleByName()
 {
     vector<Person> sortedName = data.getList();
-    /*unfinished<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+    string name;
+    char gender;
+    int BY = 0;
+    int DY = 0;
+    string nat;
+
     int j = 0;
     Person temporary();
-    for (int i = 1; i < sortedName.size(); i++)
+    for (size_t i = 1; i < sortedName.size(); i++)
     {
         j = i;
         while(j > 0 && sortedName[j-1].getName() > sortedName[j].getName())
         {
-            temporary.setName(sortedName[j].getName());
+            name = sortedName[j].getName();
+            temporary.setName(name);
             temporary.setGender() = sortedName[j].getGender();
-            temporary.setBY(); = sortedName[j].getBirthYear();
+            temporary.setBY() = sortedName[j].getBirthYear();
             temporary.setDY() = sortedName[j].getDeathYear();
             temporary.setNationality(); = sortedName[j].getNationality();
             sortedName[j] = sortedName[j-1];
@@ -149,7 +156,7 @@ vector<Person> Domain::sortPeopleByName()
             j = j-1;
         }
     }
-    */
+
 
     return sortedName;
 }
