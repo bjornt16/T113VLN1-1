@@ -142,7 +142,7 @@ vector<Person> Domain::sortPeopleByName()
     Person temporary();
     for (size_t i = 1; i < sortedName.size(); i++)
     {
-        j = i;
+        /*j = i;
         while(j > 0 && sortedName[j-1].getName() > sortedName[j].getName())
         {
             name = sortedName[j].getName();
@@ -154,7 +154,7 @@ vector<Person> Domain::sortPeopleByName()
             sortedName[j] = sortedName[j-1];
             sortedName[j-1] = temporary;
             j = j-1;
-        }
+        }*/
     }
 
 
