@@ -94,9 +94,6 @@ void UI::ListPerson(vector<Person> people, bool search)
     cout << "----------------------------------------------------------------------------------" << endl;
     for (size_t i = 0; i< people.size(); ++i)
     {
-        if(search){
-            cout << "Id: " << i << endl;
-        }
         if(search == true)
         {
             cout << setw(4) << i;
