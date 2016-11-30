@@ -10,6 +10,7 @@ using namespace std;
 class Data
 {
 private:
+    //vectorinn sem heldur utan um listann í heild sinni
     vector<Person> list;
 public:
     Data();

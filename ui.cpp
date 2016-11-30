@@ -14,7 +14,6 @@ using namespace std;
 
 UI::UI()
 {
-
 }
 
 // Should not contain logic for individual commands, that should be in separate functions!
@@ -125,7 +124,8 @@ void UI::addPerson()
     string name, tempName = "";
     int birthYear;
     int deathYear;
-    char gender;
+    vector<char> gender;
+    char tempChar;
     string nationality;
 
     char c = '\0';
@@ -141,10 +141,27 @@ void UI::addPerson()
     }
     do{
         cout << "Enter gender(M/F): " << endl;
-        cin >> gender;
-        gender = char(toupper(gender));
+
+        while(cin.good()){
+            if(gender.size() != 0){
+                break;
+            }
+            cin >> tempChar;
+            tempChar = char(toupper(tempChar));
+            gender.push_back(tempChar);
+            if (isdigit(tempChar)) {
+                cin.clear();
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                gender.clear();
+                break;
+            }
+        }
+
     }
-    while (!(gender == 'M') || !(gender =='F'));
+    while (!(gender[0] == 'M' || gender[0] == 'F'));
+    cin.clear();
+    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+
 
     cout << "Enter nationality: " << endl;
     cin >> nationality;
@@ -158,7 +175,6 @@ void UI::addPerson()
         cin >> birthYear;
     }
 
-
     cout << "Enter year of death: ( . to skip)" << endl;
     cin >> deathYear;
 
@@ -168,7 +184,7 @@ void UI::addPerson()
         deathYear = 0;
     }
 
-    Person newPerson(name, gender, birthYear, deathYear, nationality);
+    Person newPerson(name, gender[0], birthYear, deathYear, nationality);
     domain.addPerson(newPerson);
 
     // TODO:
@@ -183,16 +199,25 @@ void UI::searchPerson()
     vector<int> yearSearch;
     bool valid = 1;
     char c = '\0';
+
+    cout << "1 : Name" << endl;
+    cout << "2 : Gender" << endl;
+    cout << "3 : Year of Birth" << endl;
+    cout << "4 : Year of Death " << endl;
+    cout << "5 : Nationality" << endl;
+    cout << "0 : Cancel" << endl;
+    cout << "Choose a number between 0-5 to select what column to search in: ";
+
     do{
         valid = 1;
-        cout << "1 : Name" << endl;
-        cout << "2 : Gender" << endl;
-        cout << "3 : Year of Birth" << endl;
-        cout << "4 : Year of Death " << endl;
-        cout << "5 : Nationality" << endl;
-        cout << "0 : Cancel" << endl;
-        cout << "Select a column to search by: ";
         cin >> column;
+
+        if (cin.fail()) {
+                cin.clear();
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                column = 6;
+        }
+
         switch(column){
 
             case 0 : //cancel
@@ -309,38 +334,38 @@ void UI::sortPeople()
             case 1 : //name sort
             {
                 //TODO
-                //SortPeopleByName();
+                ListPerson(domain.sortPeopleByName());
                 break;
             }
 
-            case 2 :
+            case 2 : //gender sort
             {
                 //TODO
-                //SortPeopleByGender();
+                ListPerson(domain.sortPeopleByGender());
                 break;
             }
 
-            case 3 :
+            case 3 : //birth year sort
             {
                 //TODO
-                //SortPeopleByBY();
+                ListPerson(domain.sortPeopleByBY());
                 break;
             }
 
-            case 4 :
+            case 4 : // death year sort
             {
                 //TODO
-                //SortPeopleByDY();
+                ListPerson(domain.sortPeopleByDY());
                 break;
             }
 
-            case 5 :
+            case 5 : // nationality sort
             {
                 //TODO
-                //SortPeopleByNat();
+                ListPerson(domain.sortPeopleByNat());
                 break;
             }
-            default :
+            default : // loop if incorrect input
             {
                 cout << "Not a valid choice, try again: ";
                 valid = false;
@@ -348,5 +373,37 @@ void UI::sortPeople()
             }
         }
     } while(valid == false);
+
+}
+
+
+void UI::removePerson(){
+
+    char answer;
+    int numberToRemove = 0;
+    int personToRemove = 0;
+    cout <<"Do you want to remove all of the list? Y for yes and N for no" << endl;
+    if(answer =='Y' || answer == 'y'){
+
+        //Todo eyða öllum listanum
+    }
+    else if (answer =='N' || answer=='n') {
+        cout << "Serach for the person you want to delete" << endl;
+        searchPerson();
+        cout << "Select id of the person you want to delete" << endl;
+        cin >> numberToRemove;
+        /*
+        //vantar lista, ca kóðinn....
+        for(int i = 0; i <= numberToRemove; i++){
+
+            if (Person [i].id == numberToRemove){
+                personToRemove = i;
+                person.erase();
+            }
+        }
+
+*/
+
+    }
 
 }

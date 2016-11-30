@@ -20,6 +20,8 @@ private:
     void searchPerson();
 
     void sortPeople();
+
+    void removePerson();
 public:
     UI();
 
