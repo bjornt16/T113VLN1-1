@@ -1,2 +1,19 @@
 Alan_Turing M 1900 2000 English
+<<<<<<< Updated upstream
 Petur_pall_jonsson M 1990 2005 Icelandic
+=======
+
+=======
+<<<<<<< Updated upstream
+Alan_Turing M 1900 2000 English
+dabs M 1970 0 Icelandic
+=======
+Monglia F 192 0 United states of america
+Margret F 1995 0 Saudi Arabia
+asdas M 1992 0 askdask asd
+aksdka M 199 0 asjd asd
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
+
+isak M 1996 0 saksisak M 1999 0 mamkds
+>>>>>>> Stashed changes
