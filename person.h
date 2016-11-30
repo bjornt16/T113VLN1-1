@@ -10,6 +10,13 @@ public:
     //Constructor:
     Person(string n, char g, int bY, int dY, string nat);
 
+    //set föll fyrir sorting
+    void setName(string inputName);
+    void setGender(char inputGender);
+    void setBY(int inputBY);
+    void setDY(int inputDY);
+    void setNationality(string inputNat);
+
     //Member föll:
     string getName() const;
         //skilar nafni instants af Person

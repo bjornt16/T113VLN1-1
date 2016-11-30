@@ -57,3 +57,28 @@
  {
      return nationality;
  }
+
+ void Person::setName(string inputName)
+ {
+     name = inputName;
+ }
+
+ void Person::setGender(char inputGender)
+ {
+     gender = inputGender;
+ }
+
+ void Person::setBY(int inputBY)
+ {
+     birthYear = inputBY;
+ }
+
+ void Person::setDY(int inputDY)
+ {
+     deathYear = inputDY;
+ }
+
+ void Person::setNationality(string inputNat)
+ {
+     nationality = inputNat;
+ }

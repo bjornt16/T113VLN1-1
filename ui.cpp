@@ -289,38 +289,33 @@ void UI::sortPeople()
             case 1 : //name sort
             {
                 //TODO
-                //SortPeopleByName();
                 break;
             }
 
-            case 2 :
+            case 2 : //gender sort
             {
                 //TODO
-                //SortPeopleByGender();
                 break;
             }
 
-            case 3 :
+            case 3 : //birth year sort
             {
                 //TODO
-                //SortPeopleByBY();
                 break;
             }
 
-            case 4 :
+            case 4 : // death year sort
             {
                 //TODO
-                //SortPeopleByDY();
                 break;
             }
 
-            case 5 :
+            case 5 : // nationality sort
             {
                 //TODO
-                //SortPeopleByNat();
                 break;
             }
-            default :
+            default : // loop if incorrect input
             {
                 cout << "Not a valid choice, try again: ";
                 valid = false;
