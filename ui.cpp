@@ -78,12 +78,17 @@ void UI::ListPerson(vector<Person> people, bool search)
 {
 
     cout << "Displaying persons:" << endl;
+<<<<<<< Updated upstream
     cout << "==================" << endl;
+=======
+    cout << "==============================================================================" << endl;
+>>>>>>> Stashed changes
     for (size_t i = 0; i< people.size(); ++i)
     {
         if(search){
             cout << "Id: " << i << endl;
         }
+<<<<<<< Updated upstream
         cout << "Name: ";
         cout << people[i].getName() << endl;
         cout << "Gender: ";
@@ -105,6 +110,17 @@ void UI::ListPerson(vector<Person> people, bool search)
         cout << "Nationality: ";
         cout << people[i].getNationality() << endl;
         cout << "==================" << endl;
+=======
+        cout << "Name       Gender      Birth year      Death year      Age     Nationality" << endl;
+        cout << "--------------------------------------------------------------------------" << endl;
+        cout << people[i].getName();
+        cout << people[i].getGender();
+        cout << people[i].getBirthYear();
+        people[i].getDeathYear() == 0 ? cout << "-" << endl : cout << people[i].getDeathYear();
+        cout << people[i].getAge();
+        cout << people[i].getNationality() << endl;
+        cout << "---------------------------------------------------------------------------" << endl;
+>>>>>>> Stashed changes
     }
 }
 
