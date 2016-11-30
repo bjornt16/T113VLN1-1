@@ -24,13 +24,13 @@ void UI::mainMenu()
     do
     {
         cout << "Please enter one of the following commands:" << endl;
-        cout << "list - This will list all people in the system" << endl;
-        cout << "add - This will add a new person" << endl;
-        cout << "delete - Removes an entry" << endl;
-        cout << "edit - Edit an entry" << endl;
-        cout << "search - Searches for given people" << endl;
-        cout << "sort - Sort people in the system" << endl;
-        cout << "quit - for quit" << endl;
+        cout << setw(7) << left << "list" << "This will list all people in the system" << endl;
+        cout << setw(7) << "add" << "This will add a new person" << endl;
+        cout << setw(7) <<"delete" << "Removes an entry" << endl;
+        cout << setw(7) <<"edit" << "Edit an entry" << endl;
+        cout << setw(7) <<"search" << "Searches for given people" << endl;
+        cout << setw(7) <<"sort" << "Sort people in the system" << endl;
+        cout << setw(7) <<"quit" <<"For quit" << endl;
         cin >> command;
         cout << endl;
 
