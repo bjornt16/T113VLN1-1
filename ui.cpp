@@ -49,8 +49,7 @@ void UI::mainMenu()
         }
         else if (command == "delete")
         {
-            //todo
-            //removePerson();
+            removePerson();
         }
         else if (command == "edit")
         {
@@ -136,7 +135,9 @@ void UI::addPerson()
         name += " " + tempName;
     }
     do{
-        cout << "Enter gender(M/F): " << endl;
+        gender.clear();
+        tempChar = ' ';
+        cout << "Enter gender(M/F): " <<endl;
 
         while(cin.good()){
             if(gender.size() != 0){
@@ -145,7 +146,7 @@ void UI::addPerson()
             cin >> tempChar;
             tempChar = char(toupper(tempChar));
             gender.push_back(tempChar);
-            if (isdigit(tempChar)) {
+            if (isdigit(tempChar) || cin.fail() || !(tempChar == 'M' || tempChar == 'F')) {
                 cin.clear();
                 cin.ignore(numeric_limits<streamsize>::max(), '\n');
                 gender.clear();
@@ -160,6 +161,7 @@ void UI::addPerson()
 
 
     cout << "Enter nationality: " << endl;
+    cin >> nationality;
     while(cin.good()){
         cin.get(c);
         if(c == '\n' && tempNation != ""){
@@ -212,7 +214,7 @@ void UI::addPerson()
     ListPerson(domain.getPersonList());
 }
 
-void UI::searchPerson()
+vector<Person> UI::searchPerson()
 {
     int column, tempYear = 9999;
     char cSearch;
@@ -228,11 +230,11 @@ void UI::searchPerson()
     cout << "5 : Nationality" << endl;
     cout << "0 : Cancel" << endl;
     cout << "Choose a number between 0-5 to select what column to search in: ";
+    vector<Person> listOfFound;
 
     do{
         valid = 1;
         cin >> column;
-
         if (cin.fail()) {
                 cin.clear();
                 cin.ignore(numeric_limits<streamsize>::max(), '\n');
@@ -258,7 +260,8 @@ void UI::searchPerson()
                     cin >> tempSearch;
                     search += " " + tempSearch;
                 }
-                ListPerson(domain.searchPersonName(search), true);
+                listOfFound = domain.searchPersonName(search);
+                ListPerson(listOfFound, true);
 
                 break;
             }
@@ -266,7 +269,8 @@ void UI::searchPerson()
             {
                 cout << "Gender: ";
                 cin >> cSearch;
-                ListPerson(domain.searchPersonGender(cSearch), true);
+                listOfFound = domain.searchPersonGender(cSearch);
+                ListPerson(listOfFound, true);
                 break;
             }
             case 3 : //birth
@@ -284,11 +288,13 @@ void UI::searchPerson()
                 }
                 if (yearSearch.size() > 1)
                 {
-                    ListPerson(domain.searchPersonBirth(yearSearch[0], yearSearch[1]), true);
+                    listOfFound = domain.searchPersonBirth(yearSearch[0], yearSearch[1]);
+                    ListPerson(listOfFound, true);
                 }
                 else
                 {
-                    ListPerson(domain.searchPersonBirth(yearSearch[0]), true);
+                    listOfFound = domain.searchPersonBirth(yearSearch[0]);
+                    ListPerson(listOfFound, true);
                 }
                 break;
             }
@@ -306,11 +312,13 @@ void UI::searchPerson()
                 }
                 if(yearSearch.size() > 1)
                 {
-                    ListPerson(domain.searchPersonDeath(yearSearch[0], yearSearch[1]), true);
+                    listOfFound = domain.searchPersonDeath(yearSearch[0], yearSearch[1]);
+                    ListPerson(listOfFound, true);
                 }
                 else
                 {
-                    ListPerson(domain.searchPersonDeath(yearSearch[0]), true);
+                    listOfFound = domain.searchPersonDeath(yearSearch[0]);
+                    ListPerson(listOfFound, true);
                 }
                 break;
             }
@@ -318,7 +326,8 @@ void UI::searchPerson()
             {
                 cout << "Nationality: ";
                 cin >> search;
-                ListPerson(domain.searchPersonNationality(search), true);
+                listOfFound = domain.searchPersonNationality(search);
+                ListPerson(listOfFound, true);
                 break;
             }
             default :{
@@ -326,8 +335,10 @@ void UI::searchPerson()
                 valid = false;
                 break;
             }
-        }
+        }    
     }while(!valid);
+
+    return listOfFound;
 }
 
 void UI::sortPeople()
@@ -398,52 +409,49 @@ void UI::sortPeople()
 }
 
 
-void UI::removePerson(){
-
+void UI::removePerson()
+{
     char answer = ' ';
-    int numberToRemove = 0;
-    int personToRemove = 0;
-
-    cout <<"Do you want to remove all of the list? Y for yes and N for no" << endl;
+    cout <<"Do you want to remove all of the list? (y/n)" << endl;
+    cin >> answer;
     if(answer == 'Y' || answer == 'y'){
-
         //Todo eyða öllum listanum
     }
     else if (answer =='N' || answer=='n') {
-        cout << "Search for the person you want to delete" << endl;
-        searchPerson();
-        cout << "Select id of the person you want to delete" << endl;
-        cin >> numberToRemove;
-        /*
-        //vantar lista, ca kóðinn....
-        for(int i = 0; i <= numberToRemove; i++){
-
-            if (Person [i].id == numberToRemove){
-                personToRemove = i;
-                person.erase();
-            }
-        }
-
-*/
-
+        int idOfPerson;
+        cout << "Search for the person you want to delete:" << endl;
+        vector<Person> searchResult = searchPerson();
+        cout << "Select id of the person you want to delete:" << endl;
+        cin >> idOfPerson;
+        Person personToRemove = domain.isolatePerson(idOfPerson, searchResult);
+        domain.removePerson(personToRemove);
     }
-
 }
 
 void UI::editPerson(){
 
     char answer;
     int personToEdit = 0;
+<<<<<<< Updated upstream
     cout <<"Do you want to edit the list? Y for yes and N for no" << endl;
+    cin >> answer;
     if(answer =='Y' || answer == 'y'){
     }
     else if (answer =='N' || answer=='n') {
+=======
+    cout <<"Do you want to edit the list? Y for yes and N for no." << endl;
+    cin >> answer;
+    if(answer =='Y' || answer == 'y')
+    {
+>>>>>>> Stashed changes
         cout << "Search for the person you want to edit" << endl;
         searchPerson();
         cout << "Select id of the person you want to edit" << endl;
         cin >> personToEdit;
-
-        //vantar eitthvað meira hér....
+    }
+    else if (answer =='N' || answer=='n')
+    {
+        //vantar eitthvað hér....
 
     }
 }

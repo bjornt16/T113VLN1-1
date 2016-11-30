@@ -1,6 +1,6 @@
 database\*.txt
 database/*.txt
-
+database/people.txt
 
 # C++ objects and libs
 

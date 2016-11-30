@@ -20,8 +20,7 @@ private:
     //bæta persónu í listann
     void addPerson();
 
-    //leitar að persónu
-    void searchPerson();
+    vector<Person> searchPerson();
 
     //fall sem gengur frá röðun í listanum
     void sortPeople();

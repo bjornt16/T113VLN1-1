@@ -43,6 +43,9 @@ public:
     string getNationality() const;
         //skilar upprunalandi viðkomandi.
 
+    //Friend föll:
+    friend bool operator== (const Person lhs, const Person rhs);
+
 private:
     //Member breytur:
     string name;
@@ -51,5 +54,7 @@ private:
     char   gender;
     string nationality;
 };
+
+
 
 #endif // PERSON_H

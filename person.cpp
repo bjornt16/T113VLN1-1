@@ -82,3 +82,34 @@
  {
      nationality = inputNat;
  }
+
+ bool operator== (const Person lhs, const Person rhs)
+ {
+     bool result=1;
+
+     if( !(lhs.name == rhs.name) )
+     {
+         result = 0;
+     }
+
+     if( !(lhs.birthYear == rhs.birthYear) )
+     {
+         result = 0;
+     }
+
+     if( !(lhs.deathYear == rhs.deathYear) )
+     {
+         result = 0;
+     }
+     if( !(lhs.gender == rhs.gender) )
+     {
+         result = 0;
+     }
+
+     if( !(lhs.nationality == rhs.nationality) )
+     {
+         result = 0;
+     }
+
+     return result;
+ }
