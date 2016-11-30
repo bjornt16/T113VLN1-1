@@ -120,11 +120,12 @@ void UI::ListPerson(vector<Person> people, bool search)
 void UI::addPerson()
 {
     string name, tempName = "";
-    int birthYear;
-    int deathYear;
+    int birthYear, dYear;
+    string deathYear;
     vector<char> gender;
     char tempChar;
     string nationality;
+    bool yearFail = 0;
 
     char c = '\0';
 
@@ -164,15 +165,10 @@ void UI::addPerson()
     cout << "Enter nationality: " << endl;
     cin >> nationality;
 
-    cout << "Enter birth year: " << endl;
-    cin >> birthYear;
-    while(cin.fail()){
-        cout << "Illegal entry, try again" << endl;
-        cin.clear();
-        cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+    do{
+        yearFail = 0;
+        cout << "Enter birth year: " << endl;
         cin >> birthYear;
-    }
-
 
     cout << "Enter year of death: ( . to skip)" << endl;
     cin >> deathYear;
@@ -183,7 +179,6 @@ void UI::addPerson()
         deathYear = 0;
     }
 
-    Person newPerson(name, gender[0], birthYear, deathYear, nationality);
     domain.addPerson(newPerson);
 
     // TODO:
