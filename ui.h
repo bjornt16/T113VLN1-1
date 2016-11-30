@@ -20,14 +20,16 @@ private:
     //bæta persónu í listann
     void addPerson();
 
-    //leitar að perónu
+    //leitar að persónu
     void searchPerson();
 
     //fall sem gengur frá röðun í listanum
     void sortPeople();
 
+    //fall sem annaðhvort eyðir öllum listanum eða eyðir einu staki úr listanum
     void removePerson();
 
+    //fall sem leyfir notandanum að breyta listanum
     void editPerson();
 public:
     UI();
