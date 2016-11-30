@@ -21,8 +21,13 @@ public:
     void readPeopleFromFile();
 
     void removePersonFromDatabase(Person personToRemove);
-    // hendir personToRemove úr vectornum og database.
+        // hendir personToRemove úr vectornum og database.
 
+    void rewriteDatafile();
+        //yfirskrifar gögn í people.txt
+
+    void writeSinglePersonToOpenFile(Person p, ofstream& out);
+        //skrifar Person p í file. Þarf að vera búið að opna file fyrir og senda inn ostream
 };
 
 #endif // DATA_H
