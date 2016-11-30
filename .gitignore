@@ -1,6 +1,6 @@
 database\*.txt
 database/*.txt
-
+database/people.txt
 
 # C++ objects and libs
 
@@ -39,11 +39,3 @@ Makefile*
 
 # QtCtreator CMake
 CMakeLists.txt.user*
-
-database/people.txt
-
-database/people.txt
-
-database/people.txt
-
-database/people.txt
