@@ -10,26 +10,20 @@ using namespace std;
 class Person
 {
 public:
-    Person();
     Person(string n, char g, int bY, int dY, string nat);
-    Person(string n, char g, int bY, string nat);
 
     string getName() const;
-
+    string getFirstName() const;
+    string getLastName() const;
     int getAge() const;
-
     int getBirthYear() const;
-
-    string getDeathYear() const;
-
+    int getDeathYear() const;
     char getGender() const;
-
     string getNationality() const;
 
 private:
     string name;
     int    birthYear;
-    bool   isAlive;
     int    deathYear;
     char   gender;
     string nationality;

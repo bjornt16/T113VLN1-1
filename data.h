@@ -9,12 +9,14 @@ using namespace std;
 
 class Data
 {
+private:
+    vector<Person> list;
 public:
     Data();
 
-    vector<Person> list;
     vector<Person> getList();
     void writePersonToFile(Person P);
+    void updateSort(vector<Person> pList);
     void readPeopleFromFile();
 };
 

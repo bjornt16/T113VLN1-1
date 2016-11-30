@@ -1,7 +1,11 @@
 #include <iostream>
 #include <string>
+#include <sstream>
+#include <limits>
 #include "ui.h"
+#include <vector>
 #include "person.h"
+
 
 using namespace std;
 
@@ -9,44 +13,51 @@ using namespace std;
 
 UI::UI()
 {
+
 }
 
 // Should not contain logic for individual commands, that should be in separate functions!
-void UI::mainMenu()
+void UI::mainMenu(bool init)
 {
     string command;
-    Domoin domain;
 
     do
     {
-    cout << "Please enter one of the following commands:" << endl;
-    cout << "list - This will list all people in the system" << endl;
-    cout << "add - This will add a new person" << endl;
-    cout << "delete - Removes an entry" << endl;
-    cout << "edit - Edit an entry" << endl;
-    cout << "search - Searches for given people" << endl;
-    cout << "quit - for quit" << endl;
-    cin >> command;
+        if(!init){
+            cout << endl;
+        }
+
+        cout << "Please enter one of the following commands:" << endl;
+        cout << "list - This will list all people in the system" << endl;
+        cout << "add - This will add a new person" << endl;
+        cout << "delete - Removes an entry" << endl;
+        cout << "edit - Edit an entry" << endl;
+        cout << "search - Searches for given people" << endl;
+        cout << "quit - for quit" << endl;
+        cin >> command;
+        cout << endl;
 
         if (command == "list")
         {
-            domain.ListPeople();
+            ListPerson(domain.getPersonList());
         }
         else if (command == "add")
         {
-            domain.addPeople();
+            addPerson();
         }
         else if (command == "search")
         {
-            domain.search();
+            searchPerson();
         }
         else if (command == "delete")
         {
-            domain.delete();
+            //todo
+            //removePerson();
         }
         else if (command == "edit")
         {
-            domain.edit();
+            //todo
+            //editPerson();
         }
         else if (command == "quit")
         {
@@ -54,99 +65,176 @@ void UI::mainMenu()
         }
         else
         {
-            cout << "Illegal move!" << endl;
+            cout << "Illegal move! \n" << endl  ;
         }
 
+        init = 0;
 
     } while( !(command == "quit"));
 }
 
-void UI::ListPeople()
+void UI::ListPerson(vector<Person> people, bool search)
 {
-    vector<Person> people = domain.getPeople();
 
     cout << "Displaying persons:" << endl;
     cout << "===============" << endl;
     for (size_t i = 0; i< people.size(); ++i)
     {
-        cout << "name: ";
+        if(search){
+            cout << "Id: " << i << endl;
+        }
+        cout << "Name: ";
         cout << people[i].getName() << endl;
-        cout << "gender: ";
+        cout << "Gender: ";
         cout << people[i].getGender() << endl;
-        cout << "birth year: ";
+        cout << "Birth year: ";
         cout << people[i].getBirthYear() << endl;
-        cout << "death year: ";
-        cout << people[i].getDeathYear() << endl;
-        cout << "nationality: ";
+        cout << "Death year: ";
+        people[i].getDeathYear() == 0 ? cout << "-" << endl : cout << people[i].getDeathYear() << endl;
+        cout << "Age: ";
+        cout << people[i].getAge() << endl;
+        cout << "Nationality: ";
         cout << people[i].getNationality() << endl;
         cout << "===============" << endl;
     }
 }
 
-void UI::addPeople()
+void UI::addPerson()
 {
-    string name;
+    string name, tempName = "";
     int birthYear;
     int deathYear;
     char gender;
     string nationality;
-    char deadOrAlive;
 
-    cout << "Enter name: ";
-    cin >> name;
-    cout << "Enter gender(m/f): ";
+    char c = '\0';
+
+    cout << "Enter name: " << endl;
+    while(cin.good()){
+        cin.get(c);
+        if(c == '\n' && tempName != ""){
+            break;
+        }
+        cin >> tempName;
+        name += " " + tempName;
+    }
+    cout << "Enter gender(m/f): " << endl;
     cin >> gender;
-    cout << "Enter nationality: ";
+    gender = char(toupper(gender));
+    cout << "Enter nationality: " << endl;
     cin >> nationality;
-    cout << "Enter birth year: ";
+    cout << "Enter birth year: " << endl;
     cin >> birthYear;
-    cout << "Is the the person still alive? Enter y for yes and n for no";
-    cin >> deadOrAlive;
-    if (deadOrAlive == 'y'){
-        Person newPerson(name, gender, birthYear, nationality);
-        domain.addPerson(newPerson);
-    }
-    else if (deadOrAlive == 'n'){
-        cout << "Enter death year: ";
-        cin >> deathYear;
-        Person newPerson(name, gender, birthYear, deathYear, nationality);
-        domain.addPerson(newPerson);
+    cout << "Enter year of death: ( . to skip)" << endl;
+    cin >> deathYear;
 
+    if(cin.fail()){
+        cin.clear();
+        cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+        deathYear = 0;
     }
-    else {
-        cout <<"Illegal command, want to enter again? ";
-        cin >> deadOrAlive;
-    }
+
+    Person newPerson(name, gender, birthYear, deathYear, nationality);
+    domain.addPerson(newPerson);
 
     // TODO:
-    ListPeople();
+    ListPerson(domain.getPersonList());
 }
 
-void UI::search()
+void UI::searchPerson()
 {
-    string colom;
-    string search;
-    cout << "what would you like to search by? ";
-    cout << "Name, gender, year of birth, year of death or nationality: ";
-    cin >> colom;
-    if(colom=="Name"||colom=="name")
-    {
-        cout << "Name: ";
-    }
-    else if(colom=="Gender"||colom=="gender")
-    {
-        cout << "Gender: ";
-    }
-    else if(colom=="Year of birth"||colom=="year of birth")
-    {
-        cout << "Year of birth: ";
-    }
-    else if(colom=="Year of death"||colom=="year of death")
-    {
-        cout << "Year of death: ";
-    }
-    else if(colom=="Nationality"||colom=="nationality")
-    {
-        cout << "Nationality: ";
-    }
+    int column, tempYear = 9999;
+    char cSearch;
+    string search, tempSearch;
+    vector<int> yearSearch;
+    bool valid = 1;
+    char c = '\0';
+    do{
+        valid = 1;
+        cout << "1 : Name" << endl;
+        cout << "2 : Gender" << endl;
+        cout << "3 : Year of Birth" << endl;
+        cout << "4 : Year of Death " << endl;
+        cout << "5 : Nationality" << endl;
+        cout << "0 : Cancel" << endl;
+        cout << "Select a column to search by: ";
+        cin >> column;
+        switch(column){
+
+            case 0 : //cancel
+            {
+                cout << endl;
+                break;
+            }
+
+            case 1 : //name
+            {
+                cout << "Name: ";
+                while(cin.good()){
+                    cin.get(c);
+                    if(c == '\n' && tempSearch != ""){
+                        break;
+                    }
+                    cin >> tempSearch;
+                    search += " " + tempSearch;
+                }
+                ListPerson(domain.searchPersonName(search));
+
+                break;
+            }
+            case 2 : //gender
+            {
+                cout << "Gender: ";
+                cin >> cSearch;
+                ListPerson(domain.searchPersonGender(cSearch));
+                break;
+            }
+            case 3 : //birth
+            {
+                cout << endl << "To search from - to, input two numbers with a space between" << endl;
+                cout << "Year of birth: ";
+
+                while(cin.good()){
+                    cin.get(c);
+                    if(c == '\n' && tempYear != 9999){
+                        break;
+                    }
+                    cin >> tempYear;
+                    yearSearch.push_back(tempYear);
+                }
+                yearSearch.size() > 1 ? ListPerson(domain.searchPersonBirth(yearSearch[0], yearSearch[1])) :
+                                        ListPerson(domain.searchPersonBirth(yearSearch[0]));
+                break;
+            }
+            case 4 : //death
+            {
+                cout << endl << "To search from - to, input two numbers with a space between" << endl;
+                cout << "Year of death: ";
+                while(cin.good()){
+                    cin.get(c);
+                    if(c == '\n' && tempYear != 9999){
+                        break;
+                    }
+                    cin >> tempYear;
+                    yearSearch.push_back(tempYear);
+                }
+                yearSearch.size() > 1 ? ListPerson(domain.searchPersonDeath(yearSearch[0], yearSearch[1])) :
+                                        ListPerson(domain.searchPersonDeath(yearSearch[0]));
+                break;
+            }
+            case 5 : //nationality
+            {
+                cout << "Nationality: ";
+                cin >> search;
+                ListPerson(domain.searchPersonNationality(search));
+                break;
+            }
+            default :{
+                cout << "Not a valid choice, try again: ";
+                valid = false;
+                break;
+            }
+        }
+    }while(!valid);
+
 }

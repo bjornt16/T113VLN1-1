@@ -1,29 +1,13 @@
 #include "person.h"
 #include <time.h>
-#include <stdlib.h>
-
-Person::Person()
-{
-
-}
-
+#include <cstddef>
 
  Person::Person(string n, char g, int bY, int dY, string nat)
 {
-    isAlive = 0;
     name = n;
     gender = g;
     birthYear = bY;
     deathYear = dY;
-    nationality = nat;
-}
-
- Person::Person(string n, char g, int bY, string nat)
-{
-    isAlive = 1;
-    name = n;
-    gender = g;
-    birthYear = bY;
     nationality = nat;
 }
 
@@ -32,13 +16,23 @@ Person::Person()
      return name;
  }
 
+ string Person::getFirstName() const
+ {
+     return name.substr(0, name.find(" "));
+ }
+
+ string Person::getLastName() const
+ {
+     return name.substr(name.rfind(" ") + 1);
+ }
+
  int Person::getAge() const
  {
-     if(isAlive)
+     if(deathYear == 0)
      {
-         time_t currentTime;
-         tm* lt = localtime(&currentTime);
-         int currentYear = 1900 + lt->tm_year;
+         time_t t = time(NULL);
+         tm* timePtr = localtime(&t);
+         int currentYear = timePtr->tm_year + 1900;
          return currentYear - birthYear;
      }
      return deathYear - birthYear;
@@ -49,16 +43,9 @@ Person::Person()
      return birthYear;
  }
 
- string Person::getDeathYear() const
+ int Person::getDeathYear() const
  {
-     string strDYear;
-     if(isAlive)
-     {
-         strDYear = '-';
-     }else{
-         strDYear = to_string(deathYear);
-     }
-     return strDYear;
+     return deathYear;
  }
 
  char Person::getGender() const

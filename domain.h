@@ -11,17 +11,17 @@ using namespace std;
 
 class Domain
 {
+private:
+    Data data;
 public:
     Domain();
-
-    Data data;
-    vector<Person> getPeople(/* TODO: parameters */);
-//<<<<<<< HEAD
-
-    vector<Person> savedPeople();
-//=======
+    vector<Person> getPersonList(/* TODO: parameters */);
+    vector<Person> searchPersonName(string search);
+    vector<Person> searchPersonNationality(string search);
+    vector<Person> searchPersonGender(char search);
+    vector<Person> searchPersonBirth(int from, int to = 9999);
+    vector<Person> searchPersonDeath(int from, int to = 9999);
     void addPerson(Person p);
-//>>>>>>> origin/master
 };
 
 #endif // Domain_H

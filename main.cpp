@@ -4,7 +4,7 @@ int main()
 {
     UI ui;
 
-    ui.mainMenu();
+    ui.mainMenu(1);
 
     return 0;
 }
