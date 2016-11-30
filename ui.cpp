@@ -403,18 +403,20 @@ void UI::sortPeople()
 
 void UI::removePerson()
 {
-
     char answer = ' ';
-    int numberToRemove = 0;
-    cout <<"Do you want to remove all of the list? Y for yes and N for no:" << endl;
+    cout <<"Do you want to remove all of the list? (y/n)" << endl;
     cin >> answer;
     if(answer == 'Y' || answer == 'y'){
         //Todo eyða öllum listanum
     }
     else if (answer =='N' || answer=='n') {
-        cout << "Serach for the person you want to delete:" << endl;
+        int idOfPerson;
+        cout << "Search for the person you want to delete:" << endl;
         vector<Person> searchResult = searchPerson();
         cout << "Select id of the person you want to delete:" << endl;
+        cin >> idOfPerson;
+        Person personToRemove = domain.isolatePerson(idOfPerson, searchResult);
+        domain.removePerson(personToRemove);
     }
 }
 
@@ -423,6 +425,7 @@ void UI::editPerson(){
     char answer;
     int personToEdit = 0;
     cout <<"Do you want to edit the list? Y for yes and N for no" << endl;
+    cin >> answer;
     if(answer =='Y' || answer == 'y'){
     }
     else if (answer =='N' || answer=='n') {
