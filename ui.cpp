@@ -375,11 +375,12 @@ void UI::sortPeople()
 
 void UI::removePerson(){
 
-    char answer;
+    char answer = ' ';
     int numberToRemove = 0;
     int personToRemove = 0;
+
     cout <<"Do you want to remove all of the list? Y for yes and N for no" << endl;
-    if(answer =='Y' || answer == 'y'){
+    if(answer == 'Y' || answer == 'y'){
 
         //Todo eyða öllum listanum
     }
