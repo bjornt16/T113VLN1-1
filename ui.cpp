@@ -181,16 +181,25 @@ void UI::searchPerson()
     vector<int> yearSearch;
     bool valid = 1;
     char c = '\0';
+
+    cout << "1 : Name" << endl;
+    cout << "2 : Gender" << endl;
+    cout << "3 : Year of Birth" << endl;
+    cout << "4 : Year of Death " << endl;
+    cout << "5 : Nationality" << endl;
+    cout << "0 : Cancel" << endl;
+    cout << "Choose a number between 0-5 to select what column to search in: ";
+
     do{
         valid = 1;
-        cout << "1 : Name" << endl;
-        cout << "2 : Gender" << endl;
-        cout << "3 : Year of Birth" << endl;
-        cout << "4 : Year of Death " << endl;
-        cout << "5 : Nationality" << endl;
-        cout << "0 : Cancel" << endl;
-        cout << "Select a column to search by: ";
         cin >> column;
+
+        if (cin.fail()) {
+                cin.clear();
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                column = 6;
+        }
+
         switch(column){
 
             case 0 : //cancel
