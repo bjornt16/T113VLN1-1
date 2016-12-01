@@ -432,8 +432,7 @@ void UI::editPerson(){
                 case 1 : //Edit name
                 {
                     string newName;
-                    cout << "Please enter the new name: " << endl;
-                    newName = getNameFromUser();
+                    newName = validateString("Please enter the new name: ");
                     personToEdit.setName(newName);
                     break;
                 }
