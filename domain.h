@@ -18,11 +18,13 @@ public:
     vector<Person> getPersonList(/* TODO: parameters */);
 
     Person isolatePerson(int inst, vector<Person>& vectorInput);
-        //returns Person instant in vectorInput vector.
+        //returns Person number inst in vectorInput vector.
+
     void removePerson(Person personToRemove);
-    //Function that uses data.removePersonFromDatabase and deletes personToRemove from vector and database
+        //Function that uses data.removePersonFromDatabase and deletes personToRemove from vector and database
 
     void editPerson(Person personToEdit);
+        //
 
 
     //Search functions based on what you want type of search you want to do
