@@ -91,7 +91,7 @@ void UI::ListPerson(vector<Person> people, bool search)
     {
         cout << "ID  ";
     }
-    cout << "Name.......................Gender...Birth year...Death year...Age....Nationality" << endl;
+    cout << "Name                       Gender   Birth year   Death year   Age    Nationality  " << endl;
     if(search == true)
     {
         cout << "----";
