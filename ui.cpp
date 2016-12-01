@@ -493,8 +493,7 @@ void UI::editPerson(){
         vector<Person> searchResult = searchPerson();
         cout << "Select id of the person you want to edit" << endl;
         cin >> idOfPerson;
-        Person personToEdit = domain.isolatePerson(idOfPerson, searchResult);
-        domain.editPerson(personToEdit);
+        domain.editPerson(searchResult[idOfPerson]);
         UI::addPerson();
 
     }
