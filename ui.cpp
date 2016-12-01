@@ -187,7 +187,9 @@ void UI::addPerson()
         }
     }while(yearFail);
 
-    Person newPerson(name, gender, birthYear, dYear, nationality);
+
+
+    Person newPerson(capitalizeString(name), gender, birthYear, dYear, capitalizeString(nationality));
     domain.addPerson(newPerson);
     ListPerson(domain.getPersonList());
 }
@@ -573,8 +575,6 @@ string UI::validateString(string prompt, string skipString){
         }
         cin >> tempString;
 
-
-        tempString = firstCap(tempString);
         if(c != '\n' && c != ' '){
             tempString = c + tempString;
         }
@@ -608,10 +608,16 @@ int UI::validateInt(string prompt){
     return integer;
 }
 
-string UI::firstCap(string stringInput)
+string UI::capitalizeString(string stringInput)
 {
     transform(stringInput.begin(), stringInput.end(), stringInput.begin(), ::tolower);
     stringInput[0] = toupper(stringInput[0]);
+
+    for(size_t i = 0; i < stringInput.size(); i++){
+        if(stringInput[i] == ' ' && (i+1) < stringInput.size()){
+            stringInput[i+1] = toupper(stringInput[i+1]);
+        }
+    }
 
     return stringInput;
 }
