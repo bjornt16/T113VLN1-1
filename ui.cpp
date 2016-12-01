@@ -150,6 +150,7 @@ void UI::addPerson()
                 cin.clear();
                 cin.ignore(numeric_limits<streamsize>::max(), '\n');
                 gender.clear();
+                cout << endl << "Illegal entry, try again" << endl;
                 break;
             }
         }
@@ -176,7 +177,7 @@ void UI::addPerson()
         cout << "Enter birth year: " << endl;
         cin >> birthYear;
         if(cin.fail()){
-            cout << "Illegal entry, try again" << endl;
+            cout << endl << "Illegal entry, try again" << endl;
             cin.clear();
             cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
             yearFail = 1;
@@ -189,6 +190,8 @@ void UI::addPerson()
         cin >> deathYear;
         if((deathYear.find_first_not_of("0123456789") == std::string::npos) || deathYear == "." )
         {
+
+
             if(deathYear == ".")
             {
                 dYear = 0;
@@ -199,11 +202,14 @@ void UI::addPerson()
                 if(birthYear > dYear)
                 {
                     yearFail = 1;
+                    cout << endl << "Death year must be later than the birth year" << endl;
+
                 }
             }
         }
         else{
             yearFail = 1;
+             cout << endl << "Illegal entry, try again" << endl;
         }
     }while(yearFail);
 
