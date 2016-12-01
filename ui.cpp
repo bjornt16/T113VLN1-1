@@ -3,6 +3,7 @@
 #include <string>
 #include <sstream>
 #include <limits>
+#include <algorithm>
 #include "ui.h"
 #include <vector>
 #include "person.h"
@@ -147,6 +148,8 @@ void UI::addPerson()
             break;
         }
         cin >> tempName;
+        transform(tempName.begin(), tempName.end(), tempName.begin(), ::tolower);
+        tempName[0] = toupper(tempName[0]);
         NameCounter++;
         if(NameCounter == 1)
         {
@@ -168,13 +171,16 @@ void UI::addPerson()
             break;
         }
         cin >> tempNation;
+        transform(tempNation.begin(), tempNation.end(), tempNation.begin(), ::tolower);
         NatCounter++;
         if(NatCounter == 1)
         {
+            d = toupper(d);
             nationality = d + tempNation;
         }
         else
         {
+            tempNation[0] = toupper(tempNation[0]);
             nationality += " " + tempNation;
         }
     }

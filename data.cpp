@@ -26,8 +26,7 @@ void Data::writePersonToFile(Person p){
     ofstream file;
     file.open("../T113VLN1/database/people.txt", ios::out | ios::app);
 
-    cout << p.getName();
-    cout << p.getNationality();
+
 
     writeSinglePersonToOpenFile(p, file);
 
