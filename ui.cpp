@@ -25,14 +25,14 @@ void UI::mainMenu()
     do
     {
         cout << "Please enter one of the following commands:" << endl;
-        cout << setw(7) << left << "list" << "Lists all entries" << endl;
-        cout << setw(7) << "add" << "Add an entry" << endl;
+        cout << setw(7) << left << "list" << "This will list all people in the system" << endl;
+        cout << setw(7) << "add" << "This will add a new person" << endl;
         cout << setw(7) <<"delete" << "Removes an entry" << endl;
-        cout << setw(7) <<"clear" << "Removes all entries" << endl;
+        cout << setw(7) <<"clear" << "Removes all entry" << endl;
         cout << setw(7) <<"edit" << "Edit an entry" << endl;
-        cout << setw(7) <<"search" << "Search for an entries" << endl;
-        cout << setw(7) <<"sort" << "Sort list" << endl;
-        cout << setw(7) <<"quit" <<"Quit" << endl;
+        cout << setw(7) <<"search" << "Searches for given people" << endl;
+        cout << setw(7) <<"sort" << "Sort people in the system" << endl;
+        cout << setw(7) <<"quit" <<"For quit" << endl;
         cin >> command;
         cout << endl;
 
@@ -155,7 +155,6 @@ void UI::addPerson()
                 {
                     yearFail = 1;
                     cout << endl << "Death year must be later than the birth year" << endl;
-
                 }
             }
         }
@@ -187,7 +186,7 @@ vector<Person> UI::searchPerson()
     cout << "4 : Year of Death " << endl;
     cout << "5 : Nationality" << endl;
     cout << "0 : Cancel" << endl;
-    cout << "Select a colum to search by:";
+    cout << "Choose a number between 0-5 to select what column to search in: ";
     vector<Person> listOfFound;
 
     do{
@@ -293,7 +292,7 @@ vector<Person> UI::searchPerson()
                 valid = false;
                 break;
             }
-        }    
+        }
     }while(!valid);
 
     return listOfFound;
@@ -407,104 +406,31 @@ void UI::editPerson(){
         vector<Person> searchResult = searchPerson();
         cout << "Select id of the person you want to edit" << endl;
         cin >> idOfPerson;
+        domain.editPerson(searchResult[idOfPerson]);
+        UI::addPerson();
 
-        Person personToEdit = searchResult[idOfPerson];
-
-        int choiseToEdit;
-        cout << "Would you like to edit the: " << endl;
-        cout << "1 : Name" << endl;
-        cout << "2 : Gender" << endl;
-        cout << "3 : Year of Birth" << endl;
-        cout << "4 : Year of Death " << endl;
-        cout << "5 : Nationality" << endl;
-        cout << "0 : Cancel" << endl;
-        cout << "Please select: " << endl;
-        cin >> choiseToEdit;
-
-            switch(choiseToEdit)
-            {
-                case 0 : //cancel
-                {
-                    cout << endl;
-                    break;
-                }
-
-                case 1 : //Edit name
-                {
-                    string newName;
-                    cout << "Please enter the new name: " << endl;
-                    newName = getNameFromUser();
-                    personToEdit.setName(newName);
-                    break;
-                }
-
-    /*            case 2 : //Edit gender
-                {
-                    ListPerson(domain.sortPeopleByGender(sortOrder));
-                    break;
-                }
-
-                case 3 : //Edit Year of Birth
-                {
-                    //TODO
-                    ListPerson(domain.sortPeopleByBY(sortOrder));
-                    break;
-                }
-
-                case 4 : //Edit Year of Death
-                {
-                    //TODO
-                    ListPerson(domain.sortPeopleByDY(sortOrder));
-                    break;
-                }
-
-                case 5 : //Edit Nationality
-                {
-                    //TODO
-                    ListPerson(domain.sortPeopleByNat(sortOrder));
-                    break;
-                }
-                case 9 : // desc sort
-                {
-                    sortOrder = "desc";
-                    valid = false;
-                    break;
-                }
-                default : // loop if incorrect input
-                {
-                    cout << "Not a valid choice, try again: ";
-                    valid = false;
-                    break;
-                }*/
-
-            domain.removePerson(searchResult[idOfPerson]);
-            UI::addPerson();
-
-        }
- /*       else if (tempAnswer=='n')
-        {
-            //Það á ekkert að vera hér.
-        }
-        else {
-            cout <<"Illegal command!"<<endl;
-        }
-*/
     }
+     else if (tempAnswer=='n')
+    {
+        //Það á ekkert að vera hér.
+    }
+    else {
+        cout <<"Illegal command!"<<endl;
+    }
+
 }
 
-void UI::clearlist()
-{
+void UI::clearlist(){
+
    char yesOrNo;
    cout << "Are you sure you want to clear the list? Y for yes and N for no"<< endl;
    cin >> yesOrNo;
-   yesOrNo = char(tolower(yesOrNo));
-   if (yesOrNo == 'y'){
+   if (yesOrNo == 'Y' || yesOrNo == 'y'){
 
       domain.clearPerson();
 
-
    }
-   else if (yesOrNo == 'n') {
+   else if (yesOrNo == 'N' || yesOrNo == 'n') {
 
    }
    else
@@ -555,4 +481,46 @@ char UI::validateChar(string prompt, vector<char> accepts){
 
     return charList[0];
 
+}
+
+
+string UI::validateString(string prompt, string skipString){
+    string tempString, string;
+    char c = '\0';
+
+    cout << prompt << endl;
+
+    while(cin.good()){
+        cin.get(c);
+        if(c == '\n' && tempString != ""){
+            break;
+        }
+        cin >> tempString;
+
+        if(tempString != skipString){
+            string += string == "" ? tempString : " " + tempString;
+        }
+        else{
+            string = "";
+        }
+    }
+
+    return string;
+}
+
+int UI::validateInt(string prompt){
+    int isInt, integer;
+    do{
+        isInt = 1;
+        cout << prompt << endl;
+        cin >> integer;
+        if(cin.fail()){
+            cout << endl << illegal << endl;
+            cin.clear();
+            cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+            isInt = 0;
+        }
+    }while(!isInt);
+
+    return integer;
 }
