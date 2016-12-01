@@ -146,6 +146,7 @@ void UI::addPerson()
     string deathYear;
     char gender;
     string nationality = "";
+    string ignoreLine;
     bool yearFail = 0;
 
     vector<char> acceptedGender;
@@ -163,6 +164,7 @@ void UI::addPerson()
         deathYear = validateString("Enter year of death ( . to skip) : ", ".");
         if((deathYear.find_first_not_of("0123456789") == std::string::npos) || deathYear == "" )
         {
+            cout << endl << "out"<< endl;
             if(deathYear == "")
             {
                 dYear = 0;
@@ -180,7 +182,8 @@ void UI::addPerson()
         else
         {
             yearFail = 1;
-             cout << endl << illegal << endl;
+            cout << endl << illegal << endl;
+            cin.putback('\n');
         }
     }while(yearFail);
 
@@ -558,7 +561,7 @@ char UI::validateChar(string prompt, vector<char> accepts){
 
 
 string UI::validateString(string prompt, string skipString){
-    string tempString, string;
+    string tempString, validString;
     char c = '\0';
 
     cout << prompt << endl;
@@ -576,15 +579,17 @@ string UI::validateString(string prompt, string skipString){
             tempString = c + tempString;
         }
 
-        if(tempString != skipString){
-            string += string == "" ? tempString : " " + tempString;
-        }
-        else{
-            string = "";
-        }
+        validString += validString == "" ? tempString : " " + tempString;
     }
-    return string;
+
+    if(validString == skipString){
+        validString = "";
+    }
+
+
+    return validString;
 }
+
 
 int UI::validateInt(string prompt){
     int isInt, integer;
