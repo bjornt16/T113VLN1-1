@@ -10,6 +10,8 @@
 
 using namespace std;
 
+const string illegal = "Illegal entry, try again!";
+
 //presentation layer
 
 UI::UI()
@@ -65,7 +67,7 @@ void UI::mainMenu()
         }
         else
         {
-            cout << "Illegal move! \n" << endl  ;
+            cout << illegal << endl  ;
         }
 
         cout << endl;
@@ -89,7 +91,7 @@ void UI::ListPerson(vector<Person> people, bool search)
     {
         cout << "ID  ";
     }
-    cout << "Name.......................Gender...Birth year...Death year...Age....Nationality" << endl;
+    cout << "Name                       Gender   Birth year   Death year   Age    Nationality  " << endl;
     if(search == true)
     {
         cout << "----";
@@ -121,7 +123,8 @@ void UI::addPerson()
     string name = "", tempName = "", tempNation = "";
     int birthYear, dYear;
     string deathYear;
-    char gender = ' ';
+    vector<char> gender;
+    char tempChar;
     string nationality = "";
     bool yearFail = 0;
 
@@ -177,7 +180,7 @@ void UI::addPerson()
         cout << "Enter birth year: " << endl;
         cin >> birthYear;
         if(cin.fail()){
-            cout << endl << "Illegal entry, try again" << endl;
+            cout << endl << illegal << endl;
             cin.clear();
             cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
             yearFail = 1;
@@ -209,11 +212,11 @@ void UI::addPerson()
         }
         else{
             yearFail = 1;
-             cout << endl << "Illegal entry, try again" << endl;
+             cout << endl << illegal << endl;
         }
     }while(yearFail);
 
-    Person newPerson(name, gender, birthYear, dYear, nationality);
+    Person newPerson(name, gender[0], birthYear, dYear, nationality);
     domain.addPerson(newPerson);
 
 
@@ -337,7 +340,7 @@ vector<Person> UI::searchPerson()
                 break;
             }
             default :{
-                cout << "Not a valid choice, try again: ";
+                cout << illegal;
                 valid = false;
                 break;
             }
@@ -350,16 +353,22 @@ vector<Person> UI::searchPerson()
 void UI::sortPeople()
 {
     bool valid = true;
+    string sortOrder = "asc";
     do{
         valid = true;
         int column = 0;
-        cout << "1 : Name" << endl;
-        cout << "2 : Gender" << endl;
-        cout << "3 : Year of Birth" << endl;
-        cout << "4 : Year of Death " << endl;
-        cout << "5 : Nationality" << endl;
-        cout << "0 : Cancel" << endl;
-        cout << "Select a column to sort by: ";
+        if(sortOrder == "asc")
+        {
+            cout << "1 : Name" << endl;
+            cout << "2 : Gender" << endl;
+            cout << "3 : Year of Birth" << endl;
+            cout << "4 : Year of Death " << endl;
+            cout << "5 : Nationality" << endl;
+            cout << "9 : to get descending sort" << endl;
+            cout << "0 : Cancel" << endl;
+            cout << "Select a column to sort by: ";
+        }
+
         cin >> column;
         switch(column)
         {
@@ -372,35 +381,41 @@ void UI::sortPeople()
             case 1 : //name sort
             {
                 //TODO
-                ListPerson(domain.sortPeopleByName());
+                ListPerson(domain.sortPeopleByName(sortOrder));
                 break;
             }
 
             case 2 : //gender sort
             {
                 //TODO
-                ListPerson(domain.sortPeopleByGender());
+                ListPerson(domain.sortPeopleByGender(sortOrder));
                 break;
             }
 
             case 3 : //birth year sort
             {
                 //TODO
-                ListPerson(domain.sortPeopleByBY());
+                ListPerson(domain.sortPeopleByBY(sortOrder));
                 break;
             }
 
             case 4 : // death year sort
             {
                 //TODO
-                ListPerson(domain.sortPeopleByDY());
+                ListPerson(domain.sortPeopleByDY(sortOrder));
                 break;
             }
 
             case 5 : // nationality sort
             {
                 //TODO
-                ListPerson(domain.sortPeopleByNat());
+                ListPerson(domain.sortPeopleByNat(sortOrder));
+                break;
+            }
+            case 9 : // desc sort
+            {
+                sortOrder = "desc";
+                valid = false;
                 break;
             }
             default : // loop if incorrect input
@@ -417,14 +432,16 @@ void UI::sortPeople()
 
 void UI::removePerson()
 {
-    char answer = ' ';
+    char tempAnswer = ' ';
     cout <<"Do you want to remove all of the list? (y/n)" << endl;
-    cin >> answer;
-    if(answer == 'Y' || answer == 'y'){
+    cin >> tempAnswer;
+    tempAnswer = char(tolower(tempAnswer));
+
+    if(tempAnswer == 'y'){
 
         //Todo eyða öllum listanum
     }
-    else if (answer =='N' || answer=='n') {
+    else if (tempAnswer=='n') {
         int idOfPerson;
         cout << "Search for the person you want to delete:" << endl;
         vector<Person> searchResult = searchPerson();
@@ -433,17 +450,21 @@ void UI::removePerson()
         Person personToRemove = domain.isolatePerson(idOfPerson, searchResult);
         domain.removePerson(personToRemove);
     }
+    else if (tempAnswer == ' ') {
+        cout << "Select number between 0-5" << endl;
+    }
 }
 
 void UI::editPerson(){
 
-    char answer;
-    int personToEdit = 0;
+    char tempAnswer;
+    //int personToEdit = 0;
 
     cout << "Do you want to edit the list? Y for yes and N for no" << endl;
-    cin >> answer;
+    cin >> tempAnswer;
+    tempAnswer = char(tolower(tempAnswer));
 
-    if(answer =='Y' || answer == 'y')
+    if(tempAnswer =='y')
     {
         int idOfPerson;
         cout << "Search for the person you want to edit" << endl;
@@ -455,52 +476,10 @@ void UI::editPerson(){
         UI::addPerson();
 
     }
-     else if (answer =='N' || answer=='n')
+     else if (tempAnswer=='n')
     {
         //Það á ekkert að vera hér.
     }
 
 }
 
-char UI::validateChar(string prompt, vector<char> accepts){
-    vector<char> charList;
-    bool valid = 0;
-    char tempChar;
-
-    do{
-        charList.clear();
-        tempChar = ' ';
-        valid = 0;
-        cout << prompt << endl;
-
-        while(cin.good()){
-            if(charList.size() != 0){
-                break;
-            }
-            cin >> tempChar;
-            tempChar = char(toupper(tempChar));
-            charList.push_back(tempChar);
-
-            for(size_t i = 0; i < accepts.size(); i++ ){
-                if(tempChar == accepts[i]){
-                    valid = true;
-                }
-            }
-
-            if (isdigit(tempChar) || cin.fail() || !valid) {
-                cin.clear();
-                cin.ignore(numeric_limits<streamsize>::max(), '\n');
-                charList.clear();
-                cout << endl << "Illegal entry, try again" << endl;
-                break;
-            }
-        }
-
-    }
-    while (!valid);
-    cin.clear();
-    cin.ignore(numeric_limits<streamsize>::max(), '\n');
-
-    return charList[0];
-
-}

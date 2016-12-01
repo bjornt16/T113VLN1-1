@@ -53,6 +53,7 @@ void Data::readPeopleFromFile(){
         file >> name >> gender >> bYear >> dYear >> nationality;
 
         replace( name.begin(), name.end(), '_', ' ');
+        replace( nationality.begin(), nationality.end(), '_', ' ');
 
         Person newPerson(name, gender, bYear, dYear, nationality);
         list.push_back(newPerson);
@@ -98,10 +99,6 @@ void Data::writeSinglePersonToOpenFile(Person p, ofstream& out)
     char gender = p.getGender();
     int bYear = p.getBirthYear();
     int dYear = p.getDeathYear();
-    cout << "dbug";
-    cout << endl;
-    cout << nationality;
-    cout << endl;
 
     replace( name.begin(), name.end(), ' ', '_');
     replace( nationality.begin(), nationality.end(), ' ', '_');
