@@ -10,6 +10,8 @@
 
 using namespace std;
 
+const string illegal = "Illegal entry, try again!";
+
 //presentation layer
 
 UI::UI()
@@ -65,7 +67,7 @@ void UI::mainMenu()
         }
         else
         {
-            cout << "Illegal move! \n" << endl  ;
+            cout << illegal << endl  ;
         }
 
         cout << endl;
@@ -164,7 +166,7 @@ void UI::addPerson()
                 cin.clear();
                 cin.ignore(numeric_limits<streamsize>::max(), '\n');
                 gender.clear();
-                cout << endl << "Illegal entry, try again" << endl;
+                cout << endl << illegal << endl;
                 break;
             }
         }
@@ -199,7 +201,7 @@ void UI::addPerson()
         cout << "Enter birth year: " << endl;
         cin >> birthYear;
         if(cin.fail()){
-            cout << endl << "Illegal entry, try again" << endl;
+            cout << endl << illegal << endl;
             cin.clear();
             cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
             yearFail = 1;
@@ -231,7 +233,7 @@ void UI::addPerson()
         }
         else{
             yearFail = 1;
-             cout << endl << "Illegal entry, try again" << endl;
+             cout << endl << illegal << endl;
         }
     }while(yearFail);
 
@@ -359,7 +361,7 @@ vector<Person> UI::searchPerson()
                 break;
             }
             default :{
-                cout << "Not a valid choice, try again: ";
+                cout << illegal;
                 valid = false;
                 break;
             }
