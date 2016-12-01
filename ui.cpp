@@ -405,104 +405,82 @@ void UI::removePerson()
 }
 
 
-void UI::editPerson(){
+void UI::editPerson()
+{
+    int idOfPerson;
+    cout << "Search for the person you want to edit" << endl;
+    vector<Person> searchResult = searchPerson();
+    cout << "Select the ID of the person you want to edit" << endl;
+    cin >> idOfPerson;
 
-    char tempAnswer;
-    //int personToEdit = 0;
+    Person personToEdit = searchResult[idOfPerson];
 
-    cout << "Do you want to edit the list? Y for yes and N for no" << endl;
-    cin >> tempAnswer;
-    tempAnswer = char(tolower(tempAnswer));
+    int choiseToEdit;
+    cout << "What would you like to edit?" << endl;
+    cout << "1 : Name" << endl;
+    cout << "2 : Gender" << endl;
+    cout << "3 : Year of Birth" << endl;
+    cout << "4 : Year of Death " << endl;
+    cout << "5 : Nationality" << endl;
+    cout << "0 : Cancel" << endl;
+    cout << "Please select: " << endl;
+    cin >> choiseToEdit;
 
-    if(tempAnswer =='y')
+    bool valid = true;
+    do
     {
-        int idOfPerson;
-        cout << "Search for the person you want to edit" << endl;
-        vector<Person> searchResult = searchPerson();
-        cout << "Select id of the person you want to edit" << endl;
-        cin >> idOfPerson;
-
-        Person personToEdit = searchResult[idOfPerson];
-
-        int choiseToEdit;
-        cout << "Would you like to edit the: " << endl;
-        cout << "1 : Name" << endl;
-        cout << "2 : Gender" << endl;
-        cout << "3 : Year of Birth" << endl;
-        cout << "4 : Year of Death " << endl;
-        cout << "5 : Nationality" << endl;
-        cout << "0 : Cancel" << endl;
-        cout << "Please select: " << endl;
-        cin >> choiseToEdit;
-
-            switch(choiseToEdit)
-            {
-                case 0 : //cancel
-                {
-                    cout << endl;
-                    break;
-                }
-
-                case 1 : //Edit name
-                {
-                    string newName;
-                    newName = validateString("Please enter the new name: ");
-                    personToEdit.setName(newName);
-                    break;
-                }
-
-    /*            case 2 : //Edit gender
-                {
-                    ListPerson(domain.sortPeopleByGender(sortOrder));
-                    break;
-                }
-
-                case 3 : //Edit Year of Birth
-                {
-                    //TODO
-                    ListPerson(domain.sortPeopleByBY(sortOrder));
-                    break;
-                }
-
-                case 4 : //Edit Year of Death
-                {
-                    //TODO
-                    ListPerson(domain.sortPeopleByDY(sortOrder));
-                    break;
-                }
-
-                case 5 : //Edit Nationality
-                {
-                    //TODO
-                    ListPerson(domain.sortPeopleByNat(sortOrder));
-                    break;
-                }
-                case 9 : // desc sort
-                {
-                    sortOrder = "desc";
-                    valid = false;
-                    break;
-                }
-                default : // loop if incorrect input
-                {
-                    cout << "Not a valid choice, try again: ";
-                    valid = false;
-                    break;
-                }*/
-
-            domain.removePerson(searchResult[idOfPerson]);
-            UI::addPerson();
-
-        }
- /*       else if (tempAnswer=='n')
+        switch(choiseToEdit)
         {
-            //Það á ekkert að vera hér.
+            case 0 : //cancel
+            {
+                cout << endl;
+                break;
+            }
+
+            case 1 : //Edit name
+            {
+                string newName = validateString("Please enter the new name:");
+                personToEdit.setName(newName);
+                break;
+            }
+            case 2 : //Edit gender
+            {
+                vector<char> acceptedGender;
+                acceptedGender.push_back('M');
+                acceptedGender.push_back('F');
+                char newGender = validateChar("Please enter a new gender:", acceptedGender);
+                personToEdit.setGender(newGender);
+                break;
+            }
+
+            case 3 : //Edit Year of Birth
+            {
+                int newYearOfBirth = validateInt("Please enter the new year of birth:");
+                personToEdit.setBY(newYearOfBirth);
+                break;
+            }
+            case 4 : //Edit Year of Death
+            {
+                int newYearOfDeath = validateInt("Please enter the new year of death:");
+                personToEdit.setDY(newYearOfDeath);
+                break;
+            }
+            case 5 : //Edit Nationality
+            {
+                string newNationality = validateString("Please enter the new nationality:");
+                personToEdit.setNationality(newNationality);
+                break;
+            }
+            default : // loop if incorrect input
+            {
+                cout << "Not a valid choice, try again: ";
+                valid = false;
+                break;
+            }
         }
-        else {
-            cout <<"Illegal command!"<<endl;
-        }
-*/
-    }
+    }while(!valid);
+
+    domain.swapPersons(searchResult[idOfPerson], personToEdit);
 }
 
 void UI::clearlist()

@@ -27,6 +27,10 @@ public:
         //Function that uses data.clearPersonInDatabase to clear everything in the list.
     void clearPerson();
 
+        //Calls the function data.swapPersonsInDatabase to originalP with newP
+    void swapPersons(Person& originalP, Person& newP);
+
+
     //Search functions based on what you want type of search you want to do
     vector<Person> searchPersonName(string search);           //name
     vector<Person> searchPersonNationality(string search);    //nationality

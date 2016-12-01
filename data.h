@@ -24,16 +24,19 @@ public:
     void removePersonFromDatabase(Person personToRemove);
 
         //overwrites data in people.txt
-    void rewriteDatafile();
+    void rewriteDataFile();
 
         //writes person p in file. Opens the file before and use ostream
-    void writeSinglePersonToOpenFile(Person p, ofstream& out);
+    void writeSinglePersonToOpenFile(Person& p, ofstream& out);
 
          //Edits personToEdit in vector and database
     void editPersonInDatabase(Person personToEdit);
 
         //Clears everything from the list
     void clearPersonInDataBase();
+
+    void swapPersonsInDatabase(Person& originalP, Person& newP);
+
 
 };
 

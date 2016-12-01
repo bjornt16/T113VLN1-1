@@ -295,3 +295,9 @@ void Domain::clearPerson()
 {
     data.clearPersonInDataBase();
 }
+
+void Domain::swapPersons(Person& originalP, Person& newP)
+{
+    data.swapPersonsInDatabase(originalP, newP);
+}
+

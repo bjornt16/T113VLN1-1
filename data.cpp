@@ -73,25 +73,10 @@ void Data::removePersonFromDatabase(Person personToRemove)
         }
     }
 
-    rewriteDatafile();
+    rewriteDataFile();
 }
 
-/* void Data::editPersonInDatabase(Person personToEdit)
-{
-    int vectorSize = list.size();
-    for(int i=0; i < vectorSize; i++)
-    {
-        if(list[i] == personToEdit)
-        {
-            list.erase(list.begin()+i);
-        }
-    }
-
-    rewriteDatafile();
-} */
-
-
-void Data::rewriteDatafile()
+void Data::rewriteDataFile()
 {
     remove("../T113VLN1/database/people.txt");
 
@@ -107,7 +92,7 @@ void Data::rewriteDatafile()
     file.close();
 }
 
-void Data::writeSinglePersonToOpenFile(Person p, ofstream& out)
+void Data::writeSinglePersonToOpenFile(Person& p, ofstream& out)
 {
     string name = p.getName(), nationality = p.getNationality();
     char gender = p.getGender();
@@ -125,5 +110,18 @@ void Data::writeSinglePersonToOpenFile(Person p, ofstream& out)
 void Data::clearPersonInDataBase()
 {
    list.clear();
-   rewriteDatafile();
+   rewriteDataFile();
+}
+
+void Data::swapPersonsInDatabase(Person& originalP, Person& newP)
+{
+    int vectorSize = list.size();
+    for(int i=0; i < vectorSize; i++)
+    {
+        if(list[i] == originalP)
+        {
+            list[i] = newP;
+        }
+    }
+    rewriteDataFile();
 }
