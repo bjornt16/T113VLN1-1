@@ -3,15 +3,12 @@
 #include <string>
 #include <sstream>
 #include <limits>
-#include <algorithm>
 #include "ui.h"
 #include <vector>
 #include "person.h"
 
 
 using namespace std;
-
-const string illegal = "Illegal entry, try again! ";
 
 //presentation layer
 
@@ -138,7 +135,7 @@ void UI::ListPerson(vector<Person> people, bool search)
 
 void UI::addPerson()
 {
-    string tempNation = "";
+    string name = "", tempName = "", tempNation = "";
     int birthYear, dYear;
     string deathYear;
     char gender;
@@ -149,6 +146,7 @@ void UI::addPerson()
     acceptedGender.push_back('M');
     acceptedGender.push_back('F');
 
+<<<<<<< HEAD
     cout << "Enter name: " << endl;
 <<<<<<< HEAD
     int NameCounter = 0;
@@ -216,16 +214,19 @@ void UI::addPerson()
             yearFail = 1;
         }
     }while(yearFail);
+=======
+    name = validateString("Enter name: ");
+    gender = validateChar("Enter Gender (M/F): ", acceptedGender);
+    nationality = validateString("Enter nationality: ");
+    birthYear = validateInt("Enter year of birth: ");
+>>>>>>> origin/master
 
     do{
         yearFail = 0;
-        cout << "Enter year of death: ( . to skip)" << endl;
-        cin >> deathYear;
-        if((deathYear.find_first_not_of("0123456789") == std::string::npos) || deathYear == "." )
+        deathYear = validateString("Enter year of death ( . to skip) : ", ".");
+        if((deathYear.find_first_not_of("0123456789") == std::string::npos) || deathYear == "" )
         {
-
-
-            if(deathYear == ".")
+            if(deathYear == "")
             {
                 dYear = 0;
             }
@@ -252,35 +253,6 @@ void UI::addPerson()
 
     ListPerson(domain.getPersonList());
 }
-
-string UI::getNameFromUser()
-{
-    char c = '\0';
-    string name = "", tempName = "";
-    int NameCounter = 0;
-    while(cin.good())
-    {
-        cin.get(c);
-        if(c == '\n' && tempName != "")
-        {
-            break;
-        }
-        cin >> tempName;
-        transform(tempName.begin(), tempName.end(), tempName.begin(), ::tolower);
-        tempName[0] = toupper(tempName[0]);
-        NameCounter++;
-        if(NameCounter == 1)
-        {
-            name = tempName;
-        }
-        else
-        {
-            name += " " + tempName;
-        }
-    }
-    return name;
-}
-
 
 vector<Person> UI::searchPerson()
 {
@@ -497,12 +469,14 @@ void UI::removePerson()
         cout << "Select id of the person you want to delete:" << endl;
         cin >> idOfPerson;
         domain.removePerson(searchResult[idOfPerson]);
+
 }
 
 
 void UI::editPerson(){
 
     char tempAnswer;
+    //int personToEdit = 0;
 
     cout << "Do you want to edit the list? Y for yes and N for no" << endl;
     cin >> tempAnswer;
@@ -609,6 +583,8 @@ void UI::clearlist()
    if (yesOrNo == 'y'){
 
       domain.clearPerson();
+
+
    }
    else if (yesOrNo == 'n') {
 
