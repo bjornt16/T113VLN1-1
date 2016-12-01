@@ -29,8 +29,9 @@ vector<Person> Domain::getPersonList()
     return people;
 }
 
-vector<Person> Domain::searchPersonName(string search){
-    vector<Person> searchList, people = data.getList();
+vector<Person> Domain::searchPersonName(vector<Person> people, string search)
+{
+    vector<Person> searchList;
 
     for(size_t i= 0; i < people.size(); i++ ){
         string name = people[i].getName();
@@ -49,8 +50,9 @@ vector<Person> Domain::searchPersonName(string search){
     return searchList;
 }
 
-vector<Person> Domain::searchPersonNationality(string search){
-    vector<Person> searchList, people = data.getList();
+vector<Person> Domain::searchPersonNationality(vector<Person> people, string search)
+{
+    vector<Person> searchList;
 
     for(size_t i= 0; i < people.size(); i++ ){
         string nationality = people[i].getNationality();
@@ -64,8 +66,9 @@ vector<Person> Domain::searchPersonNationality(string search){
     return searchList;
 }
 
-vector<Person> Domain::searchPersonGender(char search){
-    vector<Person> searchList, people = data.getList();
+vector<Person> Domain::searchPersonGender(vector<Person> people, char search)
+{
+    vector<Person> searchList;
 
     for(size_t i= 0; i < people.size(); i++ ){
         char gender = people[i].getGender();
@@ -78,8 +81,9 @@ vector<Person> Domain::searchPersonGender(char search){
     return searchList;
 }
 
-vector<Person> Domain::searchPersonBirth(int from, int to){
-    vector<Person> searchList, people = data.getList();
+vector<Person> Domain::searchPersonBirth(vector<Person> people, int from, int to)
+{
+    vector<Person> searchList;
 
     if(to == 9999){
         to = from;
@@ -95,8 +99,9 @@ vector<Person> Domain::searchPersonBirth(int from, int to){
     return searchList;
 }
 
-vector<Person> Domain::searchPersonDeath(int from, int to){
-    vector<Person> searchList, people = data.getList();
+vector<Person> Domain::searchPersonDeath(vector<Person> people, int from, int to)
+{
+    vector<Person> searchList;
 
     if(to == 9999){
         to = from;

@@ -47,7 +47,7 @@ void UI::mainMenu()
         }
         else if (command == "search")
         {
-            searchPerson();
+            searchPerson(domain.getPersonList());
         }
         else if (command == "delete")
         {
@@ -194,7 +194,7 @@ void UI::addPerson()
     ListPerson(domain.getPersonList());
 }
 
-vector<Person> UI::searchPerson()
+vector<Person> UI::searchPerson(vector<Person> listToSearch)
 {
     int column, tempYear = 9999;
     char cSearch;
@@ -206,7 +206,7 @@ vector<Person> UI::searchPerson()
 
     do
     {
-        valid = 1;
+        valid = true;
         cout << "1 : Name" << endl;
         cout << "2 : Gender" << endl;
         cout << "3 : Year of Birth" << endl;
@@ -243,14 +243,14 @@ vector<Person> UI::searchPerson()
                     cin >> tempSearch;
                     search += " " + tempSearch;
                 }
-                listOfFound = domain.searchPersonName(search);
+                listOfFound = domain.searchPersonName(listToSearch, search);
                 break;
             }
             case 2 :        //gender
             {
                 cout << "Gender: ";
                 cin >> cSearch;
-                listOfFound = domain.searchPersonGender(cSearch);
+                listOfFound = domain.searchPersonGender(listToSearch, cSearch);
                 break;
             }
             case 3 :        //birth
@@ -270,11 +270,11 @@ vector<Person> UI::searchPerson()
                 }
                 if (yearSearch.size() > 1)
                 {
-                    listOfFound = domain.searchPersonBirth(yearSearch[0], yearSearch[1]);
+                    listOfFound = domain.searchPersonBirth(listToSearch, yearSearch[0], yearSearch[1]);
                 }
                 else
                 {
-                    listOfFound = domain.searchPersonBirth(yearSearch[0]);
+                    listOfFound = domain.searchPersonBirth(listToSearch, yearSearch[0]);
                 }
                 break;
             }
@@ -294,30 +294,30 @@ vector<Person> UI::searchPerson()
                 }
                 if(yearSearch.size() > 1)
                 {
-                    listOfFound = domain.searchPersonDeath(yearSearch[0], yearSearch[1]);
+                    listOfFound = domain.searchPersonDeath(listToSearch, yearSearch[0], yearSearch[1]);
                 }
                 else
                 {
-                    listOfFound = domain.searchPersonDeath(yearSearch[0]);
+                    listOfFound = domain.searchPersonDeath(listToSearch, yearSearch[0]);
                 }
                 break;
-            }
-            case 5 :        //nationality
-            {
-                cout << "Nationality: ";
-                cin >> search;
-                listOfFound = domain.searchPersonNationality(search);
-                break;
-            }
-            default :
-            {
-                cout << illegal;
-                valid = false;
-                break;
-            }
+                }
+                case 5 :        //nationality
+                {
+                    cout << "Nationality: ";
+                    cin >> search;
+                    listOfFound = domain.searchPersonNationality(listToSearch, search);
+                    break;
+                }
+                default :
+                {
+                    cout << illegal;
+                    valid = false;
+                    break;
+                }
         }
 
-        if ( (listOfFound.size()) == 0)
+        if ( (listOfFound.size() == 0) && !valid)
         {
             valid=0;
             cout << "No entry found. Try again:" << endl;
@@ -327,16 +327,13 @@ vector<Person> UI::searchPerson()
 
     ListPerson(listOfFound, true);
 
- /* Væri gaman að gera þetta... þarf bara að breyta öllum serach föllunum þannig að þau taki vextor<Person> inntak. ;D
     char searchAgain;
-    cout << "Do you wish to serach within the serch results? (y/n)": ";
+    cout << "Do you wish to search within the search results? (y/n): ";
     cin >> searchAgain;
     if(searchAgain == 'y' || searchAgain == 'Y')
     {
-        listOfFound = searchPerson(listOfFound Person);
+        listOfFound = searchPerson(listOfFound);
     }
-
-  */
 
     return listOfFound;
 }
@@ -425,7 +422,7 @@ void UI::removePerson()
 {
     int idOfPerson;
         cout << "Search for the person you want to delete:" << endl;
-        vector<Person> searchResult = searchPerson();
+        vector<Person> searchResult = searchPerson(domain.getPersonList());
         cout << "Select id of the person you want to delete:" << endl;
         cin >> idOfPerson;
         domain.removePerson(searchResult[idOfPerson]);
@@ -437,7 +434,7 @@ void UI::editPerson()
 {
     int idOfPerson;
     cout << "Search for the person you want to edit" << endl;
-    vector<Person> searchResult = searchPerson();
+    vector<Person> searchResult = searchPerson(domain.getPersonList());
     cout << "Select the ID of the person you want to edit" << endl;
     cin >> idOfPerson;
 

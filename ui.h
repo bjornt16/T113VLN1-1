@@ -21,7 +21,7 @@ private:
     void addPerson();
 
         //Searches for a function and returns an instant of type Person.
-    vector<Person> searchPerson();
+    vector<Person> searchPerson(vector<Person> listToSearch);
 
         //function that sorts
     void sortPeople();
