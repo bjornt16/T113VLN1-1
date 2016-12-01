@@ -441,14 +441,16 @@ void UI::sortPeople()
 
 void UI::removePerson()
 {
-    char answer = ' ';
+    char tempAnswer = ' ';
     cout <<"Do you want to remove all of the list? (y/n)" << endl;
-    cin >> answer;
-    if(answer == 'Y' || answer == 'y'){
+    cin >> tempAnswer;
+    tempAnswer = char(tolower(tempAnswer));
+
+    if(tempAnswer == 'y'){
 
         //Todo eyða öllum listanum
     }
-    else if (answer =='N' || answer=='n') {
+    else if (tempAnswer=='n') {
         int idOfPerson;
         cout << "Search for the person you want to delete:" << endl;
         vector<Person> searchResult = searchPerson();
@@ -457,17 +459,21 @@ void UI::removePerson()
         Person personToRemove = domain.isolatePerson(idOfPerson, searchResult);
         domain.removePerson(personToRemove);
     }
+    else if (tempAnswer == ' ') {
+        cout << "Select number between 0-5" << endl;
+    }
 }
 
 void UI::editPerson(){
 
-    char answer;
-    int personToEdit = 0;
+    char tempAnswer;
+    //int personToEdit = 0;
 
     cout << "Do you want to edit the list? Y for yes and N for no" << endl;
-    cin >> answer;
+    cin >> tempAnswer;
+    tempAnswer = char(tolower(tempAnswer));
 
-    if(answer =='Y' || answer == 'y')
+    if(tempAnswer =='y')
     {
         int idOfPerson;
         cout << "Search for the person you want to edit" << endl;
@@ -479,7 +485,7 @@ void UI::editPerson(){
         UI::addPerson();
 
     }
-     else if (answer =='N' || answer=='n')
+     else if (tempAnswer=='n')
     {
         //Það á ekkert að vera hér.
     }
