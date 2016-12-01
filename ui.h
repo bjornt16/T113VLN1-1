@@ -38,6 +38,8 @@ private:
         //function that allows the user to modify the list
 
     char validateChar(string prompt, vector<char>);
+
+    string getNameFromUser();
 public:
     UI();
 

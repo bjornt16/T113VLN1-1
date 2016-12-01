@@ -286,10 +286,10 @@ void Domain::removePerson(Person personToRemove)
     data.removePersonFromDatabase(personToRemove);
 }
 
-void Domain::editPerson(Person personToEdit)
+/* void Domain::editPerson(Person personToEdit)
 {
-    data.editPersonInDatabase(personToEdit);
-}
+    data.removePersonFromDatabase(personToEdit);
+} */
 
 void Domain::clearPerson()
 {

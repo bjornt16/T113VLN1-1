@@ -3,3 +3,5 @@ fridrik M 1995 0 monte_carlo
 fridrik_sn‘r M 1955 2000 iceland_one
 alan_turing M 1900 2000 england
 isak M 1996 0 iceland
+Anna_Kristin_Halldors F 1993 0 Icelandic
+Anna_Kristin_Elisabet_Halldorsdottir F 1993 0 Icelandic

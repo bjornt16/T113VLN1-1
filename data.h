@@ -27,10 +27,11 @@ public:
         //overwrites data in people.txt
 
     void writeSinglePersonToOpenFile(Person p, ofstream& out);
-    //writes person p in file. Opens the file before and use ostream
+        //writes person p in file. Opens the file before and use ostream
 
     void editPersonInDatabase(Person personToEdit);
-    //Edits personToEdit in vector and database
+        //Edits personToEdit in vector and database
+
     void clearPersonInDataBase();
 
 };
