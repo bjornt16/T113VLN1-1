@@ -374,16 +374,22 @@ vector<Person> UI::searchPerson()
 void UI::sortPeople()
 {
     bool valid = true;
+    string sortOrder = "asc";
     do{
         valid = true;
         int column = 0;
-        cout << "1 : Name" << endl;
-        cout << "2 : Gender" << endl;
-        cout << "3 : Year of Birth" << endl;
-        cout << "4 : Year of Death " << endl;
-        cout << "5 : Nationality" << endl;
-        cout << "0 : Cancel" << endl;
-        cout << "Select a column to sort by: ";
+        if(sortOrder == "asc")
+        {
+            cout << "1 : Name" << endl;
+            cout << "2 : Gender" << endl;
+            cout << "3 : Year of Birth" << endl;
+            cout << "4 : Year of Death " << endl;
+            cout << "5 : Nationality" << endl;
+            cout << "9 : to get descending sort" << endl;
+            cout << "0 : Cancel" << endl;
+            cout << "Select a column to sort by: ";
+        }
+
         cin >> column;
         switch(column)
         {
@@ -396,35 +402,41 @@ void UI::sortPeople()
             case 1 : //name sort
             {
                 //TODO
-                ListPerson(domain.sortPeopleByName());
+                ListPerson(domain.sortPeopleByName(sortOrder));
                 break;
             }
 
             case 2 : //gender sort
             {
                 //TODO
-                ListPerson(domain.sortPeopleByGender());
+                ListPerson(domain.sortPeopleByGender(sortOrder));
                 break;
             }
 
             case 3 : //birth year sort
             {
                 //TODO
-                ListPerson(domain.sortPeopleByBY());
+                ListPerson(domain.sortPeopleByBY(sortOrder));
                 break;
             }
 
             case 4 : // death year sort
             {
                 //TODO
-                ListPerson(domain.sortPeopleByDY());
+                ListPerson(domain.sortPeopleByDY(sortOrder));
                 break;
             }
 
             case 5 : // nationality sort
             {
                 //TODO
-                ListPerson(domain.sortPeopleByNat());
+                ListPerson(domain.sortPeopleByNat(sortOrder));
+                break;
+            }
+            case 9 : // desc sort
+            {
+                sortOrder = "desc";
+                valid = false;
                 break;
             }
             default : // loop if incorrect input
