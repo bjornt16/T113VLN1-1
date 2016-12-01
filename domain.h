@@ -17,12 +17,11 @@ public:
     Domain();
     vector<Person> getPersonList(/* TODO: parameters */);
 
-    Person isolatePerson(int inst, vector<Person>& vectorInput);
-        //returns Person instant in vectorInput vector.
     void removePerson(Person personToRemove);
-    //Function that uses data.removePersonFromDatabase and deletes personToRemove from vector and database
+        //Function that uses data.removePersonFromDatabase and deletes personToRemove from vector and database
 
     void editPerson(Person personToEdit);
+        //
 
     void clearPerson();
 
