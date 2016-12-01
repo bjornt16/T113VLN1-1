@@ -3,6 +3,7 @@
 #include <string>
 #include <sstream>
 #include <limits>
+#include <algorithm>
 #include "ui.h"
 #include <vector>
 #include "person.h"
@@ -562,6 +563,8 @@ string UI::validateString(string prompt, string skipString){
         }
         cin >> tempString;
 
+        tempString = firstCap(tempString);
+
         if(tempString != skipString){
             string += string == "" ? tempString : " " + tempString;
         }
@@ -588,4 +591,12 @@ int UI::validateInt(string prompt){
     }while(!isInt);
 
     return integer;
+}
+
+string UI::firstCap(string stringInput)
+{
+    transform(stringInput.begin(), stringInput.end(), stringInput.begin(), ::tolower);
+    stringInput[0] = toupper(stringInput[0]);
+
+    return stringInput;
 }

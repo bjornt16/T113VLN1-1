@@ -35,6 +35,8 @@ private:
         //function that allows the user to delete the whole list
     void clearlist();
 
+    string firstCap(string stringInput);
+
         //function that allows the user to modify the list
 
     char validateChar(string prompt, vector<char>);
