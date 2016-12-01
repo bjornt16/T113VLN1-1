@@ -10,6 +10,8 @@
 
 using namespace std;
 
+const string illegal = "Illegal entry, try again!";
+
 //presentation layer
 
 UI::UI()
@@ -70,7 +72,7 @@ void UI::mainMenu()
         }
         else
         {
-            cout << "Illegal move! \n" << endl  ;
+            cout << illegal << endl  ;
         }
 
         cout << endl;
@@ -94,7 +96,7 @@ void UI::ListPerson(vector<Person> people, bool search)
     {
         cout << "ID  ";
     }
-    cout << "Name.......................Gender...Birth year...Death year...Age....Nationality" << endl;
+    cout << "Name                       Gender   Birth year   Death year   Age    Nationality  " << endl;
     if(search == true)
     {
         cout << "----";
@@ -169,7 +171,7 @@ void UI::addPerson()
                 cin.clear();
                 cin.ignore(numeric_limits<streamsize>::max(), '\n');
                 gender.clear();
-                cout << endl << "Illegal entry, try again" << endl;
+                cout << endl << illegal << endl;
                 break;
             }
         }
@@ -204,7 +206,7 @@ void UI::addPerson()
         cout << "Enter birth year: " << endl;
         cin >> birthYear;
         if(cin.fail()){
-            cout << endl << "Illegal entry, try again" << endl;
+            cout << endl << illegal << endl;
             cin.clear();
             cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
             yearFail = 1;
@@ -236,7 +238,7 @@ void UI::addPerson()
         }
         else{
             yearFail = 1;
-             cout << endl << "Illegal entry, try again" << endl;
+             cout << endl << illegal << endl;
         }
     }while(yearFail);
 
@@ -364,7 +366,7 @@ vector<Person> UI::searchPerson()
                 break;
             }
             default :{
-                cout << "Not a valid choice, try again: ";
+                cout << illegal;
                 valid = false;
                 break;
             }
@@ -377,16 +379,22 @@ vector<Person> UI::searchPerson()
 void UI::sortPeople()
 {
     bool valid = true;
+    string sortOrder = "asc";
     do{
         valid = true;
         int column = 0;
-        cout << "1 : Name" << endl;
-        cout << "2 : Gender" << endl;
-        cout << "3 : Year of Birth" << endl;
-        cout << "4 : Year of Death " << endl;
-        cout << "5 : Nationality" << endl;
-        cout << "0 : Cancel" << endl;
-        cout << "Select a column to sort by: ";
+        if(sortOrder == "asc")
+        {
+            cout << "1 : Name" << endl;
+            cout << "2 : Gender" << endl;
+            cout << "3 : Year of Birth" << endl;
+            cout << "4 : Year of Death " << endl;
+            cout << "5 : Nationality" << endl;
+            cout << "9 : to get descending sort" << endl;
+            cout << "0 : Cancel" << endl;
+            cout << "Select a column to sort by: ";
+        }
+
         cin >> column;
         switch(column)
         {
@@ -399,35 +407,41 @@ void UI::sortPeople()
             case 1 : //name sort
             {
                 //TODO
-                ListPerson(domain.sortPeopleByName());
+                ListPerson(domain.sortPeopleByName(sortOrder));
                 break;
             }
 
             case 2 : //gender sort
             {
                 //TODO
-                ListPerson(domain.sortPeopleByGender());
+                ListPerson(domain.sortPeopleByGender(sortOrder));
                 break;
             }
 
             case 3 : //birth year sort
             {
                 //TODO
-                ListPerson(domain.sortPeopleByBY());
+                ListPerson(domain.sortPeopleByBY(sortOrder));
                 break;
             }
 
             case 4 : // death year sort
             {
                 //TODO
-                ListPerson(domain.sortPeopleByDY());
+                ListPerson(domain.sortPeopleByDY(sortOrder));
                 break;
             }
 
             case 5 : // nationality sort
             {
                 //TODO
-                ListPerson(domain.sortPeopleByNat());
+                ListPerson(domain.sortPeopleByNat(sortOrder));
+                break;
+            }
+            case 9 : // desc sort
+            {
+                sortOrder = "desc";
+                valid = false;
                 break;
             }
             default : // loop if incorrect input
@@ -444,25 +458,27 @@ void UI::sortPeople()
 
 void UI::removePerson()
 {
-        int idOfPerson;
+    int idOfPerson;
         cout << "Search for the person you want to delete:" << endl;
         vector<Person> searchResult = searchPerson();
         cout << "Select id of the person you want to delete:" << endl;
         cin >> idOfPerson;
         Person personToRemove = domain.isolatePerson(idOfPerson, searchResult);
         domain.removePerson(personToRemove);
+
 }
 
 
 void UI::editPerson(){
 
-    char answer;
-    int personToEdit = 0;
+    char tempAnswer;
+    //int personToEdit = 0;
 
     cout << "Do you want to edit the list? Y for yes and N for no" << endl;
-    cin >> answer;
+    cin >> tempAnswer;
+    tempAnswer = char(tolower(tempAnswer));
 
-    if(answer =='Y' || answer == 'y')
+    if(tempAnswer =='y')
     {
         int idOfPerson;
         cout << "Search for the person you want to edit" << endl;
@@ -474,7 +490,7 @@ void UI::editPerson(){
         UI::addPerson();
 
     }
-     else if (answer =='N' || answer=='n')
+     else if (tempAnswer=='n')
     {
         //Það á ekkert að vera hér.
     }

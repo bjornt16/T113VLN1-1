@@ -35,11 +35,11 @@ public:
     vector<Person> searchPersonDeath(int from, int to = 9999);//death year
 
     //Sort functions based on what you want to sort by
-    vector<Person> sortPeopleByName(string sortOrder = "asc");  // name
-    vector<Person> sortPeopleByGender(string sortOrder = "asc");// gender
-    vector<Person> sortPeopleByBY(string sortOrder = "asc");    // birth year
-    vector<Person> sortPeopleByDY(string sortOrder = "asc");    // death year
-    vector<Person> sortPeopleByNat(string sortOrder = "asc");   // nationality
+    vector<Person> sortPeopleByName(string sortOrder);  // name
+    vector<Person> sortPeopleByGender(string sortOrder);// gender
+    vector<Person> sortPeopleByBY(string sortOrder);    // birth year
+    vector<Person> sortPeopleByDY(string sortOrder);    // death year
+    vector<Person> sortPeopleByNat(string sortOrder);   // nationality
 
 
     void addPerson(Person p);
