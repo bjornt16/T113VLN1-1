@@ -146,80 +146,11 @@ void UI::addPerson()
     acceptedGender.push_back('M');
     acceptedGender.push_back('F');
 
-<<<<<<< HEAD
-    cout << "Enter name: " << endl;
-<<<<<<< HEAD
-    int NameCounter = 0;
-    while(cin.good()){
-        cin.get(c);
-        if(c == '\n' && tempName != ""){
-            break;
-        }
-        cout << endl << c << endl;
-        cin >> tempName;
-        transform(tempName.begin(), tempName.end(), tempName.begin(), ::tolower);
-        tempName[0] = toupper(tempName[0]);
-        NameCounter++;
-        if(NameCounter == 1)
-        {
-            name = tempName;
-        }
-        else
-        {
-            name += " " + tempName;
-        }
-    }
-=======
-
-    string name = getNameFromUser();
->>>>>>> origin/master
-
-    gender = validateChar("Enter Gender (M/F): ", acceptedGender);
-
-    cout << "Enter nationality: " << endl;
-    int NatCounter = 0;
-
-    char d = '\0';
-
-
-    while(cin.good()){
-        cin.get(d);
-        if(d == '\n' && tempNation != ""){
-            break;
-        }
-        cout << endl << d << endl;
-        cin >> tempNation;
-        transform(tempNation.begin(), tempNation.end(), tempNation.begin(), ::tolower);
-        NatCounter++;
-        if(NatCounter == 1)
-        {
-            d = toupper(d);
-            nationality = d + tempNation;
-        }
-        else
-        {
-            tempNation[0] = toupper(tempNation[0]);
-            nationality += " " + tempNation;
-        }
-    }
-
-    do{
-        yearFail = 0;
-        cout << "Enter birth year: " << endl;
-        cin >> birthYear;
-        if(cin.fail()){
-            cout << endl << illegal << endl;
-            cin.clear();
-            cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-            yearFail = 1;
-        }
-    }while(yearFail);
-=======
     name = validateString("Enter name: ");
     gender = validateChar("Enter Gender (M/F): ", acceptedGender);
     nationality = validateString("Enter nationality: ");
     birthYear = validateInt("Enter year of birth: ");
->>>>>>> origin/master
+
 
     do{
         yearFail = 0;
@@ -243,7 +174,7 @@ void UI::addPerson()
         }
         else{
             yearFail = 1;
-             cout << endl << illegal << endl;
+            cout << endl << illegal << endl;
         }
     }while(yearFail);
 
@@ -514,8 +445,7 @@ void UI::editPerson(){
                 case 1 : //Edit name
                 {
                     string newName;
-                    cout << "Please enter the new name: " << endl;
-                    newName = getNameFromUser();
+                    newName = validateString("Please enter the new name: ");
                     personToEdit.setName(newName);
                     break;
                 }
