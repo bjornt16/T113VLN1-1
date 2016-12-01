@@ -125,4 +125,9 @@ void Data::editPersonInDatabase(Person personToEdit)
     rewriteDatafile();
 }
 
+void Data::clearPersonInDataBase()
+{
+   list.clear();
+   rewriteDatafile();
+}
 

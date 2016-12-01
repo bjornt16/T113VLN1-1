@@ -65,8 +65,8 @@ void UI::mainMenu()
             //þetta á að vera tómt
         }
         else if (command == "clear") {
-            //Todo delet all
 
+            clearlist();
         }
         else
         {
@@ -478,6 +478,30 @@ void UI::editPerson(){
     {
         //Það á ekkert að vera hér.
     }
+    else {
+        cout <<"Illegal command!"<<endl;
+    }
+
+}
+
+void UI::clearlist(){
+
+   char yesOrNo;
+   cout << "Are you sure you want to clear the list? Y for yes and N for no"<< endl;
+   cin >> yesOrNo;
+   if (yesOrNo == 'Y' || yesOrNo == 'y'){
+
+      domain.clearPerson();
+
+
+   }
+   else if (yesOrNo == 'N' || yesOrNo == 'n') {
+
+   }
+   else
+   {
+       cout << "Illegal command!"<< endl;
+   }
 
 }
 

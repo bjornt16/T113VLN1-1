@@ -30,6 +30,9 @@ private:
 
     //function that allows the user to modify the list
     void editPerson();
+
+    //function that allows the user to delete everything in the list
+    void clearlist();
 public:
     UI();
 

@@ -308,3 +308,8 @@ void Domain::editPerson(Person personToEdit)
 {
     data.editPersonInDatabase(personToEdit);
 }
+
+void Domain::clearPerson()
+{
+    data.clearPersonInDataBase();
+}

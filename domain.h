@@ -24,6 +24,8 @@ public:
 
     void editPerson(Person personToEdit);
 
+    void clearPerson();
+
 
     //Search functions based on what you want type of search you want to do
     vector<Person> searchPersonName(string search);           //name
