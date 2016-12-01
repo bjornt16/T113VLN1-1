@@ -26,8 +26,7 @@ void Data::writePersonToFile(Person p){
     ofstream file;
     file.open("../T113VLN1/database/people.txt", ios::out | ios::app);
 
-    cout << p.getName();
-    cout << p.getNationality();
+
 
     writeSinglePersonToOpenFile(p, file);
 
@@ -77,6 +76,21 @@ void Data::removePersonFromDatabase(Person personToRemove)
     rewriteDatafile();
 }
 
+/* void Data::editPersonInDatabase(Person personToEdit)
+{
+    int vectorSize = list.size();
+    for(int i=0; i < vectorSize; i++)
+    {
+        if(list[i] == personToEdit)
+        {
+            list.erase(list.begin()+i);
+        }
+    }
+
+    rewriteDatafile();
+} */
+
+
 void Data::rewriteDatafile()
 {
     remove("../T113VLN1/database/people.txt");
@@ -106,23 +120,10 @@ void Data::writeSinglePersonToOpenFile(Person p, ofstream& out)
     out << "\n" << name << " " << gender << " " << bYear << " " << dYear << " " << nationality;
 }
 
-void Data::editPersonInDatabase(Person personToEdit)
-{
-    int vectorSize = list.size();
-    for(int i=0; i < vectorSize; i++)
-    {
-        if(list[i] == personToEdit)
-        {
-            list.erase(list.begin()+i);
-        }
-    }
 
-    rewriteDatafile();
-}
 
 void Data::clearPersonInDataBase()
 {
    list.clear();
    rewriteDatafile();
 }
-
