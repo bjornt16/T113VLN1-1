@@ -26,20 +26,6 @@ vector<Person> Domain::getPersonList()
 {
     vector<Person> people = data.getList();
 
-    //Person p("Duran Duran");
-    //Person p2("Madonna");
-    //Person p3("David Bowie");
-
-    //people.push_back(p);
-    //people.push_back(p2);
-    //people.push_back(p3);
-
-    // TODO: business logic!
-
-    // Sort by name:
-    //PersonComparison cmp;
-    //std::sort(people.begin(), people.end(), cmp);
-
     return people;
 }
 

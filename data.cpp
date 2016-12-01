@@ -105,8 +105,6 @@ void Data::writeSinglePersonToOpenFile(Person p, ofstream& out)
 
     replace( name.begin(), name.end(), ' ', '_');
     replace( nationality.begin(), nationality.end(), ' ', '_');
-    //björn wtf?
-    //name.erase(name.begin());
 
     out << "\n" << name << " " << gender << " " << bYear << " " << dYear << " " << nationality;
 }

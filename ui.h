@@ -30,6 +30,8 @@ private:
 
     //function that allows the user to modify the list
     void editPerson();
+
+    char validateChar(string prompt, vector<char>);
 public:
     UI();
 

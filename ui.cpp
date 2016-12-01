@@ -121,10 +121,13 @@ void UI::addPerson()
     string name = "", tempName = "", tempNation = "";
     int birthYear, dYear;
     string deathYear;
-    vector<char> gender;
-    char tempChar;
+    char gender = ' ';
     string nationality = "";
     bool yearFail = 0;
+
+    vector<char> acceptedGender;
+    acceptedGender.push_back('M');
+    acceptedGender.push_back('F');
 
     char c = '\0';
     char d = '\0';
@@ -148,32 +151,7 @@ void UI::addPerson()
         }
     }
 
-    do{
-        gender.clear();
-        tempChar = ' ';
-        cout << "Enter gender(M/F): " <<endl;
-
-        while(cin.good()){
-            if(gender.size() != 0){
-                break;
-            }
-            cin >> tempChar;
-            tempChar = char(toupper(tempChar));
-            gender.push_back(tempChar);
-            if (isdigit(tempChar) || cin.fail() || !(tempChar == 'M' || tempChar == 'F')) {
-                cin.clear();
-                cin.ignore(numeric_limits<streamsize>::max(), '\n');
-                gender.clear();
-                cout << endl << "Illegal entry, try again" << endl;
-                break;
-            }
-        }
-
-    }
-    while (!(gender[0] == 'M' || gender[0] == 'F'));
-    cin.clear();
-    cin.ignore(numeric_limits<streamsize>::max(), '\n');
-
+    gender = validateChar("Enter Gender (M/F): ", acceptedGender);
 
     cout << "Enter nationality: " << endl;
     int NatCounter = 0;
@@ -235,7 +213,7 @@ void UI::addPerson()
         }
     }while(yearFail);
 
-    Person newPerson(name, gender[0], birthYear, dYear, nationality);
+    Person newPerson(name, gender, birthYear, dYear, nationality);
     domain.addPerson(newPerson);
 
 
@@ -484,3 +462,45 @@ void UI::editPerson(){
 
 }
 
+char UI::validateChar(string prompt, vector<char> accepts){
+    vector<char> charList;
+    bool valid = 0;
+    char tempChar;
+
+    do{
+        charList.clear();
+        tempChar = ' ';
+        valid = 0;
+        cout << prompt << endl;
+
+        while(cin.good()){
+            if(charList.size() != 0){
+                break;
+            }
+            cin >> tempChar;
+            tempChar = char(toupper(tempChar));
+            charList.push_back(tempChar);
+
+            for(size_t i = 0; i < accepts.size(); i++ ){
+                if(tempChar == accepts[i]){
+                    valid = true;
+                }
+            }
+
+            if (isdigit(tempChar) || cin.fail() || !valid) {
+                cin.clear();
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                charList.clear();
+                cout << endl << "Illegal entry, try again" << endl;
+                break;
+            }
+        }
+
+    }
+    while (!valid);
+    cin.clear();
+    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+
+    return charList[0];
+
+}
