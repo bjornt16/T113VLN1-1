@@ -42,6 +42,7 @@ private:
     char validateChar(string prompt, vector<char>);
     string validateString(string prompt, string skipstring = "");
     int validateInt(string prompt);
+    vector<int> validateMultipleInt(string prompt);
 public:
     UI();
 
