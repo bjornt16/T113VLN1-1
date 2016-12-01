@@ -27,14 +27,11 @@ public:
         //overwrites data in people.txt
 
     void writeSinglePersonToOpenFile(Person p, ofstream& out);
-<<<<<<< HEAD
-        //skrifar Person p í file. Þarf að vera búið að opna file fyrir og senda inn ostream
+    //writes person p in file. Opens the file before and use ostream
 
     void editPersonInDatabase(Person personToEdit);
         //Edits personToEdit in vector and database.
-=======
-        //writes person p in file. Opens the file before and use ostream
->>>>>>> origin/master
+
 };
 
 #endif // DATA_H

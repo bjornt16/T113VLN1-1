@@ -20,12 +20,10 @@ public:
     Person isolatePerson(int inst, vector<Person>& vectorInput);
         //returns Person instant in vectorInput vector.
     void removePerson(Person personToRemove);
-<<<<<<< HEAD
+    //Function that uses data.removePersonFromDatabase and deletes personToRemove from vector and database
+
     void editPerson(Person personToEdit);
-        //Kallar í data.removePersonFromDatabase sem svo hendir út personToRemove úr vector og database.
-=======
-        //Function that uses data.removePersonFromDatabase and deletes personToRemove from vector and database
->>>>>>> origin/master
+
 
     //Search functions based on what you want type of search you want to do
     vector<Person> searchPersonName(string search);           //name
