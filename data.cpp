@@ -42,12 +42,13 @@ void Data::readPeopleFromFile(){
 
     ifstream file;
     file.open("../T113VLN1/database/people.txt");
+    bool fileIsEmpty = file.peek() == ifstream::traits_type::eof();
 
-    string name, nationality;
-    char gender;
-    int bYear, dYear;
+    string name = "", nationality = "";
+    char gender = ' ';
+    int bYear = 0, dYear = 0;
 
-    while(!file.eof() && file.is_open() && !file.fail()){
+    while(!file.eof() && file.is_open() && !file.fail() && !fileIsEmpty ){
 
         file >> name >> gender >> bYear >> dYear >> nationality;
 
