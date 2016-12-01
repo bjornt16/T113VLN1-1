@@ -28,14 +28,14 @@ void UI::mainMenu()
     do
     {
         cout << "Please enter one of the following commands:" << endl;
-        cout << setw(7) << left << "list" << "This will list all people in the system" << endl;
-        cout << setw(7) << "add" << "This will add a new person" << endl;
+        cout << setw(7) << left << "list" << "Lists all entries" << endl;
+        cout << setw(7) << "add" << "Add an entry" << endl;
         cout << setw(7) <<"delete" << "Removes an entry" << endl;
-        cout << setw(7) <<"clear" << "Removes all entry" << endl;
+        cout << setw(7) <<"clear" << "Removes all entries" << endl;
         cout << setw(7) <<"edit" << "Edit an entry" << endl;
-        cout << setw(7) <<"search" << "Searches for given people" << endl;
-        cout << setw(7) <<"sort" << "Sort people in the system" << endl;
-        cout << setw(7) <<"quit" <<"For quit" << endl;
+        cout << setw(7) <<"search" << "Search for an entries" << endl;
+        cout << setw(7) <<"sort" << "Sort list" << endl;
+        cout << setw(7) <<"quit" <<"Quit" << endl;
         cin >> command;
         cout << endl;
 
@@ -248,7 +248,7 @@ vector<Person> UI::searchPerson()
     cout << "4 : Year of Death " << endl;
     cout << "5 : Nationality" << endl;
     cout << "0 : Cancel" << endl;
-    cout << "Choose a number between 0-5 to select what column to search in: ";
+    cout << "Select a colum to search by:";
     vector<Person> listOfFound;
 
     do{
@@ -448,7 +448,6 @@ void UI::removePerson()
         cout << "Select id of the person you want to delete:" << endl;
         cin >> idOfPerson;
         domain.removePerson(searchResult[idOfPerson]);
-
 }
 
 

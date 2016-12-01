@@ -124,4 +124,3 @@ void Data::clearPersonInDataBase()
    list.clear();
    rewriteDatafile();
 }
-
