@@ -13,31 +13,32 @@ class UI
 private:
     Domain domain;
 
-    void ListPerson(vector<Person> people, bool search = 0);
         //prints out the list, changes is based on how it is printed.
         //function is called from other functions. F.x. from search and the list is printed
+    void ListPerson(vector<Person> people, bool search = 0);
 
-    void addPerson();
         //adds a person to the list
+    void addPerson();
 
-    vector<Person> searchPerson();
         //Searches for a function and returns an instant of type Person.
+    vector<Person> searchPerson();
 
-    void sortPeople();
         //function that sorts
+    void sortPeople();
 
+         //function that allows the user to select one object from the list to delete
     void removePerson();
-        //function either deletes the whole list or deletes one object from the list
 
+        //allows the user to edit persons in the list
     void editPerson();
 
-
-    //function that allows the user to delete everything in the list
+        //function that allows the user to delete the whole list
     void clearlist();
 
         //function that allows the user to modify the list
-
     char validateChar(string prompt, vector<char>);
+
+    string getNameFromUser();
 public:
     UI();
 

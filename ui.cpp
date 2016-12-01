@@ -11,7 +11,7 @@
 
 using namespace std;
 
-const string illegal = "Illegal entry, try again!";
+const string illegal = "Illegal entry, try again! ";
 
 //presentation layer
 
@@ -28,14 +28,14 @@ void UI::mainMenu()
     do
     {
         cout << "Please enter one of the following commands:" << endl;
-        cout << setw(7) << left << "list" << "This will list all people in the system" << endl;
-        cout << setw(7) << "add" << "This will add a new person" << endl;
+        cout << setw(7) << left << "list" << "Lists all entries" << endl;
+        cout << setw(7) << "add" << "Add an entry" << endl;
         cout << setw(7) <<"delete" << "Removes an entry" << endl;
-        cout << setw(7) <<"clear" << "Removes all entry" << endl;
+        cout << setw(7) <<"clear" << "Removes all entries" << endl;
         cout << setw(7) <<"edit" << "Edit an entry" << endl;
-        cout << setw(7) <<"search" << "Searches for given people" << endl;
-        cout << setw(7) <<"sort" << "Sort people in the system" << endl;
-        cout << setw(7) <<"quit" <<"For quit" << endl;
+        cout << setw(7) <<"search" << "Search for an entries" << endl;
+        cout << setw(7) <<"sort" << "Sort list" << endl;
+        cout << setw(7) <<"quit" <<"Quit" << endl;
         cin >> command;
         cout << endl;
 
@@ -138,7 +138,7 @@ void UI::ListPerson(vector<Person> people, bool search)
 
 void UI::addPerson()
 {
-    string name = "", tempName = "", tempNation = "";
+    string tempNation = "";
     int birthYear, dYear;
     string deathYear;
     char gender;
@@ -149,10 +149,8 @@ void UI::addPerson()
     acceptedGender.push_back('M');
     acceptedGender.push_back('F');
 
-    char c = '\0';
-    char d = '\0';
-
     cout << "Enter name: " << endl;
+<<<<<<< HEAD
     int NameCounter = 0;
     while(cin.good()){
         cin.get(c);
@@ -173,11 +171,19 @@ void UI::addPerson()
             name += " " + tempName;
         }
     }
+=======
+
+    string name = getNameFromUser();
+>>>>>>> origin/master
 
     gender = validateChar("Enter Gender (M/F): ", acceptedGender);
 
     cout << "Enter nationality: " << endl;
     int NatCounter = 0;
+
+    char d = '\0';
+
+
     while(cin.good()){
         cin.get(d);
         if(d == '\n' && tempNation != ""){
@@ -247,6 +253,35 @@ void UI::addPerson()
     ListPerson(domain.getPersonList());
 }
 
+string UI::getNameFromUser()
+{
+    char c = '\0';
+    string name = "", tempName = "";
+    int NameCounter = 0;
+    while(cin.good())
+    {
+        cin.get(c);
+        if(c == '\n' && tempName != "")
+        {
+            break;
+        }
+        cin >> tempName;
+        transform(tempName.begin(), tempName.end(), tempName.begin(), ::tolower);
+        tempName[0] = toupper(tempName[0]);
+        NameCounter++;
+        if(NameCounter == 1)
+        {
+            name = tempName;
+        }
+        else
+        {
+            name += " " + tempName;
+        }
+    }
+    return name;
+}
+
+
 vector<Person> UI::searchPerson()
 {
     int column, tempYear = 9999;
@@ -262,7 +297,7 @@ vector<Person> UI::searchPerson()
     cout << "4 : Year of Death " << endl;
     cout << "5 : Nationality" << endl;
     cout << "0 : Cancel" << endl;
-    cout << "Choose a number between 0-5 to select what column to search in: ";
+    cout << "Select a colum to search by:";
     vector<Person> listOfFound;
 
     do{
@@ -462,14 +497,12 @@ void UI::removePerson()
         cout << "Select id of the person you want to delete:" << endl;
         cin >> idOfPerson;
         domain.removePerson(searchResult[idOfPerson]);
-
 }
 
 
 void UI::editPerson(){
 
     char tempAnswer;
-    //int personToEdit = 0;
 
     cout << "Do you want to edit the list? Y for yes and N for no" << endl;
     cin >> tempAnswer;
@@ -482,32 +515,102 @@ void UI::editPerson(){
         vector<Person> searchResult = searchPerson();
         cout << "Select id of the person you want to edit" << endl;
         cin >> idOfPerson;
-        domain.editPerson(searchResult[idOfPerson]);
-        UI::addPerson();
 
-    }
-     else if (tempAnswer=='n')
-    {
-        //Það á ekkert að vera hér.
-    }
-    else {
-        cout <<"Illegal command!"<<endl;
-    }
+        Person personToEdit = searchResult[idOfPerson];
 
+        int choiseToEdit;
+        cout << "Would you like to edit the: " << endl;
+        cout << "1 : Name" << endl;
+        cout << "2 : Gender" << endl;
+        cout << "3 : Year of Birth" << endl;
+        cout << "4 : Year of Death " << endl;
+        cout << "5 : Nationality" << endl;
+        cout << "0 : Cancel" << endl;
+        cout << "Please select: " << endl;
+        cin >> choiseToEdit;
+
+            switch(choiseToEdit)
+            {
+                case 0 : //cancel
+                {
+                    cout << endl;
+                    break;
+                }
+
+                case 1 : //Edit name
+                {
+                    string newName;
+                    cout << "Please enter the new name: " << endl;
+                    newName = getNameFromUser();
+                    personToEdit.setName(newName);
+                    break;
+                }
+
+    /*            case 2 : //Edit gender
+                {
+                    ListPerson(domain.sortPeopleByGender(sortOrder));
+                    break;
+                }
+
+                case 3 : //Edit Year of Birth
+                {
+                    //TODO
+                    ListPerson(domain.sortPeopleByBY(sortOrder));
+                    break;
+                }
+
+                case 4 : //Edit Year of Death
+                {
+                    //TODO
+                    ListPerson(domain.sortPeopleByDY(sortOrder));
+                    break;
+                }
+
+                case 5 : //Edit Nationality
+                {
+                    //TODO
+                    ListPerson(domain.sortPeopleByNat(sortOrder));
+                    break;
+                }
+                case 9 : // desc sort
+                {
+                    sortOrder = "desc";
+                    valid = false;
+                    break;
+                }
+                default : // loop if incorrect input
+                {
+                    cout << "Not a valid choice, try again: ";
+                    valid = false;
+                    break;
+                }*/
+
+            domain.removePerson(searchResult[idOfPerson]);
+            UI::addPerson();
+
+        }
+ /*       else if (tempAnswer=='n')
+        {
+            //Það á ekkert að vera hér.
+        }
+        else {
+            cout <<"Illegal command!"<<endl;
+        }
+*/
+    }
 }
 
-void UI::clearlist(){
-
+void UI::clearlist()
+{
    char yesOrNo;
    cout << "Are you sure you want to clear the list? Y for yes and N for no"<< endl;
    cin >> yesOrNo;
-   if (yesOrNo == 'Y' || yesOrNo == 'y'){
+   yesOrNo = char(tolower(yesOrNo));
+   if (yesOrNo == 'y'){
 
       domain.clearPerson();
-
-
    }
-   else if (yesOrNo == 'N' || yesOrNo == 'n') {
+   else if (yesOrNo == 'n') {
 
    }
    else

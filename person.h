@@ -18,30 +18,31 @@ public:
     void setNationality(string inputNat);
 
     //Member functions:
+
+         //returns name of Person
     string getName() const;
-        //returns name of Person
 
-    string getFirstName() const;
         //returns only first name instants of Person
+    string getFirstName() const;
 
-    string getLastName() const;
         //returns only last name instants of Person
+    string getLastName() const;
 
-    int getAge() const;
         //calculates and returns age. Calculates from death year if the person
         //is death, but from current year if the person is alive.
+    int getAge() const;
 
-    int getBirthYear() const;
         //returns birth year
+    int getBirthYear() const;
 
+         //returns death year
     int getDeathYear() const;
-        //returns death year
 
-    char getGender() const;
         //returns gender: F for female and M for male.
+    char getGender() const;
 
-    string getNationality() const;
         //returns the nationality
+    string getNationality() const;
 
     //Friend functions:
     friend bool operator== (const Person lhs, const Person rhs);
