@@ -444,6 +444,7 @@ void UI::editPerson(){
         cout << "Select id of the person you want to edit" << endl;
         cin >> idOfPerson;
         Person personToEdit = domain.isolatePerson(idOfPerson, searchResult);
+        domain.editPerson(personToEdit);
 
     }
      else if (answer =='N' || answer=='n')

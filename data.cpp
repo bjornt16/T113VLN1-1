@@ -103,4 +103,18 @@ void Data::writeSinglePersonToOpenFile(Person p, ofstream& out)
     out << "\n" << name << " " << gender << " " << bYear << " " << dYear << " " << nationality;
 }
 
+void Data::editPersonInDatabase(Person personToEdit)
+{
+    int vectorSize = list.size();
+    for(int i=0; i < vectorSize; i++)
+    {
+        if(list[i] == personToEdit)
+        {
+
+        }
+    }
+
+    rewriteDatafile();
+}
+
 

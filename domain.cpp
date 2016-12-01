@@ -303,3 +303,8 @@ void Domain::removePerson(Person personToRemove)
 {
     data.removePersonFromDatabase(personToRemove);
 }
+
+void Domain::editPerson(Person personToEdit)
+{
+    data.editPersonInDatabase(personToEdit);
+}

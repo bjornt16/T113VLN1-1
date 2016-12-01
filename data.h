@@ -28,6 +28,9 @@ public:
 
     void writeSinglePersonToOpenFile(Person p, ofstream& out);
         //skrifar Person p í file. Þarf að vera búið að opna file fyrir og senda inn ostream
+
+    void editPersonInDatabase(Person personToEdit);
+        //Edits personToEdit in vector and database.
 };
 
 #endif // DATA_H
