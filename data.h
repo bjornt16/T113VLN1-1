@@ -10,7 +10,7 @@ using namespace std;
 class Data
 {
 private:
-    //vectorinn sem heldur utan um listann í heild sinni
+    //vector contains the list
     vector<Person> list;
 public:
     Data();
@@ -21,16 +21,20 @@ public:
     void readPeopleFromFile();
 
     void removePersonFromDatabase(Person personToRemove);
-        // hendir personToRemove úr vectornum og database.
+        // removes personToRemove from the vector and database.
 
     void rewriteDatafile();
-        //yfirskrifar gögn í people.txt
+        //overwrites data in people.txt
 
     void writeSinglePersonToOpenFile(Person p, ofstream& out);
+<<<<<<< HEAD
         //skrifar Person p í file. Þarf að vera búið að opna file fyrir og senda inn ostream
 
     void editPersonInDatabase(Person personToEdit);
         //Edits personToEdit in vector and database.
+=======
+        //writes person p in file. Opens the file before and use ostream
+>>>>>>> origin/master
 };
 
 #endif // DATA_H

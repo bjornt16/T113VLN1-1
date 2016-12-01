@@ -13,22 +13,22 @@ class UI
 private:
     Domain domain;
 
-    //prentar út listann, listinn breytist eftir því hvernig er verið að prenta hann
-    //það er kallað í þetta fall út frá öðrum föllum td í search þegar listinn á að vera birtur með ákveðnum úttökum
+    //prints out the list, changes is based on how it is printed.
+    //function is called from other functions. F.x. from search and the list is printed
     void ListPerson(vector<Person> people, bool search = 0);
 
-    //bæta persónu í listann
+    //adds a person to the list
     void addPerson();
 
     vector<Person> searchPerson();
 
-    //fall sem gengur frá röðun í listanum
+    //function that sorts
     void sortPeople();
 
-    //fall sem annaðhvort eyðir öllum listanum eða eyðir einu staki úr listanum
+    //function either deletes the whole list or deletes one object from the list
     void removePerson();
 
-    //fall sem leyfir notandanum að breyta listanum
+    //function that allows the user to modify the list
     void editPerson();
 public:
     UI();

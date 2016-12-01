@@ -18,10 +18,14 @@ public:
     vector<Person> getPersonList(/* TODO: parameters */);
 
     Person isolatePerson(int inst, vector<Person>& vectorInput);
-        //skilar Person nr. inst í vectorInput vector.
+        //returns Person instant in vectorInput vector.
     void removePerson(Person personToRemove);
+<<<<<<< HEAD
     void editPerson(Person personToEdit);
         //Kallar í data.removePersonFromDatabase sem svo hendir út personToRemove úr vector og database.
+=======
+        //Function that uses data.removePersonFromDatabase and deletes personToRemove from vector and database
+>>>>>>> origin/master
 
     //Search functions based on what you want type of search you want to do
     vector<Person> searchPersonName(string search);           //name
@@ -31,7 +35,6 @@ public:
     vector<Person> searchPersonDeath(int from, int to = 9999);//death year
 
     //Sort functions based on what you want to sort by
-
     vector<Person> sortPeopleByName(string sortOrder = "asc");  // name
     vector<Person> sortPeopleByGender(string sortOrder = "asc");// gender
     vector<Person> sortPeopleByBY(string sortOrder = "asc");    // birth year

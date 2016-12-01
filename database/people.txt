@@ -1,4 +1,5 @@
 
+<<<<<<< HEAD
  M 1970 0 iceland
  M 1999 1999 celand
  M 1 1000 ce
@@ -6,3 +7,8 @@ g M 1 2000 celand
  9 6 0 Iceland
 isak M 1996 0 Iceland s
 david M 1999 0 iceland k
+=======
+asdf M 1950 2000  iceland
+fridrik M 1995 0 monte_carlo
+fridrik_sn‘r M 1955 2000 iceland_one
+>>>>>>> origin/master

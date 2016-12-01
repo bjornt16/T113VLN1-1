@@ -10,44 +10,44 @@ public:
     //Constructor:
     Person(string n, char g, int bY, int dY, string nat);
 
-    //set föll fyrir sorting
+    //set functions for sorting
     void setName(string inputName);
     void setGender(char inputGender);
     void setBY(int inputBY);
     void setDY(int inputDY);
     void setNationality(string inputNat);
 
-    //Member föll:
+    //Member functions:
     string getName() const;
-        //skilar nafni instants af Person
+        //returns name of Person
 
     string getFirstName() const;
-        //skilar aðeins fyrsta nafn instants af Person
+        //returns only first name instants of Person
 
     string getLastName() const;
-        //skilar aðeins seinasta nafn instants af Person
+        //returns only last name instants of Person
 
     int getAge() const;
-        //reiknar út og skilar aldur. Reiknað frá dánarári ef viðkomandi er
-        //látinn en frá núverandi ári ef viðkomandi er lifandi.
+        //calculates and returns age. Calculates from death year if the person
+        //is death, but from current year if the person is alive.
 
     int getBirthYear() const;
-        //skilar fæðingarári.
+        //returns birth year
 
     int getDeathYear() const;
-        //skilar dánarári.
+        //returns death year
 
     char getGender() const;
-        //skilar F fyrir female og M fyrir male.
+        //returns gender: F for female and M for male.
 
     string getNationality() const;
-        //skilar upprunalandi viðkomandi.
+        //returns the nationality
 
-    //Friend föll:
+    //Friend functions:
     friend bool operator== (const Person lhs, const Person rhs);
 
 private:
-    //Member breytur:
+    //Member parameters:
     string name;
     int    birthYear;
     int    deathYear;

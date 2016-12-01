@@ -22,7 +22,7 @@ void Domain::addPerson(Person p){
     data.writePersonToFile(p);
 }
 
-vector<Person> Domain::getPersonList(/* TODO: parameters */)
+vector<Person> Domain::getPersonList()
 {
     vector<Person> people = data.getList();
 
