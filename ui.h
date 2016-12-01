@@ -30,14 +30,13 @@ private:
         //function either deletes the whole list or deletes one object from the list
 
     void editPerson();
-<<<<<<< HEAD
+
 
     //function that allows the user to delete everything in the list
     void clearlist();
-=======
+
         //function that allows the user to modify the list
 
->>>>>>> origin/master
 public:
     UI();
 
