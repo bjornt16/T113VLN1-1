@@ -508,13 +508,12 @@ void UI::editPerson()
 void UI::clearlist()
 {
    char yesOrNo;
-   cout << "Are you sure you want to clear the list? Y for yes and N for no"<< endl;
+   cout << "Are you sure you want to clear the list? (Y/N) : " << endl;
    cin >> yesOrNo;
    yesOrNo = char(tolower(yesOrNo));
    if (yesOrNo == 'y'){
 
       domain.clearPerson();
-
 
    }
    else if (yesOrNo == 'n') {
@@ -528,45 +527,31 @@ void UI::clearlist()
 }
 
 char UI::validateChar(string prompt, vector<char> accepts){
-    vector<char> charList;
-    bool valid = 0;
-    char tempChar;
+
+    string tempString;
+    char tempChar = ' ', validChar = ' ';
+    const size_t maxStringLength = 1;
 
     do{
-        charList.clear();
-        tempChar = ' ';
-        valid = 0;
         cout << prompt << endl;
 
-        while(cin.good()){
-            if(charList.size() != 0){
-                break;
-            }
-            cin >> tempChar;
-            tempChar = char(toupper(tempChar));
-            charList.push_back(tempChar);
+        cin >> tempString;
+        tempChar = char(toupper(tempString[0]));
 
-            for(size_t i = 0; i < accepts.size(); i++ ){
-                if(tempChar == accepts[i]){
-                    valid = true;
-                }
-            }
-
-            if (isdigit(tempChar) || cin.fail() || !valid) {
-                cin.clear();
-                cin.ignore(numeric_limits<streamsize>::max(), '\n');
-                charList.clear();
-                cout << endl << "Illegal entry, try again" << endl;
-                break;
+        for(size_t i = 0; i < accepts.size(); i++ ){
+            if(tempChar == accepts[i] && tempString.size() == maxStringLength){
+                validChar = tempChar;
             }
         }
 
-    }
-    while (!valid);
-    cin.clear();
-    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        if (isdigit(tempChar) || validChar == ' ') {
+            cout << endl << "Illegal entry, try again" << endl;
+        }
 
-    return charList[0];
+    }
+    while (validChar == ' ');
+
+    return validChar;
 
 }
 
