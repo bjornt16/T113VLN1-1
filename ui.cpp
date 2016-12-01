@@ -25,14 +25,14 @@ void UI::mainMenu()
     do
     {
         cout << "Please enter one of the following commands:" << endl;
-        cout << setw(7) << left << "list" << "This will list all people in the system" << endl;
-        cout << setw(7) << "add" << "This will add a new person" << endl;
+        cout << setw(7) << left << "list" << "List all entries in the database" << endl;
+        cout << setw(7) << "add" << "Add a new entry" << endl;
         cout << setw(7) <<"delete" << "Removes an entry" << endl;
-        cout << setw(7) <<"clear" << "Removes all entry" << endl;
+        cout << setw(7) <<"clear" << "Removes all entries" << endl;
         cout << setw(7) <<"edit" << "Edit an entry" << endl;
-        cout << setw(7) <<"search" << "Searches for given people" << endl;
-        cout << setw(7) <<"sort" << "Sort people in the system" << endl;
-        cout << setw(7) <<"quit" <<"For quit" << endl;
+        cout << setw(7) <<"search" << "Search the database" << endl;
+        cout << setw(7) <<"sort" << "Sort the entries" << endl;
+        cout << setw(7) <<"quit" <<"To quit" << endl;
         cin >> command;
         cout << endl;
 
@@ -192,28 +192,30 @@ vector<Person> UI::searchPerson()
     char cSearch;
     string search, tempSearch;
     vector<int> yearSearch;
-    bool valid = 1;
+    bool valid;
     char c = '\0';
-
-    cout << "1 : Name" << endl;
-    cout << "2 : Gender" << endl;
-    cout << "3 : Year of Birth" << endl;
-    cout << "4 : Year of Death " << endl;
-    cout << "5 : Nationality" << endl;
-    cout << "0 : Cancel" << endl;
-    cout << "Choose a number between 0-5 to select what column to search in: ";
     vector<Person> listOfFound;
 
-    do{
+    do
+    {
         valid = 1;
+        cout << "1 : Name" << endl;
+        cout << "2 : Gender" << endl;
+        cout << "3 : Year of Birth" << endl;
+        cout << "4 : Year of Death " << endl;
+        cout << "5 : Nationality" << endl;
+        cout << "0 : Cancel" << endl;
+        cout << "Choose a number between 0-5 to select what column to search in: ";
         cin >> column;
-        if (cin.fail()) {
+        if (cin.fail())
+        {
                 cin.clear();
                 cin.ignore(numeric_limits<streamsize>::max(), '\n');
                 column = 6;
         }
 
-        switch(column){
+        switch(column)
+        {
 
             case 0 : //cancel
             {
@@ -224,17 +226,17 @@ vector<Person> UI::searchPerson()
             case 1 : //name
             {
                 cout << "Name: ";
-                while(cin.good()){
+                while(cin.good())
+                {
                     cin.get(c);
-                    if(c == '\n' && tempSearch != ""){
+                    if(c == '\n' && tempSearch != "")
+                    {
                         break;
                     }
                     cin >> tempSearch;
                     search += " " + tempSearch;
                 }
                 listOfFound = domain.searchPersonName(search);
-                ListPerson(listOfFound, true);
-
                 break;
             }
             case 2 : //gender
@@ -242,7 +244,6 @@ vector<Person> UI::searchPerson()
                 cout << "Gender: ";
                 cin >> cSearch;
                 listOfFound = domain.searchPersonGender(cSearch);
-                ListPerson(listOfFound, true);
                 break;
             }
             case 3 : //birth
@@ -250,9 +251,11 @@ vector<Person> UI::searchPerson()
                 cout << endl << "To search from - to, input two numbers with a space between" << endl;
                 cout << "Year of birth: ";
 
-                while(cin.good()){
+                while(cin.good())
+                {
                     cin.get(c);
-                    if(c == '\n' && tempYear != 9999){
+                    if(c == '\n' && tempYear != 9999)
+                    {
                         break;
                     }
                     cin >> tempYear;
@@ -261,12 +264,10 @@ vector<Person> UI::searchPerson()
                 if (yearSearch.size() > 1)
                 {
                     listOfFound = domain.searchPersonBirth(yearSearch[0], yearSearch[1]);
-                    ListPerson(listOfFound, true);
                 }
                 else
                 {
                     listOfFound = domain.searchPersonBirth(yearSearch[0]);
-                    ListPerson(listOfFound, true);
                 }
                 break;
             }
@@ -274,9 +275,11 @@ vector<Person> UI::searchPerson()
             {
                 cout << endl << "To search from - to, input two numbers with a space between" << endl;
                 cout << "Year of death: ";
-                while(cin.good()){
+                while(cin.good())
+                {
                     cin.get(c);
-                    if(c == '\n' && tempYear != 9999){
+                    if(c == '\n' && tempYear != 9999)
+                    {
                         break;
                     }
                     cin >> tempYear;
@@ -285,12 +288,10 @@ vector<Person> UI::searchPerson()
                 if(yearSearch.size() > 1)
                 {
                     listOfFound = domain.searchPersonDeath(yearSearch[0], yearSearch[1]);
-                    ListPerson(listOfFound, true);
                 }
                 else
                 {
                     listOfFound = domain.searchPersonDeath(yearSearch[0]);
-                    ListPerson(listOfFound, true);
                 }
                 break;
             }
@@ -299,17 +300,25 @@ vector<Person> UI::searchPerson()
                 cout << "Nationality: ";
                 cin >> search;
                 listOfFound = domain.searchPersonNationality(search);
-                ListPerson(listOfFound, true);
                 break;
             }
-            default :{
+            default :
+            {
                 cout << illegal;
                 valid = false;
                 break;
             }
         }
-    }while(!valid);
 
+        if ( (listOfFound.size()) == 0)
+        {
+            valid=0;
+            cout << "No entry found. Try again:" << endl;
+        }
+
+    }while(!valid);    
+
+    ListPerson(listOfFound, true);
     return listOfFound;
 }
 
