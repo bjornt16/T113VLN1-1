@@ -1,5 +1,4 @@
-dabs M 1970 0 iceland
-asdf M 1999 1999 celand
-fdas M 1970 2015 celand
-asfg M 1 1000 ce
-asdfg M 1 2000 celand
+
+asdf M 1950 2000  iceland
+fridrik M 1995 0 monte_carlo
+fridrik_sn‘r M 1955 2000 iceland_one

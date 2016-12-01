@@ -73,6 +73,9 @@ void UI::mainMenu()
     } while( !(command == "quit") );
 }
 
+
+
+
 void UI::ListPerson(vector<Person> people, bool search)
 {
 
@@ -86,7 +89,7 @@ void UI::ListPerson(vector<Person> people, bool search)
     {
         cout << "ID  ";
     }
-    cout << "Name                       Gender   Birth year   Death year   Age    Nationality" << endl;
+    cout << "Name.......................Gender...Birth year...Death year...Age....Nationality" << endl;
     if(search == true)
     {
         cout << "----";
@@ -103,7 +106,7 @@ void UI::ListPerson(vector<Person> people, bool search)
         cout << setw(13) << people[i].getBirthYear();
         people[i].getDeathYear() == 0 ? cout << setw(13) << "-" : cout << setw(13) << people[i].getDeathYear();
         cout << setw(7) << people[i].getAge();
-        cout << setw(13) << people[i].getNationality() << endl;
+        cout << setw(11) << people[i].getNationality() << endl;
 
     }
     if(search == true)
@@ -115,25 +118,36 @@ void UI::ListPerson(vector<Person> people, bool search)
 
 void UI::addPerson()
 {
-    string name, tempName = "", tempNation = "";
+    string name = "", tempName = "", tempNation = "";
     int birthYear, dYear;
     string deathYear;
     vector<char> gender;
     char tempChar;
-    string nationality;
+    string nationality = "";
     bool yearFail = 0;
 
     char c = '\0';
+    char d = '\0';
 
     cout << "Enter name: " << endl;
+    int NameCounter = 0;
     while(cin.good()){
         cin.get(c);
         if(c == '\n' && tempName != ""){
             break;
         }
         cin >> tempName;
-        name += " " + tempName;
+        NameCounter++;
+        if(NameCounter == 1)
+        {
+            name = tempName;
+        }
+        else
+        {
+            name += " " + tempName;
+        }
     }
+
     do{
         gender.clear();
         tempChar = ' ';
@@ -162,14 +176,22 @@ void UI::addPerson()
 
 
     cout << "Enter nationality: " << endl;
-    cin >> nationality;
+    int NatCounter = 0;
     while(cin.good()){
-        cin.get(c);
-        if(c == '\n' && tempNation != ""){
+        cin.get(d);
+        if(d == '\n' && tempNation != ""){
             break;
         }
         cin >> tempNation;
-        nationality += " " + tempNation;
+        NatCounter++;
+        if(NatCounter == 1)
+        {
+            nationality = d + tempNation;
+        }
+        else
+        {
+            nationality += " " + tempNation;
+        }
     }
 
     do{
@@ -216,7 +238,7 @@ void UI::addPerson()
     Person newPerson(name, gender[0], birthYear, dYear, nationality);
     domain.addPerson(newPerson);
 
-    // TODO:
+
     ListPerson(domain.getPersonList());
 }
 

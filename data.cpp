@@ -26,6 +26,9 @@ void Data::writePersonToFile(Person p){
     ofstream file;
     file.open("../T113VLN1/database/people.txt", ios::out | ios::app);
 
+    cout << p.getName();
+    cout << p.getNationality();
+
     writeSinglePersonToOpenFile(p, file);
 
     list.push_back(p);
@@ -95,10 +98,15 @@ void Data::writeSinglePersonToOpenFile(Person p, ofstream& out)
     char gender = p.getGender();
     int bYear = p.getBirthYear();
     int dYear = p.getDeathYear();
-
+    cout << "dbug";
+    cout << endl;
+    cout << nationality;
+    cout << endl;
 
     replace( name.begin(), name.end(), ' ', '_');
-    name.erase(name.begin());
+    replace( nationality.begin(), nationality.end(), ' ', '_');
+    //björn wtf?
+    //name.erase(name.begin());
 
     out << "\n" << name << " " << gender << " " << bYear << " " << dYear << " " << nationality;
 }
