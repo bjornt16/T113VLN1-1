@@ -294,10 +294,6 @@ vector<Person> Domain::sortPeopleByNat(string sortOrder)
     return sortedNat;
 }
 
-Person Domain::isolatePerson(int inst, vector<Person>& vectorInput)
-{
-    return vectorInput[inst];
-}
 
 void Domain::removePerson(Person personToRemove)
 {

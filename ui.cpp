@@ -468,8 +468,7 @@ void UI::removePerson()
         vector<Person> searchResult = searchPerson();
         cout << "Select id of the person you want to delete:" << endl;
         cin >> idOfPerson;
-        Person personToRemove = domain.isolatePerson(idOfPerson, searchResult);
-        domain.removePerson(personToRemove);
+        domain.removePerson(searchResult[idOfPerson]);
     }
     else if (tempAnswer == ' ') {
         cout << "Select number between 0-5" << endl;
