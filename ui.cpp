@@ -10,8 +10,6 @@
 
 using namespace std;
 
-const string illegal = "Illegal entry, try again!";
-
 //presentation layer
 
 UI::UI()
@@ -136,70 +134,17 @@ void UI::addPerson()
     acceptedGender.push_back('M');
     acceptedGender.push_back('F');
 
-    char c = '\0';
-    char d = '\0';
-
-    cout << "Enter name: " << endl;
-    int NameCounter = 0;
-    while(cin.good()){
-        cin.get(c);
-        if(c == '\n' && tempName != ""){
-            break;
-        }
-        cin >> tempName;
-        NameCounter++;
-        if(NameCounter == 1)
-        {
-            name = tempName;
-        }
-        else
-        {
-            name += " " + tempName;
-        }
-    }
-
+    name = validateString("Enter name: ");
     gender = validateChar("Enter Gender (M/F): ", acceptedGender);
-
-    cout << "Enter nationality: " << endl;
-    int NatCounter = 0;
-    while(cin.good()){
-        cin.get(d);
-        if(d == '\n' && tempNation != ""){
-            break;
-        }
-        cin >> tempNation;
-        NatCounter++;
-        if(NatCounter == 1)
-        {
-            nationality = d + tempNation;
-        }
-        else
-        {
-            nationality += " " + tempNation;
-        }
-    }
+    nationality = validateString("Enter nationality: ");
+    birthYear = validateInt("Enter year of birth: ");
 
     do{
         yearFail = 0;
-        cout << "Enter birth year: " << endl;
-        cin >> birthYear;
-        if(cin.fail()){
-            cout << endl << illegal << endl;
-            cin.clear();
-            cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-            yearFail = 1;
-        }
-    }while(yearFail);
-
-    do{
-        yearFail = 0;
-        cout << "Enter year of death: ( . to skip)" << endl;
-        cin >> deathYear;
-        if((deathYear.find_first_not_of("0123456789") == std::string::npos) || deathYear == "." )
+        deathYear = validateString("Enter year of death ( . to skip) : ", ".");
+        if((deathYear.find_first_not_of("0123456789") == std::string::npos) || deathYear == "" )
         {
-
-
-            if(deathYear == ".")
+            if(deathYear == "")
             {
                 dYear = 0;
             }
@@ -210,7 +155,6 @@ void UI::addPerson()
                 {
                     yearFail = 1;
                     cout << endl << "Death year must be later than the birth year" << endl;
-
                 }
             }
         }
@@ -485,7 +429,6 @@ void UI::clearlist(){
 
       domain.clearPerson();
 
-
    }
    else if (yesOrNo == 'N' || yesOrNo == 'n') {
 
@@ -538,4 +481,44 @@ char UI::validateChar(string prompt, vector<char> accepts){
 
     return charList[0];
 
+}
+
+
+string UI::validateString(string prompt, string skipString){
+    string tempString, string;
+    char c = '\0';
+
+    cout << prompt << endl;
+
+    while(cin.good()){
+        cin.get(c);
+        if(c == '\n' && tempString != ""){
+            break;
+        }
+        cin >> tempString;
+        if(tempString != skipString){
+            string += string == "" ? tempString : " " + tempString;
+        }
+        else{
+            string = "";
+        }
+    }
+    return string;
+}
+
+int UI::validateInt(string prompt){
+    int isInt, integer;
+    do{
+        isInt = 1;
+        cout << prompt << endl;
+        cin >> integer;
+        if(cin.fail()){
+            cout << endl << illegal << endl;
+            cin.clear();
+            cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+            isInt = 0;
+        }
+    }while(!isInt);
+
+    return integer;
 }

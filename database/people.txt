@@ -3,3 +3,6 @@ fridrik M 1995 0 monte_carlo
 fridrik_sn‘r M 1955 2000 iceland_one
 alan_turing M 1900 2000 england
 isak M 1996 0 iceland
+name_name F 1988 0 icelandic
+blsa F 19 19 dgf
+bjorn_tho M 1950 0 ce_land

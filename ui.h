@@ -38,8 +38,12 @@ private:
         //function that allows the user to modify the list
 
     char validateChar(string prompt, vector<char>);
+    string validateString(string prompt, string skipstring = "");
+    int validateInt(string prompt);
 public:
     UI();
+
+    const string illegal = "Illegal entry, try again!";
 
     // Displays the main menu of the program.
     void mainMenu();
