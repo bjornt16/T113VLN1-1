@@ -30,6 +30,7 @@ void UI::mainMenu()
         cout << setw(7) << left << "list" << "This will list all people in the system" << endl;
         cout << setw(7) << "add" << "This will add a new person" << endl;
         cout << setw(7) <<"delete" << "Removes an entry" << endl;
+        cout << setw(7) <<"clear" << "Removes all entry" << endl;
         cout << setw(7) <<"edit" << "Edit an entry" << endl;
         cout << setw(7) <<"search" << "Searches for given people" << endl;
         cout << setw(7) <<"sort" << "Sort people in the system" << endl;
@@ -64,6 +65,10 @@ void UI::mainMenu()
         else if (command == "quit")
         {
             //þetta á að vera tómt
+        }
+        else if (command == "clear") {
+
+            clearlist();
         }
         else
         {
@@ -432,28 +437,24 @@ void UI::sortPeople()
 
 void UI::removePerson()
 {
-    char tempAnswer = ' ';
-    cout <<"Do you want to remove all of the list? (y/n)" << endl;
-    cin >> tempAnswer;
-    tempAnswer = char(tolower(tempAnswer));
-
-    if(tempAnswer == 'y'){
-
-        //Todo eyða öllum listanum
-    }
-    else if (tempAnswer=='n') {
-        int idOfPerson;
+    int idOfPerson;
         cout << "Search for the person you want to delete:" << endl;
         vector<Person> searchResult = searchPerson();
         cout << "Select id of the person you want to delete:" << endl;
         cin >> idOfPerson;
+<<<<<<< HEAD
         Person personToRemove = domain.isolatePerson(idOfPerson, searchResult);
         domain.removePerson(personToRemove);
+
+=======
+        domain.removePerson(searchResult[idOfPerson]);
     }
     else if (tempAnswer == ' ') {
         cout << "Select number between 0-5" << endl;
     }
+>>>>>>> origin/master
 }
+
 
 void UI::editPerson(){
 
@@ -480,6 +481,30 @@ void UI::editPerson(){
     {
         //Það á ekkert að vera hér.
     }
+    else {
+        cout <<"Illegal command!"<<endl;
+    }
+
+}
+
+void UI::clearlist(){
+
+   char yesOrNo;
+   cout << "Are you sure you want to clear the list? Y for yes and N for no"<< endl;
+   cin >> yesOrNo;
+   if (yesOrNo == 'Y' || yesOrNo == 'y'){
+
+      domain.clearPerson();
+
+
+   }
+   else if (yesOrNo == 'N' || yesOrNo == 'n') {
+
+   }
+   else
+   {
+       cout << "Illegal command!"<< endl;
+   }
 
 }
 
