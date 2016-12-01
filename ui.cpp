@@ -28,6 +28,7 @@ void UI::mainMenu()
         cout << setw(7) << left << "list" << "This will list all people in the system" << endl;
         cout << setw(7) << "add" << "This will add a new person" << endl;
         cout << setw(7) <<"delete" << "Removes an entry" << endl;
+        cout << setw(7) <<"clear" << "Removes all entry" << endl;
         cout << setw(7) <<"edit" << "Edit an entry" << endl;
         cout << setw(7) <<"search" << "Searches for given people" << endl;
         cout << setw(7) <<"sort" << "Sort people in the system" << endl;
@@ -62,6 +63,10 @@ void UI::mainMenu()
         else if (command == "quit")
         {
             //þetta á að vera tómt
+        }
+        else if (command == "clear") {
+            //Todo delet all
+
         }
         else
         {
@@ -439,14 +444,6 @@ void UI::sortPeople()
 
 void UI::removePerson()
 {
-    char answer = ' ';
-    cout <<"Do you want to remove all of the list? (y/n)" << endl;
-    cin >> answer;
-    if(answer == 'Y' || answer == 'y'){
-
-        //Todo eyða öllum listanum
-    }
-    else if (answer =='N' || answer=='n') {
         int idOfPerson;
         cout << "Search for the person you want to delete:" << endl;
         vector<Person> searchResult = searchPerson();
@@ -454,8 +451,8 @@ void UI::removePerson()
         cin >> idOfPerson;
         Person personToRemove = domain.isolatePerson(idOfPerson, searchResult);
         domain.removePerson(personToRemove);
-    }
 }
+
 
 void UI::editPerson(){
 
