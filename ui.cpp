@@ -460,7 +460,7 @@ void UI::editPerson(){
     cin >> tempAnswer;
     tempAnswer = char(tolower(tempAnswer));
 
-    if(tempAnswer =='y' || tempAnswer == 'Y')
+    if(tempAnswer =='y')
     {
         int idOfPerson;
         cout << "Search for the person you want to edit" << endl;
@@ -471,7 +471,7 @@ void UI::editPerson(){
         UI::addPerson();
 
     }
-     else if (tempAnswer=='n' || tempAnswer== 'N')
+     else if (tempAnswer=='n')
     {
         //Það á ekkert að vera hér.
     }
