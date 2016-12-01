@@ -110,7 +110,7 @@ void Data::editPersonInDatabase(Person personToEdit)
     {
         if(list[i] == personToEdit)
         {
-
+            list.erase(list.begin()+i);
         }
     }
 

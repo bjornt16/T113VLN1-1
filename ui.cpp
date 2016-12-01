@@ -445,6 +445,7 @@ void UI::editPerson(){
         cin >> idOfPerson;
         Person personToEdit = domain.isolatePerson(idOfPerson, searchResult);
         domain.editPerson(personToEdit);
+        UI::addPerson();
 
     }
      else if (answer =='N' || answer=='n')
