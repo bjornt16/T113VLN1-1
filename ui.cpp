@@ -486,13 +486,14 @@ void UI::clearlist(){
    char yesOrNo;
    cout << "Are you sure you want to clear the list? Y for yes and N for no"<< endl;
    cin >> yesOrNo;
-   if (yesOrNo == 'Y' || yesOrNo == 'y'){
+   yesOrNo = char(tolower(yesOrNo));
+   if (yesOrNo == 'y'){
 
       domain.clearPerson();
 
 
    }
-   else if (yesOrNo == 'N' || yesOrNo == 'n') {
+   else if (yesOrNo == 'n') {
 
    }
    else
