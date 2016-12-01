@@ -442,17 +442,10 @@ void UI::removePerson()
         vector<Person> searchResult = searchPerson();
         cout << "Select id of the person you want to delete:" << endl;
         cin >> idOfPerson;
-<<<<<<< HEAD
         Person personToRemove = domain.isolatePerson(idOfPerson, searchResult);
         domain.removePerson(personToRemove);
-
-=======
         domain.removePerson(searchResult[idOfPerson]);
-    }
-    else if (tempAnswer == ' ') {
-        cout << "Select number between 0-5" << endl;
-    }
->>>>>>> origin/master
+
 }
 
 
@@ -472,8 +465,7 @@ void UI::editPerson(){
         vector<Person> searchResult = searchPerson();
         cout << "Select id of the person you want to edit" << endl;
         cin >> idOfPerson;
-        Person personToEdit = domain.isolatePerson(idOfPerson, searchResult);
-        domain.editPerson(personToEdit);
+        domain.editPerson(searchResult[idOfPerson]);
         UI::addPerson();
 
     }

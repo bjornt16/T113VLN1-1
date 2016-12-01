@@ -1,5 +1,5 @@
 
 fridrik M 1995 0 monte_carlo
 fridrik_sn‘r M 1955 2000 iceland_one
-dabs M 1999 2000 icelandic
 alan_turing M 1900 2000 england
+isak M 1996 0 iceland
