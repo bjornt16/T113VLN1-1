@@ -11,7 +11,7 @@
 
 using namespace std;
 
-const string illegal = "Illegal entry, try again!";
+const string illegal = "Illegal entry, try again! ";
 
 //presentation layer
 
