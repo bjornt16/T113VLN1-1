@@ -438,14 +438,17 @@ void UI::editPerson(){
 
     if(answer =='Y' || answer == 'y')
     {
+        int idOfPerson;
         cout << "Search for the person you want to edit" << endl;
-        searchPerson();
+        vector<Person> searchResult = searchPerson();
         cout << "Select id of the person you want to edit" << endl;
-        cin >> personToEdit;
+        cin >> idOfPerson;
+        Person personToEdit = domain.isolatePerson(idOfPerson, searchResult);
+
     }
      else if (answer =='N' || answer=='n')
     {
-        //
+        //Það á ekkert að vera hér.
     }
 
 }
