@@ -106,7 +106,21 @@ void UI::ListPerson(vector<Person> people, bool search)
         {
             cout << setw(4) << i;
         }
-        cout << setw(27) << people[i].getName();
+
+
+        if(people[i].getName().size() > 27)
+        {
+            for(int j = 0; j < 24; j++)
+            {
+                cout << people[i].getName()[j];
+            }
+            cout << "...";
+        }
+        else
+        {
+            cout << setw(27) << people[i].getName();
+        }
+
         cout << setw(9) << people[i].getGender();
         cout << setw(13) << people[i].getBirthYear();
         people[i].getDeathYear() == 0 ? cout << setw(13) << "-" : cout << setw(13) << people[i].getDeathYear();
