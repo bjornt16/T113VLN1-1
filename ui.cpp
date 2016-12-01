@@ -421,6 +421,7 @@ void UI::removePerson()
     cout <<"Do you want to remove all of the list? (y/n)" << endl;
     cin >> answer;
     if(answer == 'Y' || answer == 'y'){
+
         //Todo eyða öllum listanum
     }
     else if (answer =='N' || answer=='n') {
