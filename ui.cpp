@@ -292,7 +292,7 @@ vector<Person> UI::searchPerson()
                 valid = false;
                 break;
             }
-        }    
+        }
     }while(!valid);
 
     return listOfFound;
@@ -496,6 +496,7 @@ string UI::validateString(string prompt, string skipString){
             break;
         }
         cin >> tempString;
+
         if(tempString != skipString){
             string += string == "" ? tempString : " " + tempString;
         }
@@ -503,6 +504,7 @@ string UI::validateString(string prompt, string skipString){
             string = "";
         }
     }
+
     return string;
 }
 
