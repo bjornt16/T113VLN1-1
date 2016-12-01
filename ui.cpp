@@ -155,6 +155,7 @@ void UI::addPerson()
                 {
                     yearFail = 1;
                     cout << endl << "Death year must be later than the birth year" << endl;
+
                 }
             }
         }
@@ -406,31 +407,104 @@ void UI::editPerson(){
         vector<Person> searchResult = searchPerson();
         cout << "Select id of the person you want to edit" << endl;
         cin >> idOfPerson;
-        domain.editPerson(searchResult[idOfPerson]);
-        UI::addPerson();
 
-    }
-     else if (tempAnswer=='n')
-    {
-        //Það á ekkert að vera hér.
-    }
-    else {
-        cout <<"Illegal command!"<<endl;
-    }
+        Person personToEdit = searchResult[idOfPerson];
 
+        int choiseToEdit;
+        cout << "Would you like to edit the: " << endl;
+        cout << "1 : Name" << endl;
+        cout << "2 : Gender" << endl;
+        cout << "3 : Year of Birth" << endl;
+        cout << "4 : Year of Death " << endl;
+        cout << "5 : Nationality" << endl;
+        cout << "0 : Cancel" << endl;
+        cout << "Please select: " << endl;
+        cin >> choiseToEdit;
+
+            switch(choiseToEdit)
+            {
+                case 0 : //cancel
+                {
+                    cout << endl;
+                    break;
+                }
+
+                case 1 : //Edit name
+                {
+                    string newName;
+                    cout << "Please enter the new name: " << endl;
+                    newName = getNameFromUser();
+                    personToEdit.setName(newName);
+                    break;
+                }
+
+    /*            case 2 : //Edit gender
+                {
+                    ListPerson(domain.sortPeopleByGender(sortOrder));
+                    break;
+                }
+
+                case 3 : //Edit Year of Birth
+                {
+                    //TODO
+                    ListPerson(domain.sortPeopleByBY(sortOrder));
+                    break;
+                }
+
+                case 4 : //Edit Year of Death
+                {
+                    //TODO
+                    ListPerson(domain.sortPeopleByDY(sortOrder));
+                    break;
+                }
+
+                case 5 : //Edit Nationality
+                {
+                    //TODO
+                    ListPerson(domain.sortPeopleByNat(sortOrder));
+                    break;
+                }
+                case 9 : // desc sort
+                {
+                    sortOrder = "desc";
+                    valid = false;
+                    break;
+                }
+                default : // loop if incorrect input
+                {
+                    cout << "Not a valid choice, try again: ";
+                    valid = false;
+                    break;
+                }*/
+
+            domain.removePerson(searchResult[idOfPerson]);
+            UI::addPerson();
+
+        }
+ /*       else if (tempAnswer=='n')
+        {
+            //Það á ekkert að vera hér.
+        }
+        else {
+            cout <<"Illegal command!"<<endl;
+        }
+*/
+    }
 }
 
-void UI::clearlist(){
-
+void UI::clearlist()
+{
    char yesOrNo;
    cout << "Are you sure you want to clear the list? Y for yes and N for no"<< endl;
    cin >> yesOrNo;
-   if (yesOrNo == 'Y' || yesOrNo == 'y'){
+   yesOrNo = char(tolower(yesOrNo));
+   if (yesOrNo == 'y'){
 
       domain.clearPerson();
 
+
    }
-   else if (yesOrNo == 'N' || yesOrNo == 'n') {
+   else if (yesOrNo == 'n') {
 
    }
    else
