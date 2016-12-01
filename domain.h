@@ -15,15 +15,16 @@ private:
     Data data;
 public:
     Domain();
+         //Gets the vector that holds the Persons
     vector<Person> getPersonList();
-        //Gets the vector that holds the Persons
 
-    void removePerson(Person personToRemove);
         //Function that uses data.removePersonFromDatabase and deletes personToRemove from vector and database
+    void removePerson(Person personToRemove);
 
+         //Function that uses data.editPersonInDatabase to edit a Person.
     void editPerson(Person personToEdit);
-        //Function that uses data.editPersonInDatabase to edit a Person.
 
+        //Function that uses data.clearPersonInDatabase to clear everything in the list.
     void clearPerson();
 
     //Search functions based on what you want type of search you want to do

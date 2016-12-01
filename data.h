@@ -20,18 +20,19 @@ public:
     void updateSort(vector<Person> pList);
     void readPeopleFromFile();
 
+        //removes personToRemove from the vector and database.
     void removePersonFromDatabase(Person personToRemove);
-    //removes personToRemove from the vector and database.
 
-    void rewriteDatafile();
         //overwrites data in people.txt
+    void rewriteDatafile();
 
-    void writeSinglePersonToOpenFile(Person p, ofstream& out);
         //writes person p in file. Opens the file before and use ostream
+    void writeSinglePersonToOpenFile(Person p, ofstream& out);
 
+         //Edits personToEdit in vector and database
     void editPersonInDatabase(Person personToEdit);
-        //Edits personToEdit in vector and database
 
+        //Clears everything from the list
     void clearPersonInDataBase();
 
 };
