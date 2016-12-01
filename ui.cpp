@@ -570,13 +570,11 @@ string UI::validateString(string prompt, string skipString){
         }
         cin >> tempString;
 
-<<<<<<< HEAD
+
         tempString = firstCap(tempString);
-=======
         if(c != '\n' && c != ' '){
             tempString = c + tempString;
         }
->>>>>>> origin/master
 
         if(tempString != skipString){
             string += string == "" ? tempString : " " + tempString;
