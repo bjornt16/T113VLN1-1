@@ -62,19 +62,17 @@ void UI::mainMenu()
         }
         else if (command == "quit")
         {
-            //þetta á að vera tómt
+            //this is meant to be empty
         }
-        else if (command == "clear") {
-
+        else if (command == "clear")
+        {
             clearlist();
         }
         else
         {
-            cout << illegal << endl  ;
+            cout << illegal << endl;
         }
-
         cout << endl;
-
     } while( !(command == "quit") );
 }
 
@@ -83,31 +81,36 @@ void UI::mainMenu()
 
 void UI::ListPerson(vector<Person> people, bool search)
 {
-
     cout << "Displaying persons:" << endl;
+
+
     if(search == true)
     {
         cout << "====";
     }
     cout << "==================================================================================" << endl;
+
+
     if(search == true)
     {
         cout << "ID  ";
     }
     cout << "Name                       Gender   Birth year   Death year   Age    Nationality  " << endl;
+
+
     if(search == true)
     {
         cout << "----";
     }
     cout << "----------------------------------------------------------------------------------" << endl;
-    for (size_t i = 0; i< people.size(); ++i)
+
+
+    for (size_t i = 0; i < people.size(); ++i)
     {
         if(search == true)
         {
             cout << setw(4) << i;
         }
-
-
         if(people[i].getName().size() > 27)
         {
             for(int j = 0; j < 24; j++)
@@ -153,7 +156,8 @@ void UI::addPerson()
     nationality = validateString("Enter nationality: ");
     birthYear = validateInt("Enter year of birth: ");
 
-    do{
+    do
+    {
         yearFail = 0;
         deathYear = validateString("Enter year of death ( . to skip) : ", ".");
         if((deathYear.find_first_not_of("0123456789") == std::string::npos) || deathYear == "" )
@@ -169,11 +173,11 @@ void UI::addPerson()
                 {
                     yearFail = 1;
                     cout << endl << "Death year must be later than the birth year" << endl;
-
                 }
             }
         }
-        else{
+        else
+        {
             yearFail = 1;
              cout << endl << illegal << endl;
         }
@@ -181,8 +185,6 @@ void UI::addPerson()
 
     Person newPerson(name, gender, birthYear, dYear, nationality);
     domain.addPerson(newPerson);
-
-
     ListPerson(domain.getPersonList());
 }
 
@@ -209,21 +211,20 @@ vector<Person> UI::searchPerson()
         cin >> column;
         if (cin.fail())
         {
-                cin.clear();
-                cin.ignore(numeric_limits<streamsize>::max(), '\n');
-                column = 6;
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            column = 6;
         }
 
         switch(column)
         {
-
-            case 0 : //cancel
+            case 0 :        //cancel
             {
                 cout << endl;
                 break;
             }
 
-            case 1 : //name
+            case 1 :        //name
             {
                 cout << "Name: ";
                 while(cin.good())
@@ -239,14 +240,14 @@ vector<Person> UI::searchPerson()
                 listOfFound = domain.searchPersonName(search);
                 break;
             }
-            case 2 : //gender
+            case 2 :        //gender
             {
                 cout << "Gender: ";
                 cin >> cSearch;
                 listOfFound = domain.searchPersonGender(cSearch);
                 break;
             }
-            case 3 : //birth
+            case 3 :        //birth
             {
                 cout << endl << "To search from - to, input two numbers with a space between" << endl;
                 cout << "Year of birth: ";
@@ -271,7 +272,7 @@ vector<Person> UI::searchPerson()
                 }
                 break;
             }
-            case 4 : //death
+            case 4 :        //death
             {
                 cout << endl << "To search from - to, input two numbers with a space between" << endl;
                 cout << "Year of death: ";
@@ -295,7 +296,7 @@ vector<Person> UI::searchPerson()
                 }
                 break;
             }
-            case 5 : //nationality
+            case 5 :        //nationality
             {
                 cout << "Nationality: ";
                 cin >> search;
@@ -316,9 +317,21 @@ vector<Person> UI::searchPerson()
             cout << "No entry found. Try again:" << endl;
         }
 
-    }while(!valid);    
+    }while(!valid);
 
     ListPerson(listOfFound, true);
+
+ /* Væri gaman að gera þetta... þarf bara að breyta öllum serach föllunum þannig að þau taki vextor<Person> inntak. ;D
+    char searchAgain;
+    cout << "Do you wish to serach within the serch results? (y/n)": ";
+    cin >> searchAgain;
+    if(searchAgain == 'y' || searchAgain == 'Y')
+    {
+        listOfFound = searchPerson(listOfFound Person);
+    }
+
+  */
+
     return listOfFound;
 }
 
