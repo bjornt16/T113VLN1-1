@@ -246,6 +246,7 @@ vector<Person> UI::searchPerson(vector<Person> listToSearch)
                 listOfFound = domain.searchPersonName(listToSearch, search);
                 break;
             }
+
             case 2 :        //gender
             {
                 cout << "Gender: ";
@@ -253,6 +254,7 @@ vector<Person> UI::searchPerson(vector<Person> listToSearch)
                 listOfFound = domain.searchPersonGender(listToSearch, cSearch);
                 break;
             }
+
             case 3 :        //birth
             {
                 cout << endl << "To search from - to, input two numbers with a space between" << endl;
@@ -278,6 +280,7 @@ vector<Person> UI::searchPerson(vector<Person> listToSearch)
                 }
                 break;
             }
+
             case 4 :        //death
             {
                 cout << endl << "To search from - to, input two numbers with a space between" << endl;
@@ -327,13 +330,26 @@ vector<Person> UI::searchPerson(vector<Person> listToSearch)
 
     ListPerson(listOfFound, true);
 
-    char searchAgain;
-    cout << "Do you wish to search within the search results? (y/n): ";
-    cin >> searchAgain;
-    if(searchAgain == 'y' || searchAgain == 'Y')
+    valid=1;
+    do
     {
-        listOfFound = searchPerson(listOfFound);
-    }
+        char searchAgain;
+        cout << "Do you wish to search within the search results? (y/n): ";
+        cin >> searchAgain;
+
+        if(searchAgain == 'y' || searchAgain == 'Y')
+        {
+            listOfFound = searchPerson(listOfFound);
+        } else if(searchAgain == 'n' || searchAgain == 'N')
+        {
+            cout << endl;
+            break;
+        } else
+        {
+            cout << illegal;
+            valid = false;
+        }
+    } while(!valid);
 
     return listOfFound;
 }
@@ -433,22 +449,21 @@ void UI::removePerson()
 void UI::editPerson()
 {
     int idOfPerson;
-    cout << "Search for the person you want to edit" << endl;
+    cout << "To find the person you wish to edit. Please select a column to search by: ";
     vector<Person> searchResult = searchPerson(domain.getPersonList());
-    cout << "Select the ID of the person you want to edit" << endl;
+    cout << "Select the ID of the person you want to edit: ";
     cin >> idOfPerson;
 
     Person personToEdit = searchResult[idOfPerson];
 
     int choiseToEdit;
-    cout << "What would you like to edit?" << endl;
+    cout << "Please select what you would like to edit:" << endl;
     cout << "1 : Name" << endl;
     cout << "2 : Gender" << endl;
     cout << "3 : Year of Birth" << endl;
     cout << "4 : Year of Death " << endl;
     cout << "5 : Nationality" << endl;
     cout << "0 : Cancel" << endl;
-    cout << "Please select: " << endl;
     cin >> choiseToEdit;
 
     bool valid = true;
@@ -464,7 +479,7 @@ void UI::editPerson()
 
             case 1 : //Edit name
             {
-                string newName = validateString("Please enter the new name:");
+                string newName = validateString("Please enter the new name: ");
                 personToEdit.setName(newName);
                 break;
             }
@@ -473,26 +488,26 @@ void UI::editPerson()
                 vector<char> acceptedGender;
                 acceptedGender.push_back('M');
                 acceptedGender.push_back('F');
-                char newGender = validateChar("Please enter a new gender:", acceptedGender);
+                char newGender = validateChar("Please enter a new gender: ", acceptedGender);
                 personToEdit.setGender(newGender);
                 break;
             }
 
             case 3 : //Edit Year of Birth
             {
-                int newYearOfBirth = validateInt("Please enter the new year of birth:");
+                int newYearOfBirth = validateInt("Please enter the new year of birth: ");
                 personToEdit.setBY(newYearOfBirth);
                 break;
             }
             case 4 : //Edit Year of Death
             {
-                int newYearOfDeath = validateInt("Please enter the new year of death:");
+                int newYearOfDeath = validateInt("Please enter the new year of death: ");
                 personToEdit.setDY(newYearOfDeath);
                 break;
             }
             case 5 : //Edit Nationality
             {
-                string newNationality = validateString("Please enter the new nationality:");
+                string newNationality = validateString("Please enter the new nationality: ");
                 personToEdit.setNationality(newNationality);
                 break;
             }
@@ -511,7 +526,7 @@ void UI::editPerson()
 void UI::clearlist()
 {
    char yesOrNo;
-   cout << "Are you sure you want to clear the list? (Y/N) : " << endl;
+   cout << "Are you sure you want to clear the list? (y/n) : " << endl;
    cin >> yesOrNo;
    yesOrNo = char(tolower(yesOrNo));
    if (yesOrNo == 'y'){
