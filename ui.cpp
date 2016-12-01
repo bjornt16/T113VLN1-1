@@ -128,8 +128,7 @@ void UI::addPerson()
     string name = "", tempName = "", tempNation = "";
     int birthYear, dYear;
     string deathYear;
-    vector<char> gender;
-    char tempChar;
+    char gender;
     string nationality = "";
     bool yearFail = 0;
 
@@ -221,7 +220,7 @@ void UI::addPerson()
         }
     }while(yearFail);
 
-    Person newPerson(name, gender[0], birthYear, dYear, nationality);
+    Person newPerson(name, gender, birthYear, dYear, nationality);
     domain.addPerson(newPerson);
 
 
@@ -442,8 +441,6 @@ void UI::removePerson()
         vector<Person> searchResult = searchPerson();
         cout << "Select id of the person you want to delete:" << endl;
         cin >> idOfPerson;
-        Person personToRemove = domain.isolatePerson(idOfPerson, searchResult);
-        domain.removePerson(personToRemove);
         domain.removePerson(searchResult[idOfPerson]);
 
 }
@@ -500,3 +497,45 @@ void UI::clearlist(){
 
 }
 
+char UI::validateChar(string prompt, vector<char> accepts){
+    vector<char> charList;
+    bool valid = 0;
+    char tempChar;
+
+    do{
+        charList.clear();
+        tempChar = ' ';
+        valid = 0;
+        cout << prompt << endl;
+
+        while(cin.good()){
+            if(charList.size() != 0){
+                break;
+            }
+            cin >> tempChar;
+            tempChar = char(toupper(tempChar));
+            charList.push_back(tempChar);
+
+            for(size_t i = 0; i < accepts.size(); i++ ){
+                if(tempChar == accepts[i]){
+                    valid = true;
+                }
+            }
+
+            if (isdigit(tempChar) || cin.fail() || !valid) {
+                cin.clear();
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                charList.clear();
+                cout << endl << "Illegal entry, try again" << endl;
+                break;
+            }
+        }
+
+    }
+    while (!valid);
+    cin.clear();
+    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+
+    return charList[0];
+
+}

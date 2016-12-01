@@ -18,16 +18,14 @@ public:
     vector<Person> getPersonList(/* TODO: parameters */);
 
     void removePerson(Person personToRemove);
-        //Function that uses data.removePersonFromDatabase and deletes personToRemove from vector and database
+    //Function that uses data.removePersonFromDatabase and deletes personToRemove from vector and database
 
+    //Function that uses data. Takes out the old person to Edit the old person.
     void editPerson(Person personToEdit);
-<<<<<<< Updated upstream
-        //
+
 
     void clearPerson();
-=======
-    //Function that uses data. Takes out the old person to Edit the old person.
->>>>>>> Stashed changes
+
 
 
     //Search functions based on what you want type of search you want to do
