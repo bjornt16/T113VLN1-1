@@ -34,6 +34,7 @@ void UI::mainMenu()
         cout << setw(7) << "sort"  << "Sort the entries" << endl;
         cout << setw(7) << "quit"  << "To quit" << endl;
         command = validateString("Please enter one of the commands: ");
+        cout << endl;
 
         if (command == "list")
         {
@@ -80,6 +81,17 @@ void UI::mainMenu()
 
 void UI::ListPerson(vector<Person> people, bool search)
 {
+    size_t biggestNatSize = 0;
+
+    for(size_t i = 0; i < people.size(); i++)
+    {
+        if((people[i].getNationality().size()) > biggestNatSize)
+        {
+            biggestNatSize = people[i].getNationality().size();
+        }
+    }
+
+
     cout << "Displaying persons:" << endl;
 
 
@@ -88,7 +100,30 @@ void UI::ListPerson(vector<Person> people, bool search)
     {
         cout << "====";
     }
-    cout << "==================================================================================" << endl;
+    cout << "==================================================================================";
+
+    //The following if sentences are adding additional "=" marks to the right side of the list depending on how
+    //long the strings displayed in the nationality column are
+    if(biggestNatSize > 12 && biggestNatSize < 26)
+    {
+        for(size_t i = 0; i < biggestNatSize-12; i++)
+        {
+            cout << "=";
+        }
+        cout << endl;
+    }
+    else if(biggestNatSize >= 26)
+    {
+        for(size_t i = 0; i < 26-12; i++)
+        {
+            cout << "=";
+        }
+        cout << endl;
+    }
+    else
+    {
+        cout << endl;
+    }
 
 
     //if function was opened through the search function print this for the ID column
@@ -104,7 +139,30 @@ void UI::ListPerson(vector<Person> people, bool search)
     {
         cout << "----";
     }
-    cout << "----------------------------------------------------------------------------------" << endl;
+    cout << "----------------------------------------------------------------------------------";
+
+    //The following if sentences are adding additional "=" marks to the right side of the list depending on how
+    //long the strings displayed in the nationality column are
+    if(biggestNatSize > 12 && biggestNatSize < 26)
+    {
+        for(size_t i = 0; i < biggestNatSize-12; i++)
+        {
+            cout << "-";
+        }
+        cout << endl;
+    }
+    else if(biggestNatSize >= 26)
+    {
+        for(int i = 0; i < 26-12; i++)
+        {
+            cout << "-";
+        }
+        cout << endl;
+    }
+    else
+    {
+        cout << endl;
+    }
 
     for (size_t i = 0; i < people.size(); ++i)
     {
@@ -132,14 +190,53 @@ void UI::ListPerson(vector<Person> people, bool search)
         cout << setw(13) << people[i].getBirthYear();
         people[i].getDeathYear() == 0 ? cout << setw(13) << "-" : cout << setw(13) << people[i].getDeathYear();
         cout << setw(7) << people[i].getAge();
-        cout << setw(11) << people[i].getNationality() << endl;
+
+        //if string i for natinality is longer then 26 characters display 23 of them and add a ".. " at the end
+        //otherwise print out the whole string
+        if(people[i].getNationality().size() > 26)
+        {
+            for(int j = 0; j < 23; j++)
+            {
+                cout << people[i].getNationality()[j];
+            }
+            cout << ".. " << endl;
+        }
+        else
+        {
+            cout << setw(biggestNatSize) << people[i].getNationality() << endl;
+        }
     }
+    
     //if function was opened through the search function print this for the ID column
     if(search == true)
     {
         cout << "====";
     }
-    cout << "==================================================================================" << endl;
+    cout << "==================================================================================";
+
+
+    //The following if sentences are adding additional "=" marks to the right side of the list depending on how
+    //long the strings displayed in the nationality column are
+    if((biggestNatSize > 12) && (biggestNatSize < 26))
+    {
+        for(size_t i = 0; i < (biggestNatSize-12); i++)
+        {
+            cout << "=";
+        }
+        cout << endl;
+    }
+    else if(biggestNatSize >= 26)
+    {
+        for(int i = 0; i < 26-12; i++)
+        {
+            cout << "=";
+        }
+        cout << endl;
+    }
+    else
+    {
+        cout << endl;
+    }
 }
 
 void UI::addPerson()
@@ -162,9 +259,11 @@ void UI::addPerson()
     gender = validateChar("Enter Gender (M/F): ", acceptedGender);
     nationality = validateString("Enter nationality: ");
 
-    do{
+    do
+    {
         birthYear = validateInt("Enter year of birth: ");
-        if(birthYear > currentYear){
+        if(birthYear > currentYear)
+        {
             cout << "Birth year must be earlier than current year" << endl;
         }
     }while(birthYear > currentYear);
