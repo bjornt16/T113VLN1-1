@@ -3,9 +3,6 @@
 
 #include "domain.h"
 #include "person.h"
-#include <vector>
-#include <iostream>
-
 #include <iostream>
 #include <iomanip>
 #include <string>
@@ -14,7 +11,6 @@
 #include <algorithm>
 #include "ui.h"
 #include <vector>
-#include "person.h"
 
 using namespace std;
 
