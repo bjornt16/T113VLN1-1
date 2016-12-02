@@ -76,7 +76,6 @@ void UI::mainMenu()
         {
             cout << invalid << endl;
         }
-        cout << endl;
     } while( !(command == "quit") );
 }
 
@@ -329,21 +328,20 @@ void UI::sortPerson()
     int column;
     string choice = "";
 
+    cout << "1 : Name" << endl;
+    cout << "2 : Gender" << endl;
+    cout << "3 : Year of Birth" << endl;
+    cout << "4 : Year of Death " << endl;
+    cout << "5 : Nationality" << endl;
+    cout << "0 : Cancel" << endl;
+
     do{
         valid = 1;
-
-        cout << "1 : Name" << endl;
-        cout << "2 : Gender" << endl;
-        cout << "3 : Year of Birth" << endl;
-        cout << "4 : Year of Death " << endl;
-        cout << "5 : Nationality" << endl;
-        cout << "0 : Cancel" << endl;
-        cout << "To sort in descending order (# desc)" << endl << endl;
-
+        cout << endl << "To sort in descending order (# desc)";
 
         choice = validateString("Select a column to sort by: ");
         if(isdigit(choice[0])){
-            column = choice[0];
+            column = stoi(choice.substr(0));
             sortOrder = choice.size() > 1 ? choice.substr(choice.find(' ')+1) : "asc";
             if(sortOrder != "asc" && sortOrder != "desc"){
                 column = failState;
@@ -398,6 +396,7 @@ void UI::sortPerson()
             }
         }
     } while(!valid);
+    cout << endl;
 
 }
 
@@ -497,7 +496,6 @@ void UI::clearlist()
    choice = validateChar("Are you sure you want to clear the list? (y/n) : ", yesOrNo);
    if (choice == yesOrNo[0]){
       domain.clearPerson();
-
    }
 
 }
