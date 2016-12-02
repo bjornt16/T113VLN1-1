@@ -56,6 +56,7 @@ private:
     int validateInt(string prompt);
     vector<int> validateMultipleInt(string prompt);
     vector<char> yesOrNo;
+    vector<char> acceptedGender;
     const string illegal = "Illegal entry, try again!";
 public:
     UI();

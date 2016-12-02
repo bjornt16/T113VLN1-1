@@ -17,6 +17,8 @@ UI::UI()
 {
     yesOrNo.push_back('Y');
     yesOrNo.push_back('N');
+    acceptedGender.push_back('M');
+    acceptedGender.push_back('F');
 }
 
 // Should not contain logic for individual commands, that should be in separate functions!
@@ -150,10 +152,6 @@ void UI::addPerson()
     string ignoreLine;
     bool yearFail = 0;
 
-    vector<char> acceptedGender;
-    acceptedGender.push_back('M');
-    acceptedGender.push_back('F');
-
     name = validateString("Enter name: ");
     gender = validateChar("Enter Gender (M/F): ", acceptedGender);
     nationality = validateString("Enter nationality: ");
@@ -204,10 +202,6 @@ vector<Person> UI::searchPerson(vector<Person> listToSearch)
     vector<int> iSearch;
     bool valid;
     vector<Person> listOfFound;
-
-    vector<char> acceptedGender;
-    acceptedGender.push_back('M');
-    acceptedGender.push_back('F');
 
     do
     {
@@ -447,9 +441,6 @@ void UI::editPerson()
             }
             case 2 : //Edit gender
             {
-                vector<char> acceptedGender;
-                acceptedGender.push_back('M');
-                acceptedGender.push_back('F');
                 char newGender = validateChar("Please enter a new gender: ", acceptedGender);
                 personToEdit.setGender(newGender);
                 break;

@@ -77,7 +77,7 @@ void Data::removePersonFromDatabase(Person personToRemove)
 
 void Data::rewriteDataFile()
 {
-    remove(peopleFile);
+    remove(peopleFile.c_str());
 
     ofstream file;
     file.open(peopleFile, ios::out | ios::app);

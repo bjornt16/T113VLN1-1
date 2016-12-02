@@ -12,7 +12,7 @@ class Data
 private:
     //vector contains the list
     vector<Person> list;
-    string peopleFile = "../T113VLN1/database/people.txt";
+    const string peopleFile = "../T113VLN1/database/people.txt";
 public:
     Data();
 

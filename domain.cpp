@@ -9,10 +9,6 @@ using namespace std;
 
 //domain layer
 
-struct PersonComparison {
-  bool operator() (Person i,Person j) { return (i.getName()<j.getName());}
-};
-
 Domain::Domain()
 {
 
