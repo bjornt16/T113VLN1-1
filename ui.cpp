@@ -83,6 +83,17 @@ void UI::mainMenu()
 
 void UI::ListPerson(vector<Person> people, bool search)
 {
+    int biggestNatSize = 0;
+
+    for(size_t i = 0; i < people.size(); i++)
+    {
+        if((people[i].getNationality().size()) > biggestNatSize)
+        {
+            biggestNatSize = people[i].getNationality().size();
+        }
+    }
+
+
     cout << "Displaying persons:" << endl;
 
 
@@ -91,7 +102,20 @@ void UI::ListPerson(vector<Person> people, bool search)
     {
         cout << "====";
     }
-    cout << "==================================================================================" << endl;
+    cout << "==================================================================================";
+
+    if(biggestNatSize > 12 && biggestNatSize < 26)
+    {
+        for(int i = 0; i < biggestNatSize-12; i++)
+        {
+            cout << "=";
+        }
+        cout << endl;
+    }
+    else
+    {
+        cout << endl;
+    }
 
 
     //if function was opened through the search function print this for the id column
@@ -107,7 +131,20 @@ void UI::ListPerson(vector<Person> people, bool search)
     {
         cout << "----";
     }
-    cout << "----------------------------------------------------------------------------------" << endl;
+    cout << "----------------------------------------------------------------------------------";
+
+    if(biggestNatSize > 12 && biggestNatSize < 26)
+    {
+        for(int i = 0; i < biggestNatSize-12; i++)
+        {
+            cout << "-";
+        }
+        cout << endl;
+    }
+    else
+    {
+        cout << endl;
+    }
 
     for (size_t i = 0; i < people.size(); ++i)
     {
@@ -135,14 +172,40 @@ void UI::ListPerson(vector<Person> people, bool search)
         cout << setw(13) << people[i].getBirthYear();
         people[i].getDeathYear() == 0 ? cout << setw(13) << "-" : cout << setw(13) << people[i].getDeathYear();
         cout << setw(7) << people[i].getAge();
-        cout << setw(11) << people[i].getNationality() << endl;
+
+        if(people[i].getNationality().size() > 26)
+        {
+            for(int j = 0; j < 23; j++)
+            {
+                cout << people[i].getNationality()[j];
+            }
+            cout << ".. " << endl;
+        }
+        else
+        {
+            cout << setw(biggestNatSize) << people[i].getNationality() << endl;
+        }
     }
+
     //if function was opened through the search function print this for the id column
     if(search == true)
     {
         cout << "====";
     }
-    cout << "==================================================================================" << endl;
+    cout << "==================================================================================";
+
+    if((biggestNatSize > 12) && (biggestNatSize < 26))
+    {
+        for(int i = 0; i < (biggestNatSize-12); i++)
+        {
+            cout << "=";
+        }
+        cout << endl;
+    }
+    else
+    {
+        cout << endl;
+    }
 }
 
 void UI::addPerson()
@@ -164,9 +227,11 @@ void UI::addPerson()
     gender = validateChar("Enter Gender (M/F): ", acceptedGender);
     nationality = validateString("Enter nationality: ");
 
-    do{
+    do
+    {
         birthYear = validateInt("Enter year of birth: ");
-        if(birthYear > currentYear){
+        if(birthYear > currentYear)
+        {
             cout << "Birth year must be earlier than current year" << endl;
         }
     }while(birthYear > currentYear);
