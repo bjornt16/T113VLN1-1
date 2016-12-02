@@ -240,29 +240,43 @@ vector<Person> UI::searchPerson(vector<Person> listToSearch)
             case 3 :        //birth
             {
                 cout << endl << "To search from - to, input two numbers with a space between" << endl;
-                iSearch = validateMultipleInt("Year of birth: ");
-                if (iSearch.size() > 1)
-                {
-                    listOfFound = domain.searchPersonBirth(listToSearch, iSearch[0], iSearch[1]);
-                }
-                else
-                {
-                    listOfFound = domain.searchPersonBirth(listToSearch, iSearch[0]);
-                }
+
+                do{
+                    iSearch = validateMultipleInt("Year of birth: ");
+                    if(iSearch.size() == 2)
+                    {
+                        listOfFound = domain.searchPersonBirth(listToSearch, iSearch[0], iSearch[1]);
+                    }
+                    else if(iSearch.size() == 1)
+                    {
+                        listOfFound = domain.searchPersonBirth(listToSearch, iSearch[0]);
+                    }else{
+                        cout << endl << illegal << endl;
+                        cin.clear();
+                        cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+                    }
+                }while(!iSearch.size());
+
                 break;
             }
             case 4 :        //death
             {
                 cout << endl << "To search from - to, input two numbers with a space between" << endl;
-                iSearch = validateMultipleInt("Year of Death: ");
-                if(iSearch.size() > 1)
-                {
-                    listOfFound = domain.searchPersonDeath(listToSearch, iSearch[0], iSearch[1]);
-                }
-                else
-                {
-                    listOfFound = domain.searchPersonDeath(listToSearch, iSearch[0]);
-                }
+                do{
+                    iSearch = validateMultipleInt("Year of death: ");
+                    if(iSearch.size() == 2)
+                    {
+                        listOfFound = domain.searchPersonDeath(listToSearch, iSearch[0], iSearch[1]);
+                    }
+                    else if(iSearch.size() == 1)
+                    {
+                        listOfFound = domain.searchPersonDeath(listToSearch, iSearch[0]);
+                    }else{
+                        cout << endl << illegal << endl;
+                        cin.clear();
+                        cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+                    }
+                }while(!iSearch.size());
                 break;
             }
             case 5 :        //nationality
@@ -501,7 +515,7 @@ char UI::validateChar(string prompt, vector<char> accepts){
         tempString[0] = toupper(tempString[0]);
 
         for(size_t i = 0; i < accepts.size(); i++ ){
-            if(tempString[0] == accepts[i]){
+            if(tempString[0] == accepts[i] && tempString.size() == maxStringLength){
                 validChar = tempString[0];
             }
         }
@@ -563,27 +577,32 @@ vector<int> UI::validateMultipleInt(string prompt, int maxSize){
         }else{
             counter++;
             cin.get(c);
-            if(c != '\n' && counter == maxSize){
+            if(c == '\n' && counter == maxSize){
 
             }
             else if(c == '\n'){
                 cin.putback('\n');
                 break;
-            }else if(counter == maxSize){
+            }else if(c == ' ' && counter == maxSize){
+                intList.clear();
                 cin.clear();
                 cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
                 cin.putback('\n');
                 break;
             }
         }
-
-        cin >> tempInt;
-        intList.push_back(tempInt);
+        if(counter < maxSize){
+            cin >> tempInt;
+            intList.push_back(tempInt);
+        }else{
+            cin.putback('\n');
+        }
         if(cin.fail()){
             cout << endl << illegal << endl;
             cin.clear();
             cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
             intList.clear();
+            counter = 0;
         }
     }
 
