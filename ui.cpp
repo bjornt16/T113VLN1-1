@@ -37,7 +37,7 @@ void UI::mainMenu()
         cout << setw(7) <<"search" << "Search the database" << endl;
         cout << setw(7) <<"sort" << "Sort the entries" << endl;
         cout << setw(7) <<"quit" <<"To quit" << endl;
-        cin >> command;
+        command = validateString("");
         cout << endl;
 
         if (command == "list")
@@ -203,6 +203,7 @@ vector<Person> UI::searchPerson(vector<Person> listToSearch)
     bool valid;
     vector<Person> listOfFound;
 
+
     do
     {
         valid = 1;
@@ -279,36 +280,38 @@ vector<Person> UI::searchPerson(vector<Person> listToSearch)
             }
         }
 
-        if ( (listOfFound.size()) == 0)
+        if ( (listOfFound.size()) == 0 && column != 0)
         {
             valid = 0;
-            cout << "No entry found. Try again:" << endl;
+            cout << "No entry found. Try again: " << endl;
         }
 
     }while(!valid);
 
-    ListPerson(listOfFound, true);
-
-    do
+    if ( column != 0)
     {
-        valid=1;
-        char searchAgain;
+        ListPerson(listOfFound, true);
+        do
+        {
+            valid=1;
+            char searchAgain;
 
-        searchAgain = validateChar("Do you wish to search within the search results? (y/n): ",yesOrNo);
+            searchAgain = validateChar("Do you wish to search within the search results? (y/n): ",yesOrNo);
 
-        if(searchAgain == yesOrNo[0])
-        {
-            listOfFound = searchPerson(listOfFound);
-        } else if(searchAgain == yesOrNo[1])
-        {
-            cout << endl;
-            break;
-        } else
-        {
-            cout << illegal;
-            valid = 0;
-        }
-    } while(!valid);
+            if(searchAgain == yesOrNo[0])
+            {
+                listOfFound = searchPerson(listOfFound);
+            } else if(searchAgain == yesOrNo[1])
+            {
+                cout << endl;
+                break;
+            } else
+            {
+                cout << illegal;
+                valid = 0;
+            }
+        } while(!valid);
+    }
 
     return listOfFound;
 }
@@ -489,28 +492,26 @@ void UI::clearlist()
 
 char UI::validateChar(string prompt, vector<char> accepts){
 
-    string tempString;
-    char tempChar = ' ', validChar = ' ';
+    string tempString = "";
+    char validChar = ' ';
     const size_t maxStringLength = 1;
 
     do{
-        cout << prompt << endl;
+    tempString = validateString(prompt);
 
-        cin >> tempString;
-        tempChar = char(toupper(tempString[0]));
+        if(tempString.size() == 1 ){
+            tempString[0] = toupper(tempString[0]);
 
-        for(size_t i = 0; i < accepts.size(); i++ ){
-            if(tempChar == accepts[i] && tempString.size() == maxStringLength){
-                validChar = tempChar;
+            for(size_t i = 0; i < accepts.size(); i++ ){
+                if(tempString[0] == accepts[i]){
+                    validChar = tempString[0];
+                }
             }
+        }else{
+            cout << endl << illegal << endl;
         }
 
-        if (isdigit(tempChar) || validChar == ' ') {
-            cout << endl << "Illegal entry, try again" << endl;
-        }
-
-    }
-    while (validChar == ' ');
+    }while(validChar == ' ');
 
     return validChar;
 
@@ -518,75 +519,64 @@ char UI::validateChar(string prompt, vector<char> accepts){
 
 
 string UI::validateString(string prompt, string skipString){
-    string tempString, validString;
-    char c = '\0';
+    string validString = "";
 
     cout << prompt << endl;
-
-    while(cin.good()){
-        cin.get(c);
-        if(c == '\n' && tempString != ""){
-            break;
-        }
-        cin >> tempString;
-
-        if(c != '\n' && c != ' '){
-            tempString = c + tempString;
-        }
-
-        validString += validString == "" ? tempString : " " + tempString;
-    }
+    do{
+        getline(cin, validString);
+        validString.resize(validString.find_last_not_of(" ")+1);
+    }while(validString.size() == 0);
 
     if(validString == skipString){
         validString = "";
     }
-
 
     return validString;
 }
 
 
 int UI::validateInt(string prompt){
-    int isInt, integer;
+    vector<int> intList;
     do{
-        isInt = 1;
-        cout << prompt << endl;
-        cin >> integer;
-        if(cin.fail()){
+        intList = validateMultipleInt(prompt, 1);
+        if(intList.size() != 1){
             cout << endl << illegal << endl;
-            cin.clear();
-            cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-            isInt = 0;
         }
-    }while(!isInt);
+    }while(intList.size() != 1);
 
-    return integer;
+    cin.clear();
+    cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+
+    return intList[0];
 }
 
-vector<int> UI::validateMultipleInt(string prompt){
+vector<int> UI::validateMultipleInt(string prompt, int maxSize){
 
     vector<int> intList;
     int tempInt = 0;
     char c = '\0';
+    size_t counter = 0;
 
 
     while(cin.good())
     {
         if(intList.size() == 0){
             cout << prompt << endl;
+        }else{
+            counter++;
+            cin.get(c);
+            if(c == '\n' || counter == maxSize){
+                cin.putback('\n');
+                break;
+            }
         }
-        cin.get(c);
-        if(c == '\n' && intList.size() > 0)
-        {
-            break;
-        }
+
         cin >> tempInt;
         intList.push_back(tempInt);
         if(cin.fail()){
             cout << endl << illegal << endl;
             cin.clear();
             cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-            cin.putback('\n');
             intList.clear();
         }
     }
