@@ -163,7 +163,6 @@ void UI::addPerson()
         deathYear = validateString("Enter year of death ( . to skip) : ", ".");
         if((deathYear.find_first_not_of("0123456789") == std::string::npos) || deathYear == "" )
         {
-            cout << endl << "out"<< endl;
             if(deathYear == "")
             {
                 dYear = 0;
@@ -499,15 +498,14 @@ char UI::validateChar(string prompt, vector<char> accepts){
     do{
     tempString = validateString(prompt);
 
-        if(tempString.size() == 1 ){
-            tempString[0] = toupper(tempString[0]);
+        tempString[0] = toupper(tempString[0]);
 
-            for(size_t i = 0; i < accepts.size(); i++ ){
-                if(tempString[0] == accepts[i]){
-                    validChar = tempString[0];
-                }
+        for(size_t i = 0; i < accepts.size(); i++ ){
+            if(tempString[0] == accepts[i]){
+                validChar = tempString[0];
             }
-        }else{
+        }
+        if(validChar == ' '){
             cout << endl << illegal << endl;
         }
 
@@ -565,7 +563,15 @@ vector<int> UI::validateMultipleInt(string prompt, int maxSize){
         }else{
             counter++;
             cin.get(c);
-            if(c == '\n' || counter == maxSize){
+            if(c != '\n' && counter == maxSize){
+
+            }
+            else if(c == '\n'){
+                cin.putback('\n');
+                break;
+            }else if(counter == maxSize){
+                cin.clear();
+                cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
                 cin.putback('\n');
                 break;
             }
