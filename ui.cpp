@@ -83,7 +83,7 @@ void UI::mainMenu()
 
 void UI::ListPerson(vector<Person> people, bool search)
 {
-    int biggestNatSize = 0;
+    size_t biggestNatSize = 0;
 
     for(size_t i = 0; i < people.size(); i++)
     {
@@ -104,9 +104,11 @@ void UI::ListPerson(vector<Person> people, bool search)
     }
     cout << "==================================================================================";
 
+    //The following if sentences are adding additional "=" marks to the right side of the list depending on how
+    //long the strings displayed in the nationality column are
     if(biggestNatSize > 12 && biggestNatSize < 26)
     {
-        for(int i = 0; i < biggestNatSize-12; i++)
+        for(size_t i = 0; i < biggestNatSize-12; i++)
         {
             cout << "=";
         }
@@ -114,7 +116,7 @@ void UI::ListPerson(vector<Person> people, bool search)
     }
     else if(biggestNatSize >= 26)
     {
-        for(int i = 0; i < 26-12; i++)
+        for(size_t i = 0; i < 26-12; i++)
         {
             cout << "=";
         }
@@ -141,9 +143,11 @@ void UI::ListPerson(vector<Person> people, bool search)
     }
     cout << "----------------------------------------------------------------------------------";
 
+    //The following if sentences are adding additional "=" marks to the right side of the list depending on how
+    //long the strings displayed in the nationality column are
     if(biggestNatSize > 12 && biggestNatSize < 26)
     {
-        for(int i = 0; i < biggestNatSize-12; i++)
+        for(size_t i = 0; i < biggestNatSize-12; i++)
         {
             cout << "-";
         }
@@ -189,6 +193,8 @@ void UI::ListPerson(vector<Person> people, bool search)
         people[i].getDeathYear() == 0 ? cout << setw(13) << "-" : cout << setw(13) << people[i].getDeathYear();
         cout << setw(7) << people[i].getAge();
 
+        //if string i for natinality is longer then 26 characters display 23 of them and add a ".. " at the end
+        //otherwise print out the whole string
         if(people[i].getNationality().size() > 26)
         {
             for(int j = 0; j < 23; j++)
@@ -210,9 +216,12 @@ void UI::ListPerson(vector<Person> people, bool search)
     }
     cout << "==================================================================================";
 
+
+    //The following if sentences are adding additional "=" marks to the right side of the list depending on how
+    //long the strings displayed in the nationality column are
     if((biggestNatSize > 12) && (biggestNatSize < 26))
     {
-        for(int i = 0; i < (biggestNatSize-12); i++)
+        for(size_t i = 0; i < (biggestNatSize-12); i++)
         {
             cout << "=";
         }
