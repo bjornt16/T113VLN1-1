@@ -64,6 +64,8 @@ private:
     vector<char> yesOrNo;
     vector<char> acceptedGender;
     const string invalid = "Invalid entry, try again!";
+
+    void projectCredit();
 public:
     UI();
 

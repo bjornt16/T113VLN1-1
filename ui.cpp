@@ -62,32 +62,7 @@ void UI::mainMenu()
         }
         else if (command == "quit")
         {
-            cout << "    _______  _______  _______  __   __       _____         " << endl
-                 << "   |       ||       ||   _   ||  |_|  |     |  _  |        " << endl
-                 << "   |_     _||    ___||  |_|  ||       |     | |_| |        " << endl
-                 << "     |   |  |   |___ |       ||       |    |   _   |       " << endl
-                 << "     |   |  |    ___||       ||       |    |  | |  |       " << endl
-                 << "     |   |  |   |___ |   _   || ||_|| |    |  |_|  |       " << endl
-                 << "     |___|  |_______||__| |__||_|   |_|    |_______|       " << endl
-                 << "   _______  ______    _______  ______   ___  _______       " << endl
-                 << "  |    ___||    _ |  |       ||      | |   ||       | __   " << endl
-                 << "  |   |    |   | ||  |    ___||  _    ||   ||_     _||__|  " << endl
-                 << "  |   |    |   |_||_ |   |___ | | |   ||   |  |   |   __   " << endl
-                 << "  |   |    |    __  ||    ___|| |_|   ||   |  |   |  |__|  " << endl
-                 << "  |   |___ |   |  | ||   |___ |       ||   |  |   |        " << endl
-                 << "  |_______||___|  |_||_______||______| |___|  |___|        " << endl << endl;
-
-            cout << "           -Anna Kristín Halldórsdóttir" << endl;
-            cout << "           -Björn Þórsson" << endl;
-            cout << "           -Friðrik Snær Tómasson" << endl;
-            cout << "  ()_()    -Ísak Grétarson" << endl;
-            cout << "  (*.*)    -Margrét Finnbogadóttir" << endl;
-            cout << " c(\")(\")   -Sólveig Sara Samúelsdóttir" << endl;
-            cout << endl;
-            if (true)
-            {
-
-            }
+           projectCredit();
         }
         else if (command == "clear")
         {
@@ -862,4 +837,29 @@ void UI::confiqPerson()
             }
         }
         }while(!valid);
+}
+
+void UI::projectCredit(){
+    cout << "    _______  _______  _______  __   __       _____         " << endl
+         << "   |       ||       ||   _   ||  |_|  |     |  _  |        " << endl
+         << "   |_     _||    ___||  |_|  ||       |     | |_| |        " << endl
+         << "     |   |  |   |___ |       ||       |    |   _   |       " << endl
+         << "     |   |  |    ___||       ||       |    |  | |  |       " << endl
+         << "     |   |  |   |___ |   _   || ||_|| |    |  |_|  |       " << endl
+         << "     |___|  |_______||__| |__||_|   |_|    |_______|       " << endl
+         << "   _______  ______    _______  ______   ___  _______       " << endl
+         << "  |    ___||    _ |  |       ||      | |   ||       | __   " << endl
+         << "  |   |    |   | ||  |    ___||  _    ||   ||_     _||__|  " << endl
+         << "  |   |    |   |_||_ |   |___ | | |   ||   |  |   |   __   " << endl
+         << "  |   |    |    __  ||    ___|| |_|   ||   |  |   |  |__|  " << endl
+         << "  |   |___ |   |  | ||   |___ |       ||   |  |   |        " << endl
+         << "  |_______||___|  |_||_______||______| |___|  |___|        " << endl << endl;
+
+    cout << "           -Anna Kristín Halldórsdóttir" << endl;
+    cout << "           -Björn Þórsson" << endl;
+    cout << "           -Friðrik Snær Tómasson" << endl;
+    cout << "  ()_()    -Ísak Grétarson" << endl;
+    cout << "  (*.*)    -Margrét Finnbogadóttir" << endl;
+    cout << " c(\")(\")   -Sólveig Sara Samúelsdóttir" << endl;
+    cout << endl;
 }
