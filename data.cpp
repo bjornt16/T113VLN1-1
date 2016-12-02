@@ -24,9 +24,7 @@ void Data::updateSort(vector<Person> pList){
 
 void Data::writePersonToFile(Person p){
     ofstream file;
-    file.open("../T113VLN1/database/people.txt", ios::out | ios::app);
-
-
+    file.open(peopleFile, ios::out | ios::app);
 
     writeSinglePersonToOpenFile(p, file);
 
@@ -41,7 +39,7 @@ void Data::readPeopleFromFile(){
     list.clear();
 
     ifstream file;
-    file.open("../T113VLN1/database/people.txt");
+    file.open(peopleFile);
     bool fileIsEmpty = file.peek() == ifstream::traits_type::eof();
 
     string name = "", nationality = "";
@@ -79,10 +77,10 @@ void Data::removePersonFromDatabase(Person personToRemove)
 
 void Data::rewriteDataFile()
 {
-    remove("../T113VLN1/database/people.txt");
+    remove(peopleFile);
 
     ofstream file;
-    file.open("../T113VLN1/database/people.txt", ios::out | ios::app);
+    file.open(peopleFile, ios::out | ios::app);
 
     int vectorSize = list.size();
     for(int i=0; i < vectorSize; i++)
