@@ -489,13 +489,6 @@ void UI::clearlist()
       domain.clearPerson();
 
    }
-   else if (yesOrNo == 'n') {
-
-   }
-   else
-   {
-       cout << "Illegal command!"<< endl;
-   }
 
 }
 
