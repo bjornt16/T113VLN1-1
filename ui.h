@@ -19,6 +19,7 @@ using namespace std;
 class UI
 {
 private:
+    //declare domain variable, to have access to lower layer.
     Domain domain;
 
     //prints out the list, changes is based on how it is printed.
