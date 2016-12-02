@@ -62,12 +62,12 @@ void UI::mainMenu()
         }
         else if (command == "quit")
         {
-            cout << " ___________                          ______  " << endl;
-            cout << " \\__    ___/___ _____    _____     /  __  \\ " << endl;
-            cout << "    |    |_/ __\\\__ \\   /     \\   >      < " << endl;
-            cout << "    |    |\\ ___/ / __\\ |  Y Y \\ /   --   \\ " << endl;
-            cout << "    |____| \___  >____   /__|_|  / \\______  /" << endl;
-            cout << "             \\/     \\/     \\/          \\/ " << endl;
+            cout << " _______                      ___ " << endl;
+            cout << "|__   __|                    / _ \\" << endl;
+            cout << "   | | ___  __ _ _ __ ___   | (_) |" << endl;
+            cout << "   | |/ _ \\/ _` | '_ ` _ \\   > _ < " << endl;
+            cout << "   | |  __/ (_| | | | | | | | (_) |" << endl;
+            cout << "   |_|\\___|\\__,_|_| |_| |_|  \\___/ " << endl;
             cout << "CREDIT" << endl;
             cout << "(Feður inn í sviga)" << endl;
             cout << endl;
