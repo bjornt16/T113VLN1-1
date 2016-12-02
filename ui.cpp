@@ -62,7 +62,25 @@ void UI::mainMenu()
         }
         else if (command == "quit")
         {
-            //this is meant to be empty
+            cout << " ___________                          ______  " << endl;
+            cout << " \\__    ___/___ _____    _____     /  __  \\ " << endl;
+            cout << "    |    |_/ __\\\__ \\   /     \\   >      < " << endl;
+            cout << "    |    |\\ ___/ / __\\ |  Y Y \\ /   --   \\ " << endl;
+            cout << "    |____| \___  >____   /__|_|  / \\______  /" << endl;
+            cout << "             \\/     \\/     \\/          \\/ " << endl;
+            cout << "CREDIT" << endl;
+            cout << "(Feður inn í sviga)" << endl;
+            cout << "Anna Kristín Halldórsdóttir(Laxness?)" << endl;
+            cout << "Björn Þórsson(þrumuguð?)" << endl;
+            cout << "Friðrik Snær Tómatsson(Hunts?)" << endl;
+            cout << "Ísak Grétarson" << endl;
+            cout << "Margrét :´( Finnbogadóttir(Hver er þetta?? http://finnbogi.askja.org/ ?)" << endl;
+            cout << "Sólveig Sara Samúelsdóttir(Guð??? https://en.wikipedia.org/wiki/Samuel ??)" << endl;
+            cout << endl;
+            if (true)
+            {
+
+            }
         }
         else if (command == "clear")
         {
