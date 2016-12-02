@@ -35,7 +35,7 @@ void UI::mainMenu()
         cout << setw(7) <<"search" << "Search the database" << endl;
         cout << setw(7) <<"sort" << "Sort the entries" << endl;
         cout << setw(7) <<"quit" <<"To quit" << endl;
-        command = validateString("");
+        cin >> command;
         cout << endl;
 
         if (command == "list")
@@ -239,7 +239,7 @@ vector<Person> UI::searchPerson(vector<Person> listToSearch)
             }
             case 2 :        //gender
             {
-                cSearch = validateChar("Gender: ",acceptedGender);
+                cSearch = validateChar("Gender (m/f): ",acceptedGender);
                 listOfFound = domain.searchPersonGender(listToSearch,cSearch);
                 break;
             }
@@ -348,35 +348,30 @@ void UI::sortPeople()
 
             case 1 : //name sort
             {
-                //TODO
                 ListPerson(domain.sortPeopleByName(sortOrder));
                 break;
             }
 
             case 2 : //gender sort
             {
-                //TODO
                 ListPerson(domain.sortPeopleByGender(sortOrder));
                 break;
             }
 
             case 3 : //birth year sort
             {
-                //TODO
                 ListPerson(domain.sortPeopleByBY(sortOrder));
                 break;
             }
 
             case 4 : // death year sort
             {
-                //TODO
                 ListPerson(domain.sortPeopleByDY(sortOrder));
                 break;
             }
 
             case 5 : // nationality sort
             {
-                //TODO
                 ListPerson(domain.sortPeopleByNat(sortOrder));
                 break;
             }
@@ -384,6 +379,7 @@ void UI::sortPeople()
             {
                 sortOrder = "desc";
                 valid = false;
+                cout << "Please select a column to sort by: ";
                 break;
             }
             default : // loop if incorrect input
@@ -419,7 +415,6 @@ void UI::editPerson()
     Person personToEdit = searchResult[idOfPerson];
 
     int choiseToEdit;
-    cout << "Please select what you would like to edit: " << endl;
     cout << "1 : Name" << endl;
     cout << "2 : Gender" << endl;
     cout << "3 : Year of Birth" << endl;
@@ -492,6 +487,14 @@ void UI::clearlist()
    choice = validateChar("Are you sure you want to clear the list? (y/n) : ", yesOrNo);
    if (choice == yesOrNo[0]){
       domain.clearPerson();
+
+   }
+   else if (yesOrNo == 'n') {
+
+   }
+   else
+   {
+       cout << "Illegal command!"<< endl;
    }
 
 }
