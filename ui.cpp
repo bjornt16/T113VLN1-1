@@ -239,9 +239,9 @@ vector<Person> UI::searchPerson(vector<Person> listToSearch)
             }
             case 3 :        //birth
             {
-                cout << endl << "To search from - to, input two numbers with a space between" << endl;
 
                 do{
+                    cout << endl << "To search from - to, input two numbers with a space between" << endl;
                     iSearch = validateMultipleInt("Year of birth: ");
                     if(iSearch.size() == 2)
                     {
@@ -261,8 +261,9 @@ vector<Person> UI::searchPerson(vector<Person> listToSearch)
             }
             case 4 :        //death
             {
-                cout << endl << "To search from - to, input two numbers with a space between" << endl;
+
                 do{
+                    cout << endl << "To search from - to, input two numbers with a space between" << endl;
                     iSearch = validateMultipleInt("Year of death: ");
                     if(iSearch.size() == 2)
                     {
