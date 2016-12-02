@@ -77,7 +77,7 @@ void UI::mainMenu()
             cout << endl;
             cout << "-Friðrik Snær Tómatsson(Hunts?)" << endl;
             cout << endl;
-            cout << "-Ísak Grétarson" << endl;
+            cout << "-Ísak Grétarson  (http://www.dv.is/frettir/2011/12/1/manuela-haett-vid-ad-kaera-gretar-rafn/)" << endl;
             cout << endl;
             cout << "-Margrét :´( Finnbogadóttir(Hver er þetta?? http://finnbogi.askja.org/ ?)" << endl;
             cout << endl;
