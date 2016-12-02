@@ -15,7 +15,8 @@ using namespace std;
 
 UI::UI()
 {
-
+    yesOrNo.push_back('Y');
+    yesOrNo.push_back('N');
 }
 
 // Should not contain logic for individual commands, that should be in separate functions!
@@ -34,7 +35,7 @@ void UI::mainMenu()
         cout << setw(7) <<"search" << "Search the database" << endl;
         cout << setw(7) <<"sort" << "Sort the entries" << endl;
         cout << setw(7) <<"quit" <<"To quit" << endl;
-        cin >> command;
+        command = validateString("");
         cout << endl;
 
         if (command == "list")
@@ -218,13 +219,8 @@ vector<Person> UI::searchPerson(vector<Person> listToSearch)
         cout << "5 : Nationality" << endl;
         cout << "0 : Cancel" << endl;
         cout << "Choose a number between 0-5 to select what column to search in: ";
-        cin >> column;
-        if (cin.fail())
-        {
-            cin.clear();
-            cin.ignore(numeric_limits<streamsize>::max(), '\n');
-            column = 6;
-        }
+        column = validateInt("");
+
 
         switch(column)
         {
@@ -299,24 +295,24 @@ vector<Person> UI::searchPerson(vector<Person> listToSearch)
 
     ListPerson(listOfFound, true);
 
-    valid=1;
     do
     {
+        valid=1;
         char searchAgain;
-        cout << "Do you wish to search within the search results? (y/n): ";
-        cin >> searchAgain;
 
-        if(searchAgain == 'y' || searchAgain == 'Y')
+        searchAgain = validateChar("Do you wish to search within the search results? (y/n): ",yesOrNo);
+
+        if(searchAgain == yesOrNo[0])
         {
             listOfFound = searchPerson(listOfFound);
-        } else if(searchAgain == 'n' || searchAgain == 'N')
+        } else if(searchAgain == yesOrNo[1])
         {
             cout << endl;
             break;
         } else
         {
             cout << illegal;
-            valid = false;
+            valid = 0;
         }
     } while(!valid);
 
@@ -339,10 +335,9 @@ void UI::sortPeople()
             cout << "5 : Nationality" << endl;
             cout << "9 : to get descending sort" << endl;
             cout << "0 : Cancel" << endl;
-            cout << "Select a column to sort by: ";
         }
 
-        cin >> column;
+        column = validateInt("Select a column to sort by: ");
         switch(column)
         {
             case 0 : //cancel
@@ -406,11 +401,10 @@ void UI::sortPeople()
 void UI::removePerson()
 {
     int idOfPerson;
-        cout << "Search for the person you want to delete:" << endl;
-        vector<Person> searchResult = searchPerson(domain.getPersonList());
-        cout << "Select id of the person you want to delete:" << endl;
-        cin >> idOfPerson;
-        domain.removePerson(searchResult[idOfPerson]);
+    cout << "Search for the person you want to delete:" << endl;
+    vector<Person> searchResult = searchPerson(domain.getPersonList());
+    idOfPerson = validateInt("Select id of the person you want to delete: ");
+    domain.removePerson(searchResult[idOfPerson]);
 
 }
 
@@ -418,22 +412,22 @@ void UI::removePerson()
 void UI::editPerson()
 {
     int idOfPerson;
-    cout << "To find the person you wish to edit. Please select a column to search by: ";
+    cout << "To find the person you wish to edit. Please select a column to search by: " << endl;
     vector<Person> searchResult = searchPerson(domain.getPersonList());
-    cout << "Select the ID of the person you want to edit: ";
-    cin >> idOfPerson;
+    idOfPerson = validateInt("Select id of the person you want to edit: ");
 
     Person personToEdit = searchResult[idOfPerson];
 
     int choiseToEdit;
-    cout << "Please select what you would like to edit:" << endl;
+    cout << "Please select what you would like to edit: " << endl;
     cout << "1 : Name" << endl;
     cout << "2 : Gender" << endl;
     cout << "3 : Year of Birth" << endl;
     cout << "4 : Year of Death " << endl;
     cout << "5 : Nationality" << endl;
     cout << "0 : Cancel" << endl;
-    cin >> choiseToEdit;
+
+    choiseToEdit = validateInt("Please select what you would like to edit: ");
 
     bool valid = true;
     do
@@ -494,21 +488,10 @@ void UI::editPerson()
 
 void UI::clearlist()
 {
-   char yesOrNo;
-   cout << "Are you sure you want to clear the list? (y/n) : " << endl;
-   cin >> yesOrNo;
-   yesOrNo = char(tolower(yesOrNo));
-   if (yesOrNo == 'y'){
-
+   char choice;
+   choice = validateChar("Are you sure you want to clear the list? (y/n) : ", yesOrNo);
+   if (choice == yesOrNo[0]){
       domain.clearPerson();
-
-   }
-   else if (yesOrNo == 'n') {
-
-   }
-   else
-   {
-       cout << "Illegal command!"<< endl;
    }
 
 }

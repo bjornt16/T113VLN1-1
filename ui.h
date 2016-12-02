@@ -2,9 +2,21 @@
 #define UI_H
 
 #include "domain.h"
+#include "person.h"
+#include <vector>
+#include <iostream>
+
+#include <iostream>
+#include <iomanip>
+#include <string>
+#include <sstream>
+#include <limits>
+#include <algorithm>
+#include "ui.h"
 #include <vector>
 #include "person.h"
 
+using namespace std;
 
 //presentation layer
 
@@ -43,10 +55,10 @@ private:
     string validateString(string prompt, string skipstring = "");
     int validateInt(string prompt);
     vector<int> validateMultipleInt(string prompt);
+    vector<char> yesOrNo;
+    const string illegal = "Illegal entry, try again!";
 public:
     UI();
-
-    const string illegal = "Illegal entry, try again!";
 
     // Displays the main menu of the program.
     void mainMenu();
