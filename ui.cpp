@@ -567,7 +567,7 @@ vector<int> UI::validateMultipleInt(string prompt, int maxSize){
     vector<int> intList;
     int tempInt = 0;
     char c = '\0';
-    size_t counter = 0;
+    int counter = 0;
 
 
     while(cin.good())
