@@ -43,6 +43,7 @@ public:
     vector<Person> sortPeopleByBY(string sortOrder);    // birth year
     vector<Person> sortPeopleByDY(string sortOrder);    // death year
     vector<Person> sortPeopleByNat(string sortOrder);   // nationality
+    vector<Person> sortPeopleByAge(string sortOrder);   // age
 
     void addPerson(Person p);
 };

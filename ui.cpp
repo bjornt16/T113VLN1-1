@@ -1,7 +1,6 @@
 #include <iostream>
 #include <iomanip>
 #include <string>
-#include <sstream>
 #include <limits>
 #include <algorithm>
 #include "ui.h"
@@ -337,6 +336,7 @@ void UI::sortPerson()
     cout << "3 : Year of Birth" << endl;
     cout << "4 : Year of Death " << endl;
     cout << "5 : Nationality" << endl;
+    cout << "6 : Age" << endl;
     cout << "0 : Cancel" << endl;
 
     //option to sort descendingly
@@ -393,6 +393,11 @@ void UI::sortPerson()
             case 5 : // nationality sort
             {
                 ListPerson(domain.sortPeopleByNat(sortOrder));
+                break;
+            }
+            case 6 :
+            {
+                ListPerson(domain.sortPeopleByAge(sortOrder));
                 break;
             }
             case failState:

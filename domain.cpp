@@ -311,6 +311,42 @@ vector<Person> Domain::sortPeopleByNat(string sortOrder)
     return sortedNat;
 }
 
+vector<Person> Domain::sortPeopleByAge(string sortOrder)
+{
+    vector<Person> sortedAge = data.getList();
+
+        struct PersonAsc
+        {
+            bool operator() (Person i,Person j)
+            {
+                return (i.getAge() < j.getAge());
+            }
+        };
+
+        struct PersonDesc
+        {
+            bool operator() (Person i,Person j)
+            {
+                return (i.getAge() > j.getAge());
+            }
+        };
+
+        //sorting people asc is baseline search
+        if(sortOrder == "asc")
+        {
+            PersonAsc cmp;
+            sort(sortedAge.begin(), sortedAge.end(), cmp);
+        }
+        //desc sorting if user specifically asks for desc sort
+        else if(sortOrder == "desc")
+        {
+            PersonDesc cmp;
+            sort(sortedAge.begin(), sortedAge.end(), cmp);
+        }
+
+        return sortedAge;
+}
+
 void Domain::removePerson(Person personToRemove)
 {
     data.removePersonFromDatabase(personToRemove);
