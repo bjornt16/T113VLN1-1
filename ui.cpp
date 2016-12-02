@@ -25,17 +25,15 @@ void UI::mainMenu()
 
     do
     {
-        cout << "Please enter one of the following commands:" << endl;
         cout << setw(7) << left << "list" << "List all entries in the database" << endl;
-        cout << setw(7) << "add" << "Add a new entry" << endl;
-        cout << setw(7) <<"delete" << "Removes an entry" << endl;
-        cout << setw(7) <<"clear" << "Removes all entries" << endl;
-        cout << setw(7) <<"edit" << "Edit an entry" << endl;
-        cout << setw(7) <<"search" << "Search the database" << endl;
-        cout << setw(7) <<"sort" << "Sort the entries" << endl;
-        cout << setw(7) <<"quit" <<"To quit" << endl;
-        command = validateString("");
-        cout << endl;
+        cout << setw(7) << "add"   << "Add a new entry" << endl;
+        cout << setw(7) << "delete"<< "Removes an entry" << endl;
+        cout << setw(7) << "clear" << "Removes all entries" << endl;
+        cout << setw(7) << "edit"  << "Edit an entry" << endl;
+        cout << setw(7) << "search"<< "Search the database" << endl;
+        cout << setw(7) << "sort"  << "Sort the entries" << endl;
+        cout << setw(7) << "quit"  << "To quit" << endl;
+        command = validateString("Please enter one of the commands: ");
 
         if (command == "list")
         {
