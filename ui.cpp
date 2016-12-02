@@ -25,8 +25,7 @@ void UI::mainMenu()
 
     do
     {
-        cout << setw(7) << left << "list" << "List all entries in the database" << endl;
-<<<<<<< HEAD
+        cout << endl << setw(7) << left << "list" << "List all entries in the database" << endl;
         cout << setw(7) << "add"   << "Add a new entry" << endl;
         cout << setw(7) << "delete"<< "Removes an entry" << endl;
         cout << setw(7) << "clear" << "Removes all entries" << endl;
@@ -35,18 +34,6 @@ void UI::mainMenu()
         cout << setw(7) << "sort"  << "Sort the entries" << endl;
         cout << setw(7) << "quit"  << "To quit" << endl;
         command = validateString("Please enter one of the commands: ");
-=======
-        cout << setw(7) << "add" << "Add a new entry" << endl;
-        cout << setw(7) << "delete" << "Removes an entry" << endl;
-        cout << setw(7) << "clear" << "Removes all entries" << endl;
-        cout << setw(7) << "edit" << "Edit an entry" << endl;
-        cout << setw(7) << "search" << "Search the database" << endl;
-        cout << setw(7) << "sort" << "Sort the entries" << endl;
-        cout << setw(7) << "config" << "To change default settings" << endl;
-        cout << setw(7) << "quit" << "To quit" << endl;
-        command = validateString("");
-        cout << endl;
->>>>>>> origin/master
 
         if (command == "list")
         {
@@ -96,7 +83,7 @@ void UI::ListPerson(vector<Person> people, bool search)
     cout << "Displaying persons:" << endl;
 
 
-    //if function was opened through the search function print this for the id column
+    //if function was opened through the search function print this for the ID column
     if(search == true)
     {
         cout << "====";
@@ -104,7 +91,7 @@ void UI::ListPerson(vector<Person> people, bool search)
     cout << "==================================================================================" << endl;
 
 
-    //if function was opened through the search function print this for the id column
+    //if function was opened through the search function print this for the ID column
     if(search == true)
     {
         cout << "ID  ";
@@ -112,7 +99,7 @@ void UI::ListPerson(vector<Person> people, bool search)
     cout << "Name                       Gender   Birth year   Death year   Age    Nationality  " << endl;
 
 
-    //if function was opened through the search function print this for the id column
+    //if function was opened through the search function print this for the ID column
     if(search == true)
     {
         cout << "----";
@@ -121,7 +108,7 @@ void UI::ListPerson(vector<Person> people, bool search)
 
     for (size_t i = 0; i < people.size(); ++i)
     {
-        //if this function was opened through the search function it will display a Id number for each person
+        //if this function was opened through the search function it will display a ID number for each person
         if(search == true)
         {
             cout << setw(4) << i;
@@ -147,7 +134,7 @@ void UI::ListPerson(vector<Person> people, bool search)
         cout << setw(7) << people[i].getAge();
         cout << setw(11) << people[i].getNationality() << endl;
     }
-    //if function was opened through the search function print this for the id column
+    //if function was opened through the search function print this for the ID column
     if(search == true)
     {
         cout << "====";
@@ -170,6 +157,7 @@ void UI::addPerson()
     int currentYear = timePtr->tm_year + 1900;
 
     //User asked for his information
+    cout << endl;
     name = validateString("Enter name: ");
     gender = validateChar("Enter Gender (M/F): ", acceptedGender);
     nationality = validateString("Enter nationality: ");
@@ -245,7 +233,7 @@ vector<Person> UI::searchPerson(vector<Person> listToSearch)
         cout << "5 : Nationality" << endl;
         cout << "6 : Age"<< endl;
         cout << "0 : Cancel" << endl;
-        column = validateInt("Choose a number between 0-5 to select what column to search in: ");
+        column = validateInt("Select a column to search by: ");
 
         switch(column)
         {
@@ -379,6 +367,7 @@ void UI::sortPerson()
     string choice = "";
 
     //asks what you want to sort by
+    cout << endl;
     cout << "1 : Name" << endl;
     cout << "2 : Gender" << endl;
     cout << "3 : Year of Birth" << endl;
@@ -463,11 +452,11 @@ void UI::sortPerson()
 void UI::removePerson()
 {
     int idOfPerson;
-    cout << "Search for the person you want to delete:" << endl;
+    cout << endl << "Search for the person you wish to delete:" << endl;
     vector<Person> searchResult = searchPerson(domain.getPersonList());
     if(searchResult.size())
     {
-        idOfPerson = validateInt("Select id of the person you want to delete: ");
+        idOfPerson = validateInt("Select ID of the person you want to delete: ");
         domain.removePerson(searchResult[idOfPerson]);
     }
 }
@@ -475,11 +464,11 @@ void UI::removePerson()
 void UI::editPerson()
 {
     int idOfPerson;
-    cout << "To find the person you wish to edit. Please select a column to search by: " << endl;
+    cout << endl << "Search for the person you wish to edit: " << endl;
     vector<Person> searchResult = searchPerson(domain.getPersonList());
     if(searchResult.size())
     {
-        idOfPerson = validateInt("Select id of the person you want to edit: ");
+        idOfPerson = validateInt("Select ID of the person you want to edit: ");
 
 
         //finding the person you want to edit
@@ -515,7 +504,7 @@ void UI::editPerson()
                 }
                 case 2 : //Edit gender
                 {
-                    char newGender = validateChar("Please enter a new gender: ", acceptedGender);
+                    char newGender = validateChar("Please enter a new gender:", acceptedGender);
                     personToEdit.setGender(newGender);
                     break;
                 }
@@ -595,7 +584,7 @@ string UI::validateString(string prompt, string skipString){
     string validString = "";
 
     //combines a multiple input strings into one, for example first and second names
-    cout << endl << prompt << endl;
+    cout << prompt << endl;
     do
     {
         getline(cin, validString);
@@ -636,7 +625,7 @@ vector<int> UI::validateMultipleInt(string prompt, size_t maxSize)
     {
         if(intList.size() == 0)
         {
-            cout << endl << prompt << endl;
+            cout << prompt << endl;
         }
         else
         {
