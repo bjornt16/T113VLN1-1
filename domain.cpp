@@ -14,26 +14,32 @@ Domain::Domain()
 
 }
 
+//Function used for adding a person to the list vector
+//passes a person to the data layer for processing
 void Domain::addPerson(Person p)
 {
     data.writePersonToFile(p);
 }
 
+//Gets the vector that holds the Persons from the data layer
 vector<Person> Domain::getPersonList()
 {
-    vector<Person> people = data.getList();
-
-    return people;
+    return data.getList();
 }
 
+//Gets the config object that holds the config settings from the data layer
 Config Domain::getConfig(){
     return data.getConfig();
 }
 
+//passes a config object to the data layer for processing
+//overwrite old config
 void Domain::setConfig(Config c){
     data.writeConfigToFile(c);
 };
 
+//searchPersonName takes in a vector of person to search in, and a search parameter.
+//returns a vector of persons
 vector<Person> Domain::searchPersonName(vector<Person> people, string search)
 {
     vector<Person> searchList;
@@ -58,6 +64,8 @@ vector<Person> Domain::searchPersonName(vector<Person> people, string search)
     return searchList;
 }
 
+//searchPersonNationality takes in a vector of person to search in, and a search parameter.
+//returns a vector of persons
 vector<Person> Domain::searchPersonNationality(vector<Person> people, string search)
 {
     vector<Person> searchList;
@@ -77,6 +85,8 @@ vector<Person> Domain::searchPersonNationality(vector<Person> people, string sea
     return searchList;
 }
 
+//searchPersonGender takes in a vector of person to search in, and a search parameter.
+//returns a vector of persons
 vector<Person> Domain::searchPersonGender(vector<Person> people, char search)
 {
     vector<Person> searchList;
@@ -95,11 +105,13 @@ vector<Person> Domain::searchPersonGender(vector<Person> people, char search)
     return searchList;
 }
 
+//searchPersonBirth takes in a vector of person to search in, and a search parameter.
+//returns a vector of persons
 vector<Person> Domain::searchPersonBirth(vector<Person> people, int from, int to)
 {
     vector<Person> searchList;
 
-    if(to == 9999)
+    if(to == dummyNull)
     {
         to = from;
     }
@@ -117,11 +129,13 @@ vector<Person> Domain::searchPersonBirth(vector<Person> people, int from, int to
     return searchList;
 }
 
+//searchPersonDeath takes in a vector of person to search in, and a search parameter.
+//returns a vector of persons
 vector<Person> Domain::searchPersonDeath(vector<Person> people, int from, int to)
 {
     vector<Person> searchList;
 
-    if(to == 9999)
+    if(to == dummyNull)
     {
         to = from;
     }
@@ -139,11 +153,13 @@ vector<Person> Domain::searchPersonDeath(vector<Person> people, int from, int to
     return searchList;
 }
 
+//searchPersonAge takes in a vector of person to search in, and a search parameter.
+//returns a vector of persons
 vector<Person> Domain::searchPersonAge(vector<Person> people, int from, int to)
 {
     vector<Person> searchList;
 
-    if(to == 9999)
+    if(to == dummyNull)
     {
         to = from;
     }
@@ -161,7 +177,7 @@ vector<Person> Domain::searchPersonAge(vector<Person> people, int from, int to)
     return searchList;
 
 }
-
+//sortPersonByDefault takes in a vector of person and returns it sorted in the saved default sort order
 vector<Person> Domain::sortPersonByDefault(vector<Person> pList){
     Config config = data.getConfig();
     vector<Person> sortedList;
@@ -205,7 +221,7 @@ vector<Person> Domain::sortPersonByDefault(vector<Person> pList){
 
 }
 
-
+//sortPersonByName takes in a vector of person to sort, and a sort order ("desc or "asc).
 vector<Person> Domain::sortPersonByName(string sortOrder, vector<Person> pList)
 {
     struct PersonAsc
@@ -240,6 +256,7 @@ vector<Person> Domain::sortPersonByName(string sortOrder, vector<Person> pList)
     return pList;
 }
 
+//sortPersonByGender takes in a vector of person to sort, and a sort order ("desc or "asc).
 vector<Person> Domain::sortPersonByGender(string sortOrder, vector<Person> pList)
 {
 
@@ -275,6 +292,7 @@ vector<Person> Domain::sortPersonByGender(string sortOrder, vector<Person> pList
     return pList;
 }
 
+//sortPersonByBY takes in a vector of person to sort, and a sort order ("desc or "asc).
 vector<Person> Domain::sortPersonByBY(string sortOrder, vector<Person> pList)
 {
     struct PersonAsc
@@ -309,6 +327,7 @@ vector<Person> Domain::sortPersonByBY(string sortOrder, vector<Person> pList)
     return pList;
 }
 
+//sortPersonByDY takes in a vector of person to sort, and a sort order ("desc or "asc).
 vector<Person> Domain::sortPersonByDY(string sortOrder, vector<Person> pList)
 {
 
@@ -344,6 +363,7 @@ vector<Person> Domain::sortPersonByDY(string sortOrder, vector<Person> pList)
     return pList;
 }
 
+//sortPersonByNat takes in a vector of person to sort, and a sort order ("desc or "asc).
 vector<Person> Domain::sortPersonByNat(string sortOrder, vector<Person> pList)
 {
 
@@ -379,6 +399,7 @@ vector<Person> Domain::sortPersonByNat(string sortOrder, vector<Person> pList)
     return pList;
 }
 
+//sortPersonByAge takes in a vector of person to sort, and a sort order ("desc or "asc).
 vector<Person> Domain::sortPersonByAge(string sortOrder, vector<Person> pList)
 {
 
@@ -414,21 +435,27 @@ vector<Person> Domain::sortPersonByAge(string sortOrder, vector<Person> pList)
         return pList;
 }
 
+//Function that calls data.removePersonFromDatabase and deletes personToRemove from vector and database
+//passes a person class to the data layer for processing
 void Domain::removePerson(Person personToRemove)
 {
     data.removePersonFromDatabase(personToRemove);
 }
 
+//Function that calls data.editPersonInDatabase to edit a Person.
+//passes a person class to the data layer for processing
 void Domain::editPerson(Person personToEdit)
 {
     data.removePersonFromDatabase(personToEdit);
 }
 
+//Function that calls data.clearPersonInDatabase to clear everything in the list.
 void Domain::clearPerson()
 {
     data.clearPersonInDataBase();
 }
 
+//Calls the function data.swapPersonsInDatabase to swap originalP with newP
 void Domain::swapPerson(Person& originalP, Person& newP)
 {
     data.swapPersonsInDatabase(originalP, newP);

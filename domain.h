@@ -14,6 +14,7 @@ class Domain
 private:
     //declare data variable, to have access to lower layer.
     Data data;
+    static const int dummyNull = 9999;
 public:
     Domain();
 
@@ -31,7 +32,7 @@ public:
     //Function that uses data.clearPersonInDatabase to clear everything in the list.
     void clearPerson();
 
-    //Calls the function data.swapPersonsInDatabase to originalP with newP
+    //Calls the function data.swapPersonsInDatabase to swap originalP with newP
     void swapPerson(Person& originalP, Person& newP);
 
     //Search functions based on what you want to search by:
@@ -39,9 +40,9 @@ public:
     vector<Person> searchPersonName(vector<Person> people, string search);           //name
     vector<Person> searchPersonNationality(vector<Person> people, string search);    //nationality
     vector<Person> searchPersonGender(vector<Person> people, char search);           //gender
-    vector<Person> searchPersonBirth(vector<Person> people, int from, int to = 9999);//birth year
-    vector<Person> searchPersonDeath(vector<Person> people, int from, int to = 9999);//death year
-    vector<Person> searchPersonAge (vector<Person> people, int from, int to = 9999); //age
+    vector<Person> searchPersonBirth(vector<Person> people, int from, int to = dummyNull);//birth year
+    vector<Person> searchPersonDeath(vector<Person> people, int from, int to = dummyNull);//death year
+    vector<Person> searchPersonAge (vector<Person> people, int from, int to = dummyNull); //age
 
     //Sort functions based on what you want to sort by:
     //they take in a vector of person to sort, and a sort order ("desc or "asc).

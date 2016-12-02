@@ -85,6 +85,15 @@ private:
     //vector that holds gender characters, saves us from declaring them multiple times. (m/f)
     vector<char> acceptedGender;
     //stanardized error message.
+
+    static const int cancel = 0;
+    static const int nameColumn = 1;
+    static const int genderColumn = 2;
+    static const int birthColumn = 3;
+    static const int deathColumn = 4;
+    static const int natColumn = 5;
+    static const int ageColumn = 6;
+
     const string invalid = "Invalid entry, try again!";
 
     //function that displays project credits. (on exit/quit)

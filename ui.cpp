@@ -34,7 +34,7 @@ void UI::mainMenu()
             cout << setw(7) << "edit" << ": Edit an entry" << endl;
             cout << setw(7) << "search" << ": Search the database" << endl;
             cout << setw(7) << "sort" << ": Sort the entries" << endl;
-            cout << setw(7) << "config" << ": To change default settings" << endl;
+            cout << setw(7) << "config" << ": To change sort settings" << endl;
             cout << setw(7) << "quit" << ": To quit" << endl;
         }
         command = validateString("Please enter one of the commands: ");
@@ -345,26 +345,26 @@ vector<Person> UI::searchPerson(vector<Person> listToSearch)
 
         switch(column)
         {
-            case 0 :        //cancel
+            case cancel :        //cancel
             {
                 cout << endl;
                 valid = 1;
                 break;
             }
 
-            case 1 :        //name
+            case nameColumn :        //name
             {
                 sSearch = validateString("Name: ");
                 listOfFound = domain.searchPersonName(listToSearch,sSearch);
                 break;
             }
-            case 2 :        //gender
+            case genderColumn :        //gender
             {
                 cSearch = validateChar("Gender (m/f): ",acceptedGender);
                 listOfFound = domain.searchPersonGender(listToSearch,cSearch);
                 break;
             }
-            case 3 :        //birth
+            case birthColumn :        //birth
             {
 
                 do{
@@ -382,7 +382,7 @@ vector<Person> UI::searchPerson(vector<Person> listToSearch)
 
                 break;
             }
-            case 4 :        //death
+            case deathColumn :        //death
             {
                 do{
                     cout << endl << "Search year, or from year to later year:  '1995' or '1995 2005' " << endl;
@@ -398,13 +398,13 @@ vector<Person> UI::searchPerson(vector<Person> listToSearch)
                 }while(!iSearch.size());
                 break;
             }
-            case 5 :        //nationality
+            case natColumn :        //nationality
             {
                 sSearch = validateString("Nationality: ");
                 listOfFound = domain.searchPersonNationality(listToSearch, sSearch);
                 break;
             }
-            case 6:         //age
+            case ageColumn:         //age
             {
                 do{
                     cout << endl << "To search from - to, input two numbers with a space between" << endl;
@@ -512,42 +512,42 @@ vector<Person> UI::sortPerson()
         switch(sortColumn)
         {
             //calls a different function depending on number selected
-            case 0 : //cancel
+            case cancel : //cancel
             {
                 cout << endl;
                 break;
             }
 
-            case 1 : //name sort
+            case nameColumn : //name sort
             {
                 sortedList = domain.sortPersonByName(sortOrder,personList);
                 break;
             }
 
-            case 2 : //gender sort
+            case genderColumn : //gender sort
             {
                 sortedList = domain.sortPersonByGender(sortOrder,personList);
                 break;
             }
 
-            case 3 : //birth year sort
+            case birthColumn : //birth year sort
             {
                 sortedList = domain.sortPersonByBY(sortOrder,personList);
                 break;
             }
 
-            case 4 : // death year sort
+            case deathColumn : // death year sort
             {
                 sortedList = domain.sortPersonByDY(sortOrder,personList);
                 break;
             }
 
-            case 5 : // nationality sort
+            case natColumn : // nationality sort
             {
                 sortedList = domain.sortPersonByNat(sortOrder,personList);
                 break;
             }
-            case 6 :
+            case ageColumn :
             {
                 sortedList = domain.sortPersonByAge(sortOrder,personList);
                 break;
@@ -604,36 +604,36 @@ void UI::editPerson()
             //calls function based on what you wanted to edit
             switch(choiseToEdit)
             {
-                case 0 : //cancel
+                case cancel : //cancel
                 {
                     cout << endl;
                     break;
                 }
-                case 1 : //Edit name
+                case nameColumn : //Edit name
                 {
                     string newName = validateString("Please enter the new name:");
                     personToEdit.setName(newName);
                     break;
                 }
-                case 2 : //Edit gender
+                case genderColumn : //Edit gender
                 {
                     char newGender = validateChar("Please enter a new gender:", acceptedGender);
                     personToEdit.setGender(newGender);
                     break;
                 }
-                case 3 : //Edit Year of Birth
+                case birthColumn : //Edit Year of Birth
                 {
                     int newYearOfBirth = validateInt("Please enter the new year of birth: ");
                     personToEdit.setBY(newYearOfBirth);
                     break;
                 }
-                case 4 : //Edit Year of Death
+                case deathColumn : //Edit Year of Death
                 {
                     int newYearOfDeath = validateInt("Please enter the new year of death: ");
                     personToEdit.setDY(newYearOfDeath);
                     break;
                 }
-                case 5 : //Edit Nationality
+                case natColumn : //Edit Nationality
                 {
                     string newNationality = validateString("Please enter the new nationality: ");
                     personToEdit.setNationality(newNationality);
@@ -837,6 +837,11 @@ void UI::configPerson()
     int setting = 0;
     string sortOrder;
     Config newConfig = domain.getConfig();
+    const int ascending = 1;
+    const int descending = 2;
+
+    const int sortOrderNum = 1;
+    const int sortColumnNum = 2;
 
     cout << "1 : Set default sort order" << endl;
     cout << "2 : Set default sort column" << endl;
@@ -850,25 +855,25 @@ void UI::configPerson()
 
         switch(changeSettings)
         {
-            case 0: //cancel
+            case cancel: //cancel
             {
                 valid = 1;
                 cout << endl;
                 break;
             }
-            case 1 : //sort Order
+            case sortOrderNum : //sort Order
             {
                 cout << "1 : Ascending" << endl;
                 cout << "2 : Descending" << endl;
                 cout << "0 : Cancel" << endl;
                 setting = validateInt("Choose a number between 0-2 to change default sort order: ");
                 cout << endl;
-                if(setting == 0){
+                if(setting == cancel){
                     break;
                 }
-                else if(setting == 1){
+                else if(setting == ascending){
                     sortOrder = "asc";
-                }else if(setting == 2){
+                }else if(setting == descending){
                     sortOrder = "desc";
                 }
                 //override old config
@@ -876,7 +881,7 @@ void UI::configPerson()
                 domain.setConfig(newConfig);
                 break;
             }
-            case 2 : //Choose default sort
+            case sortColumnNum : //Choose default sort
             {
                 numberedOptions(1);
                 setting = validateInt("Choose a number between 0-6 to change default sort column: ");

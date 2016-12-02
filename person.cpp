@@ -2,6 +2,8 @@
 #include <time.h>
 #include <cstddef>
 
+//default constructor
+//requires name, gender, birthyear, deathyear, nationality
 Person::Person(string n, char g, int bY, int dY, string nat)
 {
     name = n;
@@ -83,7 +85,7 @@ void Person::setNationality(string inputNat)
     nationality = inputNat;
 }
 
-bool operator== (const Person lhs, const Person rhs)
+bool operator== (const Person lhs, const Person rhs) //override == operator, so we can compare 2 person variables
 {
     bool result=1;
 
