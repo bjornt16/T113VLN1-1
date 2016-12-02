@@ -128,6 +128,7 @@ void Data::swapPersonsInDatabase(Person& originalP, Person& newP)
         if(list[i] == originalP)
         {
             list[i] = newP;
+            break;
         }
     }
     rewriteDataFile();
