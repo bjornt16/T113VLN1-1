@@ -36,7 +36,7 @@ private:
     vector<Person> searchPerson(vector<Person> listToSearch);
 
         //function that sorts
-    void sortPeople();
+    void sortPerson();
 
          //function that allows the user to select one object from the list to delete
     void removePerson();
