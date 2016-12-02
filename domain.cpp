@@ -3,8 +3,8 @@
 #include <algorithm>
 #include <string>
 #include <fstream>
-
 #include <iostream>
+
 using namespace std;
 
 //domain layer
@@ -147,11 +147,13 @@ vector<Person> Domain::sortPeopleByName(string sortOrder)
         return (i.getName()>j.getName());
         }
     };
+    //sorting people asc is baseline search
     if(sortOrder == "asc")
     {
         PersonAsc cmp;
         sort(sortedName.begin(), sortedName.end(), cmp);
     }
+    //desc sorting if user specifically asks for desc sort
     else if(sortOrder == "desc")
     {
         PersonDesc cmp;
@@ -181,11 +183,13 @@ vector<Person> Domain::sortPeopleByGender(string sortOrder)
         }
     };
 
+    //sorting people asc is baseline search
     if(sortOrder == "asc")
     {
         PersonAsc cmp;
         sort(sortedGender.begin(), sortedGender.end(), cmp);
     }
+    //desc sorting if user specifically asks for desc sort
     else if(sortOrder == "desc")
     {
         PersonDesc cmp;
@@ -215,11 +219,13 @@ vector<Person> Domain::sortPeopleByBY(string sortOrder)
         }
     };
 
+    //sorting people asc is baseline search
     if(sortOrder == "asc")
     {
         PersonAsc cmp;
         sort(sortedBY.begin(), sortedBY.end(), cmp);
     }
+    //desc sorting if user specifically asks for desc sort
     else if(sortOrder == "desc")
     {
         PersonDesc cmp;
@@ -248,11 +254,13 @@ vector<Person> Domain::sortPeopleByDY(string sortOrder)
         }
     };
 
+    //sorting people asc is baseline search
     if(sortOrder == "asc")
     {
         PersonAsc cmp;
         sort(sortedDY.begin(), sortedDY.end(), cmp);
     }
+    //desc sorting if user specifically asks for desc sort
     else if(sortOrder == "desc")
     {
         PersonDesc cmp;
@@ -281,11 +289,13 @@ vector<Person> Domain::sortPeopleByNat(string sortOrder)
         }
     };
 
+    //sorting people asc is baseline search
     if(sortOrder == "asc")
     {
         PersonAsc cmp;
         sort(sortedNat.begin(), sortedNat.end(), cmp);
     }
+    //desc sorting if user specifically asks for desc sort
     else if(sortOrder == "desc")
     {
         PersonDesc cmp;

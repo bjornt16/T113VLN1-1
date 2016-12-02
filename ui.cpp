@@ -86,21 +86,21 @@ void UI::ListPerson(vector<Person> people, bool search)
 {
     cout << "Displaying persons:" << endl;
 
-
+    //if function was opened through the search function print this for the id column
     if(search == true)
     {
         cout << "====";
     }
     cout << "==================================================================================" << endl;
 
-
+    //if function was opened through the search function print this for the id column
     if(search == true)
     {
         cout << "ID  ";
     }
     cout << "Name                       Gender   Birth year   Death year   Age    Nationality  " << endl;
 
-
+    //if function was opened through the search function print this for the id column
     if(search == true)
     {
         cout << "----";
@@ -110,10 +110,13 @@ void UI::ListPerson(vector<Person> people, bool search)
 
     for (size_t i = 0; i < people.size(); ++i)
     {
+        //if this function was opened through the search function it will display a Id number for each person
         if(search == true)
         {
             cout << setw(4) << i;
         }
+        //if name of person is to long to fit into the name space it will instead print the first
+        //24 characters and two dots.
         if(people[i].getName().size() > 27)
         {
             for(int j = 0; j < 24; j++)
@@ -122,6 +125,7 @@ void UI::ListPerson(vector<Person> people, bool search)
             }
             cout << ".. ";
         }
+        //else it will print the full name.
         else
         {
             cout << setw(27) << people[i].getName();
@@ -134,6 +138,7 @@ void UI::ListPerson(vector<Person> people, bool search)
         cout << setw(11) << people[i].getNationality() << endl;
 
     }
+    //if function was opened through the search function print this for the id column
     if(search == true)
     {
         cout << "====";
@@ -151,6 +156,7 @@ void UI::addPerson()
     string ignoreLine;
     bool yearFail = 0;
 
+    //User asked for his information
     name = validateString("Enter name: ");
     gender = validateChar("Enter Gender (M/F): ", acceptedGender);
     nationality = validateString("Enter nationality: ");
@@ -185,9 +191,11 @@ void UI::addPerson()
     }while(yearFail);
 
 
-
+    //adding person to the vector/file
     Person newPerson(capitalizeString(name), gender, birthYear, dYear, capitalizeString(nationality));
     domain.addPerson(newPerson);
+
+    //displaying the list with the person you just added
     ListPerson(domain.getPersonList());
 }
 
@@ -201,7 +209,7 @@ vector<Person> UI::searchPerson(vector<Person> listToSearch)
     bool valid;
     vector<Person> listOfFound;
 
-
+    //asks what you want to search by
     do
     {
         valid = 1;
@@ -284,6 +292,7 @@ vector<Person> UI::searchPerson(vector<Person> listToSearch)
             }
         }
 
+        //nothing was returned from user search
         if ( (listOfFound.size()) == 0 && column != 0)
         {
             valid = 0;
@@ -328,6 +337,7 @@ void UI::sortPerson()
     int column;
     string choice = "";
 
+    //asks what you want to sort by
     cout << "1 : Name" << endl;
     cout << "2 : Gender" << endl;
     cout << "3 : Year of Birth" << endl;
@@ -335,6 +345,7 @@ void UI::sortPerson()
     cout << "5 : Nationality" << endl;
     cout << "0 : Cancel" << endl;
 
+    //option to sort descendingly
     do{
         valid = 1;
         cout << endl << "To sort in descending order (# desc)";
@@ -352,6 +363,7 @@ void UI::sortPerson()
 
         switch(column)
         {
+            //calls a different function depending on number selected
             case 0 : //cancel
             {
                 cout << endl;
@@ -406,7 +418,8 @@ void UI::removePerson()
     int idOfPerson;
     cout << "Search for the person you want to delete:" << endl;
     vector<Person> searchResult = searchPerson(domain.getPersonList());
-    if(searchResult.size()){
+    if(searchResult.size())
+    {
         idOfPerson = validateInt("Select id of the person you want to delete: ");
         domain.removePerson(searchResult[idOfPerson]);
     }
@@ -419,11 +432,14 @@ void UI::editPerson()
     int idOfPerson;
     cout << "To find the person you wish to edit. Please select a column to search by: " << endl;
     vector<Person> searchResult = searchPerson(domain.getPersonList());
-    if(searchResult.size()){
+    if(searchResult.size())
+    {
         idOfPerson = validateInt("Select id of the person you want to edit: ");
 
+        //finding the person you want to edit
         Person personToEdit = searchResult[idOfPerson];
 
+        //selecting what you want to edit about the person
         int choiseToEdit;
         cout << "1 : Name" << endl;
         cout << "2 : Gender" << endl;
@@ -437,6 +453,7 @@ void UI::editPerson()
         bool valid = true;
         do
         {
+            //calls function based on what you wanted to edit
             switch(choiseToEdit)
             {
                 case 0 : //cancel
@@ -492,6 +509,7 @@ void UI::editPerson()
 
 void UI::clearlist()
 {
+    //self explainatory
    char choice;
    choice = validateChar("Are you sure you want to clear the list? (y/n) : ", yesOrNo);
    if (choice == yesOrNo[0])
@@ -507,6 +525,7 @@ char UI::validateChar(string prompt, vector<char> accepts){
     char validChar = ' ';
     const size_t maxStringLength = 1;
 
+    //function used to validate that the character you input is in the accepts vector
     do
     {
     tempString = validateString(prompt);
@@ -535,6 +554,7 @@ char UI::validateChar(string prompt, vector<char> accepts){
 string UI::validateString(string prompt, string skipString){
     string validString = "";
 
+    //combines a multiple input strings into one, for example first and second names
     cout << endl << prompt << endl;
     do
     {
@@ -554,6 +574,8 @@ string UI::validateString(string prompt, string skipString){
 int UI::validateInt(string prompt)
 {
     vector<int> intList;
+
+    //makes sure letters are not input when user is asked for intigers
     do
     {
         intList = validateMultipleInt(prompt, 1);
@@ -630,6 +652,8 @@ vector<int> UI::validateMultipleInt(string prompt, int maxSize)
 
 string UI::capitalizeString(string stringInput)
 {
+    //strings which have been run through validate string function have their first character
+    //in each word capitalized
     transform(stringInput.begin(), stringInput.end(), stringInput.begin(), ::tolower);
     stringInput[0] = toupper(stringInput[0]);
 

@@ -3,7 +3,6 @@
 #include <fstream>
 #include <vector>
 #include <algorithm>
-
 #include "person.h"
 
 using namespace std;
@@ -26,6 +25,7 @@ void Data::updateSort(vector<Person> pList)
 
 void Data::writePersonToFile(Person p)
 {
+    //open and write in file
     ofstream file;
     file.open(peopleFile, ios::out | ios::app);
 
@@ -35,11 +35,11 @@ void Data::writePersonToFile(Person p)
 
     file.close();
 
-};
+}
 
 void Data::readPeopleFromFile()
 {
-
+    //open and read from file, done every time the program is launched
     list.clear();
 
     ifstream file;
@@ -68,6 +68,7 @@ void Data::readPeopleFromFile()
 
 void Data::removePersonFromDatabase(Person personToRemove)
 {
+    //make changes to the vector holding people
     int vectorSize = list.size();
     for(int i=0; i < vectorSize; i++)
     {
@@ -82,6 +83,7 @@ void Data::removePersonFromDatabase(Person personToRemove)
 
 void Data::rewriteDataFile()
 {
+    //rewrite the entire file with with the changes made to the list vector
     remove(peopleFile.c_str());
 
     ofstream file;
@@ -98,11 +100,13 @@ void Data::rewriteDataFile()
 
 void Data::writeSinglePersonToOpenFile(Person& p, ofstream& out)
 {
+
     string name = p.getName(), nationality = p.getNationality();
     char gender = p.getGender();
     int bYear = p.getBirthYear();
     int dYear = p.getDeathYear();
 
+    //swap out all space characters for underscore so reading from the file can see multi word names
     replace( name.begin(), name.end(), ' ', '_');
     replace( nationality.begin(), nationality.end(), ' ', '_');
 
@@ -120,6 +124,8 @@ void Data::clearPersonInDataBase()
 void Data::swapPersonsInDatabase(Person& originalP, Person& newP)
 {
     int vectorSize = list.size();
+    //used when editing the list, so that the person you edited stays in the same
+    //spot in the list instead of being added to the bottom of the list
     for(int i=0; i < vectorSize; i++)
     {
         if(list[i] == originalP)
