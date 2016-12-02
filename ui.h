@@ -60,7 +60,7 @@ private:
     static const size_t maxIntToValidate = 2;
     vector<char> yesOrNo;
     vector<char> acceptedGender;
-    const string invalid = "invalid entry, try again!";
+    const string invalid = "Invalid entry, try again!";
 public:
     UI();
 
