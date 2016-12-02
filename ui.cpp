@@ -876,11 +876,11 @@ void UI::projectCredit(){
          << "  |   |___ |   |  | ||   |___ |       ||   |  |   |        " << endl
          << "  |_______||___|  |_||_______||______| |___|  |___|        " << endl << endl;
 
-    cout << "           -Anna Kristín Halldórsdóttir" << endl;
-    cout << "           -Björn Þórsson" << endl;
-    cout << "           -Friðrik Snær Tómasson" << endl;
-    cout << "  ()_()    -Ísak Grétarson" << endl;
-    cout << "  (*.*)    -Margrét Finnbogadóttir" << endl;
-    cout << " c(\")(\")   -Sólveig Sara Samúelsdóttir" << endl;
+    cout << "           -Anna Kristin Halldorsdottir" << endl;
+    cout << "           -Bjorn Thorsson" << endl;
+    cout << "           -Fridrik Snaer Tomasson" << endl;
+    cout << "  ()_()    -Isak Gretarson" << endl;
+    cout << "  (*.*)    -Margret Finnbogadottir" << endl;
+    cout << " c(\")(\")   -Solveig Sara Samuelsdottir" << endl;
     cout << endl;
 }
