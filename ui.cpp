@@ -26,6 +26,7 @@ void UI::mainMenu()
     do
     {
         cout << setw(7) << left << "list" << "List all entries in the database" << endl;
+<<<<<<< HEAD
         cout << setw(7) << "add"   << "Add a new entry" << endl;
         cout << setw(7) << "delete"<< "Removes an entry" << endl;
         cout << setw(7) << "clear" << "Removes all entries" << endl;
@@ -34,6 +35,18 @@ void UI::mainMenu()
         cout << setw(7) << "sort"  << "Sort the entries" << endl;
         cout << setw(7) << "quit"  << "To quit" << endl;
         command = validateString("Please enter one of the commands: ");
+=======
+        cout << setw(7) << "add" << "Add a new entry" << endl;
+        cout << setw(7) << "delete" << "Removes an entry" << endl;
+        cout << setw(7) << "clear" << "Removes all entries" << endl;
+        cout << setw(7) << "edit" << "Edit an entry" << endl;
+        cout << setw(7) << "search" << "Search the database" << endl;
+        cout << setw(7) << "sort" << "Sort the entries" << endl;
+        cout << setw(7) << "config" << "To change default settings" << endl;
+        cout << setw(7) << "quit" << "To quit" << endl;
+        command = validateString("");
+        cout << endl;
+>>>>>>> origin/master
 
         if (command == "list")
         {
@@ -66,6 +79,10 @@ void UI::mainMenu()
         else if (command == "clear")
         {
             clearlist();
+        }
+        else if(command =="config")
+        {
+             confiqPerson();
         }
         else
         {
@@ -293,18 +310,20 @@ vector<Person> UI::searchPerson(vector<Person> listToSearch)
             }
             case 6:         //age
             {
-            do{
-                cout << endl << "To search from - to, input two numbers with a space between" << endl;
-                iSearch = validateMultipleInt("Age: ");
-                if(iSearch.size() == 2)
-                {
-                    listOfFound = domain.searchPersonAge(listToSearch, iSearch[0], iSearch[1]);
-                }
-                else if(iSearch.size() == 1)
-                {
-                    listOfFound = domain.searchPersonAge(listToSearch, iSearch[0]);
-                }
-            }while(!iSearch.size());
+                do{
+                    cout << endl << "To search from - to, input two numbers with a space between" << endl;
+                    iSearch = validateMultipleInt("Age: ");
+
+                    if(iSearch.size() == 2)
+                    {
+                        listOfFound = domain.searchPersonAge(listToSearch, iSearch[0], iSearch[1]);
+                    }
+                    else if(iSearch.size() == 1)
+                    {
+                        listOfFound = domain.searchPersonAge(listToSearch, iSearch[0]);
+                    }
+                }while(!iSearch.size());
+            break;
             }
             default :
             {
@@ -681,4 +700,47 @@ string UI::capitalizeString(string stringInput)
         }
     }
     return stringInput;
+}
+
+void UI::confiqPerson()
+{
+    bool valid = 1;
+    int changeSettings;
+
+    cout << "1 : cancel" << endl;
+    cout << "2 : sort order" << endl;
+    cout << "3 : default sort" << endl;
+
+        do
+        {
+        valid = 1;
+        changeSettings = validateInt("Choose a number between 1-3 to select what column to change settings: ");
+
+        switch(changeSettings)
+        {
+            case 1: //cancel
+            {
+                valid = 1;
+                cout << endl;
+                break;
+            }
+            case 2 : //sort Order
+            {
+
+
+                break;
+            }
+            case 3 : //Choose default sort
+            {
+
+                break;
+            }
+            default : // loop if incorrect input
+            {
+                cout << "Not a valid choice, try again: ";
+                valid = 0;
+                break;
+            }
+        }
+        }while(!valid);
 }
