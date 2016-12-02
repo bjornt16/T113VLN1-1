@@ -21,9 +21,11 @@ public:
     vector<Person> getPersonList();
 
     //Function that uses data.removePersonFromDatabase and deletes personToRemove from vector and database
+    //passes a person class to the data layer for processing
     void removePerson(Person personToRemove);
 
     //Function that uses data.editPersonInDatabase to edit a Person.
+    //passes a person class to the data layer for processing
     void editPerson(Person personToEdit);
 
     //Function that uses data.clearPersonInDatabase to clear everything in the list.

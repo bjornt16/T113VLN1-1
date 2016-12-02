@@ -87,7 +87,7 @@ private:
     //stanardized error message.
     const string invalid = "Invalid entry, try again!";
 
-    //function that displays project credits.
+    //function that displays project credits. (on exit/quit)
     void projectCredit();
 
     //function that prints the columns from 1-6, used to choose columns easily.

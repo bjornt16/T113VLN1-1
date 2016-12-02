@@ -1,8 +1,15 @@
-
-Eric M 1992 0 Swedish
-Vigdis F 1987 2014 Icelandic
-Lalalalala M 1950 1995 Icelandic
-128381 F 2017 2018 United_States_Of_America
-Asdf F 1 2017 Asdf
-Asdfg M 1995 2016 Iceland
-Bjorn_Thros M 1500 0 Ice_Land_Dick
+Edsger_W_Dijkstra M 1930 2002 Netherlands
+Steve_Jobs M 1955 2011 United_States_Of_America
+Bill_Gates M 1955 0 United_States_Of_America
+Ada_Lovelace F 1815 1852 England
+Charles_Babbage M 1791 1871 England
+Linus_Torvalds M 1969 0 Finland
+Grace_Hopper M 1992 0 United_States_Of_America
+Alan_Turing M 1912 1954 England
+Mark_Zuckerberg M 1984 0 United_States_Of_America
+Bjarne_Stroustrup M 1950 0 Denmark
+Gabe_Newell M 1962 0 United_States_Of_America
+Richard_Stallman M 1953 0 United_States_Of_America
+John_Carmack M 1970 0 United_States_Of_America
+Yukihiro_Matsumoto M 1965 0 Japan
+Blaise_Pascal M 1623 1662 France

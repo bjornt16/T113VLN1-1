@@ -10,7 +10,7 @@
 using namespace std;
 
 //presentation layer
-UI::UI()
+UI::UI() //ui default constructor, puts accepted yes/no and m/f vales into their appropriate vectors
 {
     yesOrNo.push_back('Y');
     yesOrNo.push_back('N');
@@ -18,7 +18,6 @@ UI::UI()
     acceptedGender.push_back('F');
 }
 
-// Should not contain logic for individual commands, that should be in separate functions!
 void UI::mainMenu()
 {
     string command;
@@ -26,6 +25,7 @@ void UI::mainMenu()
 
     do
     {
+        //lists the main menu, if the last input was valid
         if(valid){
             cout << setw(7) << left << "list" << ": List all entries in the database" << endl;
             cout << setw(7) << "add" << ": Add a new entry" << endl;
@@ -85,6 +85,8 @@ void UI::mainMenu()
     } while( !(command == "quit") );
 }
 
+//our "print" function, takes in a person list parameter, and prints them in the order the list is in.
+//displays dummy id's used in edit/delete if the print/list was a part of a search
 void UI::listPerson(vector<Person> people, bool search)
 {
     size_t biggestNatSize = 0;
@@ -243,26 +245,30 @@ void UI::listPerson(vector<Person> people, bool search)
     }
 }
 
+//function prompts user to input neccasery information about person (name, gender, birthyear, deathyear, nationality)
+//then appends the person to the main person list and peopleFile
 void UI::addPerson()
 {
     string name = "", tempName = "", tempNation = "";
-    int birthYear, dYear;
-    string deathYear;
-    char gender;
+    int birthYear = 0, dYear = 0;
+    string deathYear = "";
+    char gender = ' ';
     string nationality = "";
-    string ignoreLine;
     bool yearFail = 0;
 
+    //get the current year
+    const int timeBias = 1900;
     time_t t = time(NULL);
     tm* timePtr = localtime(&t);
-    int currentYear = timePtr->tm_year + 1900;
+    int currentYear = timePtr->tm_year + timeBias;
 
-    //User asked for his information
+    //User asked for person information
     cout << endl;
     name = validateString("Enter name: ");
     gender = validateChar("Enter Gender (M/F): ", acceptedGender);
     nationality = validateString("Enter nationality: ");
 
+    //birthyear cannot be set to a future year
     do
     {
         birthYear = validateInt("Enter year of birth: ");
@@ -272,6 +278,9 @@ void UI::addPerson()
         }
     }while(birthYear > currentYear);
 
+    //deathyear is skippable, with "." which defaults to 0.
+    //loops until deathyear is valid, i.e. either "." or an actual number,
+    //the number cannot be lower than birthyear, and cannot be higher than currentyear
     do
     {
         yearFail = 0;
@@ -280,6 +289,7 @@ void UI::addPerson()
         {
             if(deathYear == "")
             {
+                //in our system, a deathyear of 0 is the same as "not dead" (my kingdom for a null!)
                 dYear = 0;
             }
             else
@@ -303,7 +313,7 @@ void UI::addPerson()
             cout << endl << invalid << endl;
             cin.putback('\n');
         }
-    }while(yearFail);
+    }while(yearFail); //loop until year is valid
 
 
     //adding person to the vector/file
@@ -314,13 +324,15 @@ void UI::addPerson()
     listPerson(domain.getPersonList());
 }
 
+//prompts user to search a person list, returns a temporary person list with search results.
+//said search results can be searched again, to further narrow down the search
 vector<Person> UI::searchPerson(vector<Person> listToSearch)
 {
-    int column;
-    char cSearch;
-    string sSearch;
+    int column = 0;
+    char cSearch = ' ';
+    string sSearch = "";
     vector<int> iSearch;
-    bool valid;
+    bool valid = 1;
     vector<Person> listOfFound;
 
 
@@ -356,7 +368,7 @@ vector<Person> UI::searchPerson(vector<Person> listToSearch)
             {
 
                 do{
-                    cout << endl << "To search from - to, input two numbers with a space between" << endl;
+                    cout << endl << "Search year, or from year to later year:  '1995' or '1995 2005' " << endl;
                     iSearch = validateMultipleInt("Year of birth: ");
                     if(iSearch.size() == 2)
                     {
@@ -373,7 +385,7 @@ vector<Person> UI::searchPerson(vector<Person> listToSearch)
             case 4 :        //death
             {
                 do{
-                    cout << endl << "To search from - to, input two numbers with a space between" << endl;
+                    cout << endl << "Search year, or from year to later year:  '1995' or '1995 2005' " << endl;
                     iSearch = validateMultipleInt("Year of death: ");
                     if(iSearch.size() == 2)
                     {
@@ -453,13 +465,15 @@ vector<Person> UI::searchPerson(vector<Person> listToSearch)
     return listOfFound;
 }
 
+//prompts user with sort options (by name, age etc) can also search "asc" or "desc"
+//returns sorted person list, based on choices.
 vector<Person> UI::sortPerson()
 {
     Config config = domain.getConfig();
     vector<Person> personList = domain.getPersonList();
     vector<Person> sortedList;
     bool valid = 1;
-    string sortOrder = config.SortOrder;
+    string sortOrder = config.SortOrder; //default is saved sortOrder
     const int failState = 99;
     int sortColumn = failState;
     string choice = "";
@@ -472,9 +486,13 @@ vector<Person> UI::sortPerson()
     //option to sort descendingly
     do{
         valid = 1;
-        cout << endl << "To sort in descending order (# desc)";
+        cout << endl << "Choose sort order by adding 'asc' or 'desc', example: (1 desc)";
 
+        //asks what you want to sort by
         choice = validateString("Select a column to sort by: ");
+
+        //get digit from string, and order if available, else use saved sortOrder
+        //accepted inputs "#", "# desc", "# asc" .. # being the column number
         if(isdigit(choice[0]))
         {
             sortColumn = stoi(choice.substr(0));
@@ -548,9 +566,10 @@ vector<Person> UI::sortPerson()
     return sortedList;
 }
 
+//prompts user to search, after search temporary id's are visible, user can further narrow down search or delete person based on the id.
 void UI::removePerson()
 {
-    int idOfPerson;
+    int idOfPerson = 0;
     cout << endl << "Search for the person you wish to delete:" << endl;
     vector<Person> searchResult = searchPerson(domain.getPersonList());
     if(searchResult.size())
@@ -560,9 +579,10 @@ void UI::removePerson()
     }
 }
 
+//prompts user to search, after search temporary id's are visible, user can further narrow down search or delete person based on the id.
 void UI::editPerson()
 {
-    int idOfPerson;
+    int idOfPerson = 0;
     cout << endl << "Search for the person you wish to edit: " << endl;
     vector<Person> searchResult = searchPerson(domain.getPersonList());
     if(searchResult.size())
@@ -632,9 +652,10 @@ void UI::editPerson()
     }
 }
 
+//function that allows the user to delete the whole list
+//aka drop table / format
 void UI::clearlist()
 {
-    //self explainatory
    char choice;
    choice = validateChar("Are you sure you want to clear the list? (y/n) : ", yesOrNo);
    if (choice == yesOrNo[0])
@@ -643,6 +664,10 @@ void UI::clearlist()
    }
 }
 
+//functions that validates char input, takes string and vector<char> paramters.
+//prompt is the message to prompt user input example: (want to quit (y/n), and the vector is list of acceptable characters.
+//only accepts single character inputs "yes" != 'y'+'e'+'s'..
+//trailing whitespace removed, "y   " = 'y'
 char UI::validateChar(string prompt, vector<char> accepts){
 
     string tempString = "";
@@ -654,6 +679,7 @@ char UI::validateChar(string prompt, vector<char> accepts){
     {
     tempString = validateString(prompt);
 
+        //toupper to reduce comparisons checks
         tempString[0] = toupper(tempString[0]);
 
         for(size_t i = 0; i < accepts.size(); i++ )
@@ -673,17 +699,22 @@ char UI::validateChar(string prompt, vector<char> accepts){
     return validChar;
 }
 
+//function that validates string input, takes string (prompt) parameter and has optional skip paramter, used if input is optional.
+//prompt is the message to prompt user input example: "Enter name: "
+//accepts input like "test    " as "test" .. and "test test  " as one input "test test" (doesn't skip over input from the space)
 string UI::validateString(string prompt, string skipString){
     string validString = "";
 
     //combines a multiple input strings into one, for example first and second names
     cout << prompt << endl;
+    //get the entire input, cut of trailing whitespace
     do
     {
         getline(cin, validString);
         validString.resize(validString.find_last_not_of(" ")+1);
     }while(validString.size() == 0);
 
+    //if input is the same as the skipString, reset string
     if(validString == skipString)
     {
         validString = "";
@@ -691,22 +722,31 @@ string UI::validateString(string prompt, string skipString){
     return validString;
 }
 
+//function that validates int input, takes in string (prompt) parameter
+//prompt is the message to prompt user input example: "Enter year of birth: "
+//only accepts a single int input, no spaces.
+//example: "15 15" is invalid, "15 " is invalid, "15" is valid.
 int UI::validateInt(string prompt)
 {
     vector<int> intList;
 
-    //makes sure letters are not input when user is asked for intigers
+    //makes sure input is a digit, avoids endless loop from entering a charater as int
     do
     {
         intList = validateMultipleInt(prompt, 1);
     }while(intList.size() != 1);
 
+    //reset input buffer, just incase
     cin.clear();
     cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 
     return intList[0];
 }
 
+//function that validates 1+ int inputs, takes in string (prompt) parameter
+//prompt is the message to prompt user input example: "Search from - to"
+//accepts, single and multiple int inputs, based on maxSize parameter, default max = 2
+//trailing white spaces not allowed, example: "15 15 " is invalid, "15 " is invalid, "15 15 15" is invalid, "15 15" is valid, "15" is valid
 vector<int> UI::validateMultipleInt(string prompt, size_t maxSize)
 {
     vector<int> intList;
@@ -726,37 +766,41 @@ vector<int> UI::validateMultipleInt(string prompt, size_t maxSize)
             cin.get(c);
             if(c == '\n' && counter == maxSize)
             {
-
+                //empty if, used to avoid lower else if, state is still valid at this point
             }
             else if(c == '\n')
             {
-                cin.putback('\n');
+                cin.putback('\n'); //avoids the input stalling, as it waits for another input.
                 break;
             }
             else if(c == ' ' && counter == maxSize)
             {
+                //if input ends on whitespace, it is deemed invalid, clear the intList and clean up input buffer.
                 intList.clear();
                 cin.clear();
                 cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
                 cin.putback('\n');
             }
         }
+        //put int into the int list if number int inputs is less than maxSize
         if(counter < maxSize)
         {
             cin >> tempInt;
             intList.push_back(tempInt);
         }
-        else if(maxSize > intList.size())
+        else if(maxSize > intList.size()) //if number of int inputs exceeds max, it's deemed invalid
         {
             cout << endl << invalid << endl;
             break;
         }
         else
         {
-            cin.putback('\n');
+            cin.putback('\n'); //avoids the input stalling, as it waits for another input.
         }
         if(cin.fail())
         {
+            //if input fails .. i.e. if input is a char/string, clean up list, and input buffer.
+            //this is ofcourse also an invalid input
             cout << endl << invalid << endl;
             cin.clear();
             cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
@@ -767,6 +811,7 @@ vector<int> UI::validateMultipleInt(string prompt, size_t maxSize)
     return intList;
 }
 
+//function used to capatalize a string
 string UI::capitalizeString(string stringInput)
 {
     //strings which have been run through validate string function have their first character
@@ -784,16 +829,17 @@ string UI::capitalizeString(string stringInput)
     return stringInput;
 }
 
+//function that allows the user to change default list display settings. Which column to order by, ascending or descending.
 void UI::configPerson()
 {
     bool valid = 1;
-    int changeSettings;
-    int setting;
+    int changeSettings = 0;
+    int setting = 0;
     string sortOrder;
     Config newConfig = domain.getConfig();
 
-    cout << "1 : default sort order" << endl;
-    cout << "2 : default sort column" << endl;
+    cout << "1 : Set default sort order" << endl;
+    cout << "2 : Set default sort column" << endl;
     cout << "0 : cancel" << endl;
 
         do
@@ -825,6 +871,7 @@ void UI::configPerson()
                 }else if(setting == 2){
                     sortOrder = "desc";
                 }
+                //override old config
                 newConfig.SortOrder = sortOrder;
                 domain.setConfig(newConfig);
                 break;
@@ -834,6 +881,7 @@ void UI::configPerson()
                 numberedOptions(1);
                 setting = validateInt("Choose a number between 0-6 to change default sort column: ");
                 cout << endl;
+                //override old config
                 newConfig.sortColumn = setting;
                 domain.setConfig(newConfig);
                 break;
@@ -848,6 +896,8 @@ void UI::configPerson()
         }while(!valid);
 }
 
+//function that prints the columns from 1-6, used to choose columns easily.
+//saved in a function cause it is reused multiple times, optional parameter if age option should be shown.
 void UI::numberedOptions(bool includeAge){
     cout << "1 : Name" << endl;
     cout << "2 : Gender" << endl;
@@ -860,6 +910,7 @@ void UI::numberedOptions(bool includeAge){
     cout << "0 : Cancel" << endl;
 }
 
+//function that displays project credits. (on exit/quit)
 void UI::projectCredit(){
     cout << "    _______  _______  _______  __   __       _____         " << endl
          << "   |       ||       ||   _   ||  |_|  |     |  _  |        " << endl
