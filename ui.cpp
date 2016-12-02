@@ -184,6 +184,11 @@ void UI::addPerson()
                     yearFail = 1;
                     cout << endl << "Death year must be later than the birth year" << endl;
                 }
+                else if(dYear > currentYear)
+                {
+                    yearFail = 1;
+                    cout << endl << "Death year can't be higher then current year (" << currentYear << ")" << endl;
+                }
             }
         }
         else
