@@ -8,11 +8,9 @@
 #include <vector>
 #include "person.h"
 
-
 using namespace std;
 
 //presentation layer
-
 UI::UI()
 {
     yesOrNo.push_back('Y');
@@ -79,13 +77,9 @@ void UI::mainMenu()
     } while( !(command == "quit") );
 }
 
-
-
-
 void UI::ListPerson(vector<Person> people, bool search)
 {
     cout << "Displaying persons:" << endl;
-
 
     if(search == true)
     {
@@ -93,20 +87,17 @@ void UI::ListPerson(vector<Person> people, bool search)
     }
     cout << "==================================================================================" << endl;
 
-
     if(search == true)
     {
         cout << "ID  ";
     }
     cout << "Name                       Gender   Birth year   Death year   Age    Nationality  " << endl;
 
-
     if(search == true)
     {
         cout << "----";
     }
     cout << "----------------------------------------------------------------------------------" << endl;
-
 
     for (size_t i = 0; i < people.size(); ++i)
     {
@@ -126,13 +117,11 @@ void UI::ListPerson(vector<Person> people, bool search)
         {
             cout << setw(27) << people[i].getName();
         }
-
         cout << setw(9) << people[i].getGender();
         cout << setw(13) << people[i].getBirthYear();
         people[i].getDeathYear() == 0 ? cout << setw(13) << "-" : cout << setw(13) << people[i].getDeathYear();
         cout << setw(7) << people[i].getAge();
         cout << setw(11) << people[i].getNationality() << endl;
-
     }
     if(search == true)
     {
@@ -184,8 +173,6 @@ void UI::addPerson()
         }
     }while(yearFail);
 
-
-
     Person newPerson(capitalizeString(name), gender, birthYear, dYear, capitalizeString(nationality));
     domain.addPerson(newPerson);
     ListPerson(domain.getPersonList());
@@ -201,7 +188,6 @@ vector<Person> UI::searchPerson(vector<Person> listToSearch)
     bool valid;
     vector<Person> listOfFound;
 
-
     do
     {
         valid = 1;
@@ -212,7 +198,6 @@ vector<Person> UI::searchPerson(vector<Person> listToSearch)
         cout << "5 : Nationality" << endl;
         cout << "0 : Cancel" << endl;
         column = validateInt("Choose a number between 0-5 to select what column to search in: ");
-
 
         switch(column)
         {
@@ -277,7 +262,6 @@ vector<Person> UI::searchPerson(vector<Person> listToSearch)
             }
             default :
             {
-
                 cout << endl << invalid << endl << endl;
                 valid = 0;
                 break;
@@ -399,7 +383,6 @@ void UI::sortPerson()
         }
     } while(!valid);
     cout << endl;
-
 }
 
 void UI::removePerson()

@@ -43,15 +43,16 @@ private:
     //function that allows the user to delete the whole list
     void clearlist();
 
+    //function used to capatalize a string
     string capitalizeString(string stringInput);
-
-    //function that allows the user to modify the list
 
     //functions that make sure input put into each variable type is correct
     //char validate used when inputing gender(m/f)
     char validateChar(string prompt, vector<char>);
+
     //string validate used to make first letter in words capital for example names
     string validateString(string prompt, string skipstring = "");
+
     //int validate used to make sure characters aren't input when asks for int like birth year
     int validateInt(string prompt);
     vector<int> validateMultipleInt(string prompt, int maxSize = maxIntToValidate);
