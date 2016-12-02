@@ -55,9 +55,9 @@ private:
 
     //int validate used to make sure characters aren't input when asks for int like birth year
     int validateInt(string prompt);
-    vector<int> validateMultipleInt(string prompt, int maxSize = maxIntToValidate);
+    vector<int> validateMultipleInt(string prompt, size_t maxSize = maxIntToValidate);
 
-    static const int maxIntToValidate = 2;
+    static const size_t maxIntToValidate = 2;
     vector<char> yesOrNo;
     vector<char> acceptedGender;
     const string invalid = "invalid entry, try again!";

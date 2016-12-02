@@ -150,11 +150,21 @@ void UI::addPerson()
     string ignoreLine;
     bool yearFail = 0;
 
+    time_t t = time(NULL);
+    tm* timePtr = localtime(&t);
+    int currentYear = timePtr->tm_year + 1900;
+
     //User asked for his information
     name = validateString("Enter name: ");
     gender = validateChar("Enter Gender (M/F): ", acceptedGender);
     nationality = validateString("Enter nationality: ");
-    birthYear = validateInt("Enter year of birth: ");
+
+    do{
+        birthYear = validateInt("Enter year of birth: ");
+        if(birthYear > currentYear){
+            cout << "Birth year must be earlier than current year" << endl;
+        }
+    }while(birthYear > currentYear);
 
     do
     {
@@ -593,12 +603,12 @@ int UI::validateInt(string prompt)
     return intList[0];
 }
 
-vector<int> UI::validateMultipleInt(string prompt, int maxSize)
+vector<int> UI::validateMultipleInt(string prompt, size_t maxSize)
 {
     vector<int> intList;
     int tempInt = 0;
     char c = '\0';
-    int counter = 0;
+    size_t counter = 0;
 
     while(cin.good())
     {
