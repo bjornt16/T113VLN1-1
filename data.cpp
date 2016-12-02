@@ -34,18 +34,13 @@ void Data::writePersonToFile(Person p)
     list.push_back(p);
 
     file.close();
-<<<<<<< HEAD
-
-=======
->>>>>>> origin/master
 }
 
 void Data::readPeopleFromFile()
 {
-<<<<<<< HEAD
+
     //open and read from file, done every time the program is launched
-=======
->>>>>>> origin/master
+
     list.clear();
 
     ifstream file;

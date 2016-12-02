@@ -81,30 +81,24 @@ void UI::ListPerson(vector<Person> people, bool search)
 {
     cout << "Displaying persons:" << endl;
 
-<<<<<<< HEAD
+
     //if function was opened through the search function print this for the id column
-=======
->>>>>>> origin/master
     if(search == true)
     {
         cout << "====";
     }
     cout << "==================================================================================" << endl;
 
-<<<<<<< HEAD
+
     //if function was opened through the search function print this for the id column
-=======
->>>>>>> origin/master
     if(search == true)
     {
         cout << "ID  ";
     }
     cout << "Name                       Gender   Birth year   Death year   Age    Nationality  " << endl;
 
-<<<<<<< HEAD
+
     //if function was opened through the search function print this for the id column
-=======
->>>>>>> origin/master
     if(search == true)
     {
         cout << "----";
@@ -191,11 +185,8 @@ void UI::addPerson()
         }
     }while(yearFail);
 
-<<<<<<< HEAD
 
     //adding person to the vector/file
-=======
->>>>>>> origin/master
     Person newPerson(capitalizeString(name), gender, birthYear, dYear, capitalizeString(nationality));
     domain.addPerson(newPerson);
 
@@ -213,10 +204,8 @@ vector<Person> UI::searchPerson(vector<Person> listToSearch)
     bool valid;
     vector<Person> listOfFound;
 
-<<<<<<< HEAD
+
     //asks what you want to search by
-=======
->>>>>>> origin/master
     do
     {
         valid = 1;
@@ -438,11 +427,9 @@ void UI::editPerson()
     if(searchResult.size())
     {
         idOfPerson = validateInt("Select id of the person you want to edit: ");
-<<<<<<< HEAD
+
 
         //finding the person you want to edit
-=======
->>>>>>> origin/master
         Person personToEdit = searchResult[idOfPerson];
 
         //selecting what you want to edit about the person

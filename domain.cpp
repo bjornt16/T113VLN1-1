@@ -150,11 +150,8 @@ vector<Person> Domain::sortPeopleByName(string sortOrder)
         return (i.getName()>j.getName());
         }
     };
-<<<<<<< HEAD
-    //sorting people asc is baseline search
-=======
 
->>>>>>> origin/master
+    //sorting people asc is baseline search
     if(sortOrder == "asc")
     {
         PersonAsc cmp;
