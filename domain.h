@@ -45,6 +45,7 @@ public:
     vector<Person> sortPeopleByNat(string sortOrder);   // nationality
     vector<Person> sortPeopleByAge(string sortOrder);   // age
 
+    //Function used for adding a person to the list vector
     void addPerson(Person p);
 };
 
