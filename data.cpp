@@ -80,7 +80,7 @@ void Data::writeConfigToFile(Config c)
 {
     //open and write in file
     ofstream file;
-    file.open("../T113VLN1/database/settings.txt");
+    file.open(configFile);
 
     file << "\n" << c.sortColumn << " " << c.SortOrder;
 
@@ -96,7 +96,7 @@ void Data::writeConfigToFile(Config c)
 void Data::readConfigFromFile(){
 
     ifstream file;
-    file.open("../T113VLN1/database/settings.txt");
+    file.open(configFile);
     bool fileIsEmpty = file.peek() == ifstream::traits_type::eof(); //checks if file is empty
 
     string sortOrder = "";

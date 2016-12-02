@@ -14,8 +14,14 @@ class Data
 private:
     //vector contains the list
     vector<Person> list;
+
+    const string directoryPath = "../T113VLN1/database/";
+
     //people file path
-    const string peopleFile = "../T113VLN1/database/people.txt";
+    const string peopleFile = directoryPath+"people.txt";
+    //config file path
+    const string configFile = directoryPath+"config.txt";
+
     //confic class contains config settings.
     Config config;
 public:
