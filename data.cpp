@@ -35,7 +35,7 @@ void Data::writePersonToFile(Person p)
 
     file.close();
 
-};
+}
 
 void Data::readPeopleFromFile()
 {

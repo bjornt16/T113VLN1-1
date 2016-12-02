@@ -340,10 +340,12 @@ void UI::sortPerson()
         cout << endl << "To sort in descending order (# desc)";
 
         choice = validateString("Select a column to sort by: ");
-        if(isdigit(choice[0])){
+        if(isdigit(choice[0]))
+        {
             column = stoi(choice.substr(0));
             sortOrder = choice.size() > 1 ? choice.substr(choice.find(' ')+1) : "asc";
-            if(sortOrder != "asc" && sortOrder != "desc"){
+            if(sortOrder != "asc" && sortOrder != "desc")
+            {
                 column = failState;
                 sortOrder = "asc";
                 cin.putback('\n');
@@ -405,7 +407,8 @@ void UI::removePerson()
     int idOfPerson;
     cout << "Search for the person you want to delete:" << endl;
     vector<Person> searchResult = searchPerson(domain.getPersonList());
-    if(searchResult.size()){
+    if(searchResult.size())
+    {
         idOfPerson = validateInt("Select id of the person you want to delete: ");
         domain.removePerson(searchResult[idOfPerson]);
     }
