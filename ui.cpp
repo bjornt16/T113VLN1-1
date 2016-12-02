@@ -321,13 +321,14 @@ vector<Person> UI::searchPerson(vector<Person> listToSearch)
 
 void UI::sortPeople()
 {
-    bool valid = true;
+    bool valid = 1;
     string sortOrder = "asc";
     const int failState = 99;
+    int column;
+    string choice = "";
+
     do{
-        valid = true;
-        int column;
-        string choice = "", sColumn ;
+        valid = 1;
 
         cout << "1 : Name" << endl;
         cout << "2 : Gender" << endl;
@@ -388,11 +389,11 @@ void UI::sortPeople()
             default : // loop if incorrect input
             {
                 cout << "Not a valid choice, try again: " << endl;
-                valid = false;
+                valid = 0;
                 break;
             }
         }
-    } while(valid == false);
+    } while(!valid);
 
 }
 
