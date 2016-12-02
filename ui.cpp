@@ -418,7 +418,7 @@ vector<Person> UI::searchPerson(vector<Person> listToSearch)
         }
 
         //nothing was returned from user search
-        if ( (listOfFound.size()) == 0 && (valid == 0))
+        if ( (listOfFound.size()) == 0 && valid)
         {
             valid = 0;
             cout << "No entry found. Try again: " << endl;
