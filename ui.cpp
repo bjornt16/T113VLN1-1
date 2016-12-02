@@ -112,6 +112,14 @@ void UI::ListPerson(vector<Person> people, bool search)
         }
         cout << endl;
     }
+    else if(biggestNatSize >= 26)
+    {
+        for(int i = 0; i < 26-12; i++)
+        {
+            cout << "=";
+        }
+        cout << endl;
+    }
     else
     {
         cout << endl;
@@ -136,6 +144,14 @@ void UI::ListPerson(vector<Person> people, bool search)
     if(biggestNatSize > 12 && biggestNatSize < 26)
     {
         for(int i = 0; i < biggestNatSize-12; i++)
+        {
+            cout << "-";
+        }
+        cout << endl;
+    }
+    else if(biggestNatSize >= 26)
+    {
+        for(int i = 0; i < 26-12; i++)
         {
             cout << "-";
         }
@@ -197,6 +213,14 @@ void UI::ListPerson(vector<Person> people, bool search)
     if((biggestNatSize > 12) && (biggestNatSize < 26))
     {
         for(int i = 0; i < (biggestNatSize-12); i++)
+        {
+            cout << "=";
+        }
+        cout << endl;
+    }
+    else if(biggestNatSize >= 26)
+    {
+        for(int i = 0; i < 26-12; i++)
         {
             cout << "=";
         }
