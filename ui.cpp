@@ -62,26 +62,27 @@ void UI::mainMenu()
         }
         else if (command == "quit")
         {
-            cout << " _______                      ___ " << endl;
-            cout << "|__   __|                    / _ \\" << endl;
-            cout << "   | | ___  __ _ _ __ ___   | (_) |" << endl;
-            cout << "   | |/ _ \\/ _` | '_ ` _ \\   > _ < " << endl;
-            cout << "   | |  __/ (_| | | | | | | | (_) |" << endl;
-            cout << "   |_|\\___|\\__,_|_| |_| |_|  \\___/ " << endl;
-            cout << "CREDIT" << endl;
-            cout << "(Feður inn í sviga)" << endl;
-            cout << endl;
-            cout << "-Anna Kristín Halldórsdóttir(Laxness?)" << endl;
-            cout << endl;
-            cout << "-Björn Þórsson(þrumuguð?)" << endl;
-            cout << endl;
-            cout << "-Friðrik Snær Tómatsson(Hunts?)" << endl;
-            cout << endl;
-            cout << "-Ísak Grétarson  (http://www.dv.is/frettir/2011/12/1/manuela-haett-vid-ad-kaera-gretar-rafn/)" << endl;
-            cout << endl;
-            cout << "-Margrét :´( Finnbogadóttir(Hver er þetta?? http://finnbogi.askja.org/ ?)" << endl;
-            cout << endl;
-            cout << "-Sólveig Sara Samúelsdóttir(Guð??? https://en.wikipedia.org/wiki/Samuel ??)" << endl;
+            cout << "    _______  _______  _______  __   __       _____         " << endl
+                 << "   |       ||       ||   _   ||  |_|  |     |  _  |        " << endl
+                 << "   |_     _||    ___||  |_|  ||       |     | |_| |        " << endl
+                 << "     |   |  |   |___ |       ||       |    |   _   |       " << endl
+                 << "     |   |  |    ___||       ||       |    |  | |  |       " << endl
+                 << "     |   |  |   |___ |   _   || ||_|| |    |  |_|  |       " << endl
+                 << "     |___|  |_______||__| |__||_|   |_|    |_______|       " << endl
+                 << "   _______  ______    _______  ______   ___  _______       " << endl
+                 << "  |    ___||    _ |  |       ||      | |   ||       | __   " << endl
+                 << "  |   |    |   | ||  |    ___||  _    ||   ||_     _||__|  " << endl
+                 << "  |   |    |   |_||_ |   |___ | | |   ||   |  |   |   __   " << endl
+                 << "  |   |    |    __  ||    ___|| |_|   ||   |  |   |  |__|  " << endl
+                 << "  |   |___ |   |  | ||   |___ |       ||   |  |   |        " << endl
+                 << "  |_______||___|  |_||_______||______| |___|  |___|        " << endl << endl;
+
+            cout << "           -Anna Kristín Halldórsdóttir" << endl;
+            cout << "           -Björn Þórsson" << endl;
+            cout << "           -Friðrik Snær Tómasson" << endl;
+            cout << "  ()_()     -Ísak Grétarson" << endl;
+            cout << "  (*.*)    -Margrét Finnbogadóttir" << endl;
+            cout << " c(\")(\")   -Sólveig Sara Samúelsdóttir" << endl;
             cout << endl;
             if (true)
             {
@@ -445,7 +446,7 @@ vector<Person> UI::searchPerson(vector<Person> listToSearch)
         }
 
         //nothing was returned from user search
-        if ( (listOfFound.size()) == 0 && column != 0)
+        if ( (listOfFound.size()) == 0 && (valid == 0))
         {
             valid = 0;
             cout << "No entry found. Try again: " << endl;
