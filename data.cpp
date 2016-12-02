@@ -75,6 +75,7 @@ void Data::removePersonFromDatabase(Person personToRemove)
         if(list[i] == personToRemove)
         {
             list.erase(list.begin()+i);
+            break;
         }
     }
     rewriteDataFile();
