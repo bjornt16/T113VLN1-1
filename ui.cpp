@@ -28,12 +28,13 @@ void UI::mainMenu()
         cout << "Please enter one of the following commands:" << endl;
         cout << setw(7) << left << "list" << "List all entries in the database" << endl;
         cout << setw(7) << "add" << "Add a new entry" << endl;
-        cout << setw(7) <<"delete" << "Removes an entry" << endl;
-        cout << setw(7) <<"clear" << "Removes all entries" << endl;
-        cout << setw(7) <<"edit" << "Edit an entry" << endl;
-        cout << setw(7) <<"search" << "Search the database" << endl;
-        cout << setw(7) <<"sort" << "Sort the entries" << endl;
-        cout << setw(7) <<"quit" <<"To quit" << endl;
+        cout << setw(7) << "delete" << "Removes an entry" << endl;
+        cout << setw(7) << "clear" << "Removes all entries" << endl;
+        cout << setw(7) << "edit" << "Edit an entry" << endl;
+        cout << setw(7) << "search" << "Search the database" << endl;
+        cout << setw(7) << "sort" << "Sort the entries" << endl;
+        cout << setw(7) << "config" << "To change default settings" << endl;
+        cout << setw(7) << "quit" << "To quit" << endl;
         command = validateString("");
         cout << endl;
 
@@ -68,6 +69,10 @@ void UI::mainMenu()
         else if (command == "clear")
         {
             clearlist();
+        }
+        else if(command =="config")
+        {
+             confiqPerson();
         }
         else
         {
@@ -685,4 +690,47 @@ string UI::capitalizeString(string stringInput)
         }
     }
     return stringInput;
+}
+
+void UI::confiqPerson()
+{
+    bool valid = 1;
+    int changeSettings;
+
+    cout << "1 : cancel" << endl;
+    cout << "2 : sort order" << endl;
+    cout << "3 : default sort" << endl;
+
+        do
+        {
+        valid = 1;
+        changeSettings = validateInt("Choose a number between 1-3 to select what column to change settings: ");
+
+        switch(changeSettings)
+        {
+            case 1: //cancel
+            {
+                valid = 1;
+                cout << endl;
+                break;
+            }
+            case 2 : //sort Order
+            {
+
+
+                break;
+            }
+            case 3 : //Choose default sort
+            {
+
+                break;
+            }
+            default : // loop if incorrect input
+            {
+                cout << "Not a valid choice, try again: ";
+                valid = 0;
+                break;
+            }
+        }
+        }while(!valid);
 }

@@ -43,6 +43,9 @@ private:
     //function that allows the user to delete the whole list
     void clearlist();
 
+    //function that allows the user to change default settings. Ascending or descending.
+    void confiqPerson();
+
     //function used to capatalize a string
     string capitalizeString(string stringInput);
 
