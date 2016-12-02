@@ -243,7 +243,7 @@ vector<Person> UI::searchPerson(vector<Person> listToSearch)
             }
             case 2 :        //gender
             {
-                cSearch = validateChar("Gender: ",acceptedGender);
+                cSearch = validateChar("Gender (m/f): ",acceptedGender);
                 listOfFound = domain.searchPersonGender(listToSearch,cSearch);
                 break;
             }
@@ -339,7 +339,7 @@ void UI::sortPeople()
             cout << "5 : Nationality" << endl;
             cout << "9 : to get descending sort" << endl;
             cout << "0 : Cancel" << endl;
-            cout << "Select a column to sort by: ";
+            cout << "Please select a column to sort by, or 9 if you want descending order: ";
         }
 
         cin >> column;
@@ -353,35 +353,30 @@ void UI::sortPeople()
 
             case 1 : //name sort
             {
-                //TODO
                 ListPerson(domain.sortPeopleByName(sortOrder));
                 break;
             }
 
             case 2 : //gender sort
             {
-                //TODO
                 ListPerson(domain.sortPeopleByGender(sortOrder));
                 break;
             }
 
             case 3 : //birth year sort
             {
-                //TODO
                 ListPerson(domain.sortPeopleByBY(sortOrder));
                 break;
             }
 
             case 4 : // death year sort
             {
-                //TODO
                 ListPerson(domain.sortPeopleByDY(sortOrder));
                 break;
             }
 
             case 5 : // nationality sort
             {
-                //TODO
                 ListPerson(domain.sortPeopleByNat(sortOrder));
                 break;
             }
@@ -389,6 +384,7 @@ void UI::sortPeople()
             {
                 sortOrder = "desc";
                 valid = false;
+                cout << "Please select a column to sort by: ";
                 break;
             }
             default : // loop if incorrect input
@@ -426,13 +422,13 @@ void UI::editPerson()
     Person personToEdit = searchResult[idOfPerson];
 
     int choiseToEdit;
-    cout << "Please select what you would like to edit:" << endl;
     cout << "1 : Name" << endl;
     cout << "2 : Gender" << endl;
     cout << "3 : Year of Birth" << endl;
     cout << "4 : Year of Death " << endl;
     cout << "5 : Nationality" << endl;
     cout << "0 : Cancel" << endl;
+    cout << "Please select what you would like to edit:" << endl;
     cin >> choiseToEdit;
 
     bool valid = true;
