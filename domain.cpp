@@ -14,7 +14,8 @@ Domain::Domain()
 
 }
 
-void Domain::addPerson(Person p){
+void Domain::addPerson(Person p)
+{
     data.writePersonToFile(p);
 }
 
@@ -29,17 +30,20 @@ vector<Person> Domain::searchPersonName(vector<Person> people, string search)
 {
     vector<Person> searchList;
 
-    for(size_t i= 0; i < people.size(); i++ ){
+    for(size_t i= 0; i < people.size(); i++ )
+    {
         string name = people[i].getName();
         transform(name.begin(), name.end(), name.begin(), ::tolower);
         transform(search.begin(), search.end(), search.begin(), ::tolower);
 
 
-        if(search.find(' ') != string::npos){
+        if(search.find(' ') != string::npos)
+        {
             search.erase(search.begin());
         }
 
-        if(name.find(search) != string::npos){
+        if(name.find(search) != string::npos)
+        {
             searchList.push_back(people[i]);
         }
     }
@@ -50,12 +54,14 @@ vector<Person> Domain::searchPersonNationality(vector<Person> people, string sea
 {
     vector<Person> searchList;
 
-    for(size_t i= 0; i < people.size(); i++ ){
+    for(size_t i= 0; i < people.size(); i++ )
+    {
         string nationality = people[i].getNationality();
         transform(nationality.begin(), nationality.end(), nationality.begin(), ::tolower);
         transform(search.begin(), search.end(), search.begin(), ::tolower);
 
-        if(nationality.find(search) != string::npos){
+        if(nationality.find(search) != string::npos)
+        {
             searchList.push_back(people[i]);
         }
     }
@@ -66,11 +72,13 @@ vector<Person> Domain::searchPersonGender(vector<Person> people, char search)
 {
     vector<Person> searchList;
 
-    for(size_t i= 0; i < people.size(); i++ ){
+    for(size_t i= 0; i < people.size(); i++ )
+    {
         char gender = people[i].getGender();
         gender = (tolower(gender));
         search = (tolower(search));
-        if(search == gender){
+        if(search == gender)
+        {
             searchList.push_back(people[i]);
         }
     }
@@ -81,14 +89,17 @@ vector<Person> Domain::searchPersonBirth(vector<Person> people, int from, int to
 {
     vector<Person> searchList;
 
-    if(to == 9999){
+    if(to == 9999)
+    {
         to = from;
     }
 
-    for(size_t i= 0; i < people.size(); i++ ){
+    for(size_t i= 0; i < people.size(); i++ )
+    {
         int birthYear = people[i].getBirthYear();
 
-        if(birthYear >= from && birthYear <= to){
+        if(birthYear >= from && birthYear <= to)
+        {
             searchList.push_back(people[i]);
         }
     }
@@ -99,14 +110,17 @@ vector<Person> Domain::searchPersonDeath(vector<Person> people, int from, int to
 {
     vector<Person> searchList;
 
-    if(to == 9999){
+    if(to == 9999)
+    {
         to = from;
     }
 
-    for(size_t i= 0; i < people.size(); i++ ){
+    for(size_t i= 0; i < people.size(); i++ )
+    {
         int deathYear = people[i].getDeathYear();
 
-        if(deathYear >= from && deathYear <= to && deathYear != 0){
+        if(deathYear >= from && deathYear <= to && deathYear != 0)
+        {
             searchList.push_back(people[i]);
         }
     }

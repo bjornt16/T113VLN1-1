@@ -494,7 +494,8 @@ void UI::clearlist()
 {
    char choice;
    choice = validateChar("Are you sure you want to clear the list? (y/n) : ", yesOrNo);
-   if (choice == yesOrNo[0]){
+   if (choice == yesOrNo[0])
+   {
       domain.clearPerson();
    }
 
@@ -506,17 +507,21 @@ char UI::validateChar(string prompt, vector<char> accepts){
     char validChar = ' ';
     const size_t maxStringLength = 1;
 
-    do{
+    do
+    {
     tempString = validateString(prompt);
 
         tempString[0] = toupper(tempString[0]);
 
-        for(size_t i = 0; i < accepts.size(); i++ ){
-            if(tempString[0] == accepts[i] && tempString.size() == maxStringLength){
+        for(size_t i = 0; i < accepts.size(); i++ )
+        {
+            if(tempString[0] == accepts[i] && tempString.size() == maxStringLength)
+            {
                 validChar = tempString[0];
             }
         }
-        if(validChar == ' '){
+        if(validChar == ' ')
+        {
             cout << endl << invalid << endl;
         }
 
@@ -531,12 +536,14 @@ string UI::validateString(string prompt, string skipString){
     string validString = "";
 
     cout << endl << prompt << endl;
-    do{
+    do
+    {
         getline(cin, validString);
         validString.resize(validString.find_last_not_of(" ")+1);
     }while(validString.size() == 0);
 
-    if(validString == skipString){
+    if(validString == skipString)
+    {
         validString = "";
     }
 
@@ -544,9 +551,11 @@ string UI::validateString(string prompt, string skipString){
 }
 
 
-int UI::validateInt(string prompt){
+int UI::validateInt(string prompt)
+{
     vector<int> intList;
-    do{
+    do
+    {
         intList = validateMultipleInt(prompt, 1);
     }while(intList.size() != 1);
 
@@ -556,7 +565,8 @@ int UI::validateInt(string prompt){
     return intList[0];
 }
 
-vector<int> UI::validateMultipleInt(string prompt, int maxSize){
+vector<int> UI::validateMultipleInt(string prompt, int maxSize)
+{
 
     vector<int> intList;
     int tempInt = 0;
@@ -566,34 +576,46 @@ vector<int> UI::validateMultipleInt(string prompt, int maxSize){
 
     while(cin.good())
     {
-        if(intList.size() == 0){
+        if(intList.size() == 0)
+        {
             cout << endl << prompt << endl;
-        }else{
+        }
+        else
+        {
             counter++;
             cin.get(c);
-            if(c == '\n' && counter == maxSize){
+            if(c == '\n' && counter == maxSize)
+            {
 
             }
-            else if(c == '\n'){
+            else if(c == '\n')
+            {
                 cin.putback('\n');
                 break;
-            }else if(c == ' ' && counter == maxSize){
+            }
+            else if(c == ' ' && counter == maxSize)
+            {
                 intList.clear();
                 cin.clear();
                 cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
                 cin.putback('\n');
             }
         }
-        if(counter < maxSize){
+        if(counter < maxSize)
+        {
             cin >> tempInt;
             intList.push_back(tempInt);
-        }else if(maxSize > intList.size()){
+        }
+        else if(maxSize > intList.size())
+        {
             cout << endl << invalid << endl;
             break;
-        }else{
+        }else
+        {
             cin.putback('\n');
         }
-        if(cin.fail()){
+        if(cin.fail())
+        {
             cout << endl << invalid << endl;
             cin.clear();
             cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
@@ -611,8 +633,10 @@ string UI::capitalizeString(string stringInput)
     transform(stringInput.begin(), stringInput.end(), stringInput.begin(), ::tolower);
     stringInput[0] = toupper(stringInput[0]);
 
-    for(size_t i = 0; i < stringInput.size(); i++){
-        if(stringInput[i] == ' ' && (i+1) < stringInput.size()){
+    for(size_t i = 0; i < stringInput.size(); i++)
+    {
+        if(stringInput[i] == ' ' && (i+1) < stringInput.size())
+        {
             stringInput[i+1] = toupper(stringInput[i+1]);
         }
     }

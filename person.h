@@ -9,7 +9,7 @@ class Person
 public:
     Person(string n, char g, int bY, int dY, string nat);
 
-    //set functions for sorting
+    //set functions for editing
     void setName(string inputName);
     void setGender(char inputGender);
     void setBY(int inputBY);

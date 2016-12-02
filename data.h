@@ -17,8 +17,13 @@ public:
     Data();
 
     vector<Person> getList();
+
+    //writes information stored in vector<Person> list to a file
     void writePersonToFile(Person P);
+
     void updateSort(vector<Person> pList);
+
+    //reads information stored inside a file and puts it into vector
     void readPeopleFromFile();
 
     //removes personToRemove from the vector and database.

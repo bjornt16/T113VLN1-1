@@ -14,15 +14,18 @@ Data::Data()
     readPeopleFromFile();
 }
 
-vector<Person> Data::getList(){
+vector<Person> Data::getList()
+{
     return list;
 }
 
-void Data::updateSort(vector<Person> pList){
+void Data::updateSort(vector<Person> pList)
+{
     list = pList;
 }
 
-void Data::writePersonToFile(Person p){
+void Data::writePersonToFile(Person p)
+{
     ofstream file;
     file.open(peopleFile, ios::out | ios::app);
 
@@ -34,7 +37,8 @@ void Data::writePersonToFile(Person p){
 
 };
 
-void Data::readPeopleFromFile(){
+void Data::readPeopleFromFile()
+{
 
     list.clear();
 
@@ -46,7 +50,8 @@ void Data::readPeopleFromFile(){
     char gender = ' ';
     int bYear = 0, dYear = 0;
 
-    while(!file.eof() && file.is_open() && !file.fail() && !fileIsEmpty ){
+    while(!file.eof() && file.is_open() && !file.fail() && !fileIsEmpty )
+    {
 
         file >> name >> gender >> bYear >> dYear >> nationality;
 
