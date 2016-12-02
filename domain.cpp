@@ -8,7 +8,6 @@
 using namespace std;
 
 //domain layer
-
 Domain::Domain()
 {
 
@@ -36,7 +35,6 @@ vector<Person> Domain::searchPersonName(vector<Person> people, string search)
         transform(name.begin(), name.end(), name.begin(), ::tolower);
         transform(search.begin(), search.end(), search.begin(), ::tolower);
 
-
         if(search.find(' ') != string::npos)
         {
             search.erase(search.begin());
@@ -47,6 +45,7 @@ vector<Person> Domain::searchPersonName(vector<Person> people, string search)
             searchList.push_back(people[i]);
         }
     }
+
     return searchList;
 }
 
@@ -65,6 +64,7 @@ vector<Person> Domain::searchPersonNationality(vector<Person> people, string sea
             searchList.push_back(people[i]);
         }
     }
+
     return searchList;
 }
 
@@ -82,6 +82,7 @@ vector<Person> Domain::searchPersonGender(vector<Person> people, char search)
             searchList.push_back(people[i]);
         }
     }
+
     return searchList;
 }
 
@@ -103,6 +104,7 @@ vector<Person> Domain::searchPersonBirth(vector<Person> people, int from, int to
             searchList.push_back(people[i]);
         }
     }
+
     return searchList;
 }
 
@@ -140,6 +142,7 @@ vector<Person> Domain::sortPeopleByName(string sortOrder)
         return (i.getName()<j.getName());
         }
     };
+
     struct PersonDesc
     {
         bool operator() (Person i,Person j)
@@ -147,7 +150,11 @@ vector<Person> Domain::sortPeopleByName(string sortOrder)
         return (i.getName()>j.getName());
         }
     };
+<<<<<<< HEAD
     //sorting people asc is baseline search
+=======
+
+>>>>>>> origin/master
     if(sortOrder == "asc")
     {
         PersonAsc cmp;
@@ -159,7 +166,6 @@ vector<Person> Domain::sortPeopleByName(string sortOrder)
         PersonDesc cmp;
         sort(sortedName.begin(), sortedName.end(), cmp);
     }
-
 
     return sortedName;
 }
@@ -175,6 +181,7 @@ vector<Person> Domain::sortPeopleByGender(string sortOrder)
             return (i.getGender() < j.getGender());
         }
     };
+
     struct PersonDesc
     {
         bool operator() (Person i,Person j)
@@ -196,7 +203,6 @@ vector<Person> Domain::sortPeopleByGender(string sortOrder)
         sort(sortedGender.begin(), sortedGender.end(), cmp);
     }
 
-
     return sortedGender;
 }
 
@@ -211,6 +217,7 @@ vector<Person> Domain::sortPeopleByBY(string sortOrder)
             return (i.getBirthYear() < j.getBirthYear());
         }
     };
+
     struct PersonDesc
     {
         bool operator() (Person i,Person j)
@@ -246,6 +253,7 @@ vector<Person> Domain::sortPeopleByDY(string sortOrder)
             return (i.getDeathYear() < j.getDeathYear());
         }
     };
+
     struct PersonDesc
     {
         bool operator() (Person i,Person j)
@@ -281,6 +289,7 @@ vector<Person> Domain::sortPeopleByNat(string sortOrder)
             return (i.getNationality() < j.getNationality());
         }
     };
+
     struct PersonDesc
     {
         bool operator() (Person i,Person j)
@@ -305,7 +314,6 @@ vector<Person> Domain::sortPeopleByNat(string sortOrder)
     return sortedNat;
 }
 
-
 void Domain::removePerson(Person personToRemove)
 {
     data.removePersonFromDatabase(personToRemove);
@@ -325,4 +333,3 @@ void Domain::swapPersons(Person& originalP, Person& newP)
 {
     data.swapPersonsInDatabase(originalP, newP);
 }
-

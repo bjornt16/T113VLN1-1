@@ -42,8 +42,6 @@ public:
     void clearPersonInDataBase();
 
     void swapPersonsInDatabase(Person& originalP, Person& newP);
-
-
 };
 
 #endif // DATA_H

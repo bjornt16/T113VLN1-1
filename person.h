@@ -52,6 +52,4 @@ private:
     string nationality;
 };
 
-
-
 #endif // PERSON_H

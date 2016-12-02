@@ -34,12 +34,18 @@ void Data::writePersonToFile(Person p)
     list.push_back(p);
 
     file.close();
+<<<<<<< HEAD
 
+=======
+>>>>>>> origin/master
 }
 
 void Data::readPeopleFromFile()
 {
+<<<<<<< HEAD
     //open and read from file, done every time the program is launched
+=======
+>>>>>>> origin/master
     list.clear();
 
     ifstream file;
@@ -61,9 +67,8 @@ void Data::readPeopleFromFile()
         Person newPerson(name, gender, bYear, dYear, nationality);
         list.push_back(newPerson);
 
-    }
+    }  
     file.close();
-
 }
 
 void Data::removePersonFromDatabase(Person personToRemove)
@@ -77,7 +82,6 @@ void Data::removePersonFromDatabase(Person personToRemove)
             list.erase(list.begin()+i);
         }
     }
-
     rewriteDataFile();
 }
 
@@ -94,7 +98,6 @@ void Data::rewriteDataFile()
     {
         writeSinglePersonToOpenFile(list[i], file);
     }
-
     file.close();
 }
 
@@ -112,8 +115,6 @@ void Data::writeSinglePersonToOpenFile(Person& p, ofstream& out)
 
     out << "\n" << name << " " << gender << " " << bYear << " " << dYear << " " << nationality;
 }
-
-
 
 void Data::clearPersonInDataBase()
 {

@@ -8,7 +8,6 @@
 using namespace std;
 
 //domain layer
-
 class Domain
 {
 private:
@@ -31,7 +30,6 @@ public:
     //Calls the function data.swapPersonsInDatabase to originalP with newP
     void swapPersons(Person& originalP, Person& newP);
 
-
     //Search functions based on what you want to search by:
     vector<Person> searchPersonName(vector<Person> people, string search);           //name
     vector<Person> searchPersonNationality(vector<Person> people, string search);    //nationality
@@ -45,7 +43,6 @@ public:
     vector<Person> sortPeopleByBY(string sortOrder);    // birth year
     vector<Person> sortPeopleByDY(string sortOrder);    // death year
     vector<Person> sortPeopleByNat(string sortOrder);   // nationality
-
 
     void addPerson(Person p);
 };
