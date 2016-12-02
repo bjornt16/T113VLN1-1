@@ -295,18 +295,20 @@ vector<Person> UI::searchPerson(vector<Person> listToSearch)
             }
             case 6:         //age
             {
-            do{
-                cout << endl << "To search from - to, input two numbers with a space between" << endl;
-                iSearch = validateMultipleInt("Age: ");
-                if(iSearch.size() == 2)
-                {
-                    listOfFound = domain.searchPersonAge(listToSearch, iSearch[0], iSearch[1]);
-                }
-                else if(iSearch.size() == 1)
-                {
-                    listOfFound = domain.searchPersonAge(listToSearch, iSearch[0]);
-                }
-            }while(!iSearch.size());
+                do{
+                    cout << endl << "To search from - to, input two numbers with a space between" << endl;
+                    iSearch = validateMultipleInt("Age: ");
+
+                    if(iSearch.size() == 2)
+                    {
+                        listOfFound = domain.searchPersonAge(listToSearch, iSearch[0], iSearch[1]);
+                    }
+                    else if(iSearch.size() == 1)
+                    {
+                        listOfFound = domain.searchPersonAge(listToSearch, iSearch[0]);
+                    }
+                }while(!iSearch.size());
+            break;
             }
             default :
             {
