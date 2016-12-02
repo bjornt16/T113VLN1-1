@@ -43,7 +43,7 @@ void UI::mainMenu()
 
         if (command == "list")
         {
-            ListPerson(domain.getPersonList());
+            listPerson(domain.sortPersonByDefault(domain.getPersonList()));
         }
         else if (command == "add")
         {
@@ -63,7 +63,7 @@ void UI::mainMenu()
         }
         else if (command == "sort")
         {
-            sortPerson();
+            listPerson(sortPerson());
         }
         else if (command == "quit")
         {
@@ -75,7 +75,7 @@ void UI::mainMenu()
         }
         else if(command =="config")
         {
-             confiqPerson();
+             configPerson();
         }
         else
         {
@@ -85,7 +85,7 @@ void UI::mainMenu()
     } while( !(command == "quit") );
 }
 
-void UI::ListPerson(vector<Person> people, bool search)
+void UI::listPerson(vector<Person> people, bool search)
 {
     size_t biggestNatSize = 0;
 
@@ -97,9 +97,7 @@ void UI::ListPerson(vector<Person> people, bool search)
         }
     }
 
-
     cout << "Displaying persons:" << endl;
-
 
     //if function was opened through the search function print this for the ID column
     if(search == true)
@@ -313,13 +311,12 @@ void UI::addPerson()
     domain.addPerson(newPerson);
 
     //displaying the list with the person you just added
-    ListPerson(domain.getPersonList());
+    listPerson(domain.getPersonList());
 }
 
 vector<Person> UI::searchPerson(vector<Person> listToSearch)
 {
     int column;
-
     char cSearch;
     string sSearch;
     vector<int> iSearch;
@@ -431,7 +428,7 @@ vector<Person> UI::searchPerson(vector<Person> listToSearch)
 
     if ( column != 0)
     {
-        ListPerson(listOfFound, true);
+        listPerson(domain.sortPersonByDefault(listOfFound), true);
         do
         {
             valid=1;
@@ -453,21 +450,24 @@ vector<Person> UI::searchPerson(vector<Person> listToSearch)
             }
         }while(!valid);
     }
-
     return listOfFound;
 }
 
-void UI::sortPerson()
+vector<Person> UI::sortPerson()
 {
+    Config config = domain.getConfig();
+    vector<Person> personList = domain.getPersonList();
+    vector<Person> sortedList;
     bool valid = 1;
-    string sortOrder = "asc";
+    string sortOrder = config.SortOrder;
     const int failState = 99;
-    int column;
+    int sortColumn = failState;
     string choice = "";
 
     //asks what you want to sort by
     cout << endl;
     numberedOptions(1);
+
 
     //option to sort descendingly
     do{
@@ -477,17 +477,21 @@ void UI::sortPerson()
         choice = validateString("Select a column to sort by: ");
         if(isdigit(choice[0]))
         {
-            column = stoi(choice.substr(0));
-            sortOrder = choice.size() > 1 ? choice.substr(choice.find(' ')+1) : "asc";
+            sortColumn = stoi(choice.substr(0));
+
+            if(choice.size() > 1 ){
+                sortOrder = choice.substr(choice.find(' ')+1);
+            }
+
             if(sortOrder != "asc" && sortOrder != "desc")
             {
-                column = failState;
-                sortOrder = "asc";
+                sortColumn = failState;
                 cin.putback('\n');
             }
         }
 
-        switch(column)
+
+        switch(sortColumn)
         {
             //calls a different function depending on number selected
             case 0 : //cancel
@@ -498,36 +502,36 @@ void UI::sortPerson()
 
             case 1 : //name sort
             {
-                ListPerson(domain.sortPeopleByName(sortOrder));
+                sortedList = domain.sortPersonByName(sortOrder,personList);
                 break;
             }
 
             case 2 : //gender sort
             {
-                ListPerson(domain.sortPeopleByGender(sortOrder));
+                sortedList = domain.sortPersonByGender(sortOrder,personList);
                 break;
             }
 
             case 3 : //birth year sort
             {
-                ListPerson(domain.sortPeopleByBY(sortOrder));
+                sortedList = domain.sortPersonByBY(sortOrder,personList);
                 break;
             }
 
             case 4 : // death year sort
             {
-                ListPerson(domain.sortPeopleByDY(sortOrder));
+                sortedList = domain.sortPersonByDY(sortOrder,personList);
                 break;
             }
 
             case 5 : // nationality sort
             {
-                ListPerson(domain.sortPeopleByNat(sortOrder));
+                sortedList = domain.sortPersonByNat(sortOrder,personList);
                 break;
             }
             case 6 :
             {
-                ListPerson(domain.sortPeopleByAge(sortOrder));
+                sortedList = domain.sortPersonByAge(sortOrder,personList);
                 break;
             }
             case failState:
@@ -540,6 +544,8 @@ void UI::sortPerson()
         }
     } while(!valid);
     cout << endl;
+
+    return sortedList;
 }
 
 void UI::removePerson()
@@ -622,7 +628,7 @@ void UI::editPerson()
             }
         }
         while(!valid);
-        domain.swapPersons(searchResult[idOfPerson], personToEdit);
+        domain.swapPerson(searchResult[idOfPerson], personToEdit);
     }
 }
 
@@ -778,11 +784,12 @@ string UI::capitalizeString(string stringInput)
     return stringInput;
 }
 
-void UI::confiqPerson()
+void UI::configPerson()
 {
     bool valid = 1;
     int changeSettings;
-    string setting;
+    int setting;
+    string sortOrder;
     Config newConfig = domain.getConfig();
 
     cout << "1 : default sort order" << endl;
@@ -793,6 +800,7 @@ void UI::confiqPerson()
         {
         valid = 1;
         changeSettings = validateInt("Choose a number between 0-2 to select what column to change settings: ");
+        cout << endl;
 
         switch(changeSettings)
         {
@@ -804,15 +812,28 @@ void UI::confiqPerson()
             }
             case 1 : //sort Order
             {
-                setting = validateString("");
-                newConfig.SortOrder = setting;
+                cout << "1 : Ascending" << endl;
+                cout << "2 : Descending" << endl;
+                cout << "0 : Cancel" << endl;
+                setting = validateInt("Choose a number between 0-2 to change default sort order: ");
+                cout << endl;
+                if(setting == 0){
+                    break;
+                }
+                else if(setting == 1){
+                    sortOrder = "asc";
+                }else if(setting == 2){
+                    sortOrder = "desc";
+                }
+                newConfig.SortOrder = sortOrder;
                 domain.setConfig(newConfig);
-                //domain.setDefaultOrder();
                 break;
             }
             case 2 : //Choose default sort
             {
-                setting = validateString("");
+                numberedOptions(1);
+                setting = validateInt("Choose a number between 0-6 to change default sort column: ");
+                cout << endl;
                 newConfig.sortColumn = setting;
                 domain.setConfig(newConfig);
                 break;

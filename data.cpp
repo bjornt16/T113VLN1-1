@@ -20,11 +20,6 @@ vector<Person> Data::getList()
     return list;
 }
 
-void Data::updateSort(vector<Person> pList)
-{
-    list = pList;
-}
-
 void Data::writePersonToFile(Person p)
 {
     //open and write in file
@@ -91,8 +86,8 @@ void Data::readConfigFromFile(){
     file.open("../T113VLN1/database/settings.txt");
     bool fileIsEmpty = file.peek() == ifstream::traits_type::eof();
 
-    string sortOrder = "";
-    string sortColumn = "";
+    string sortOrder = config.SortOrder;
+    int sortColumn = config.sortColumn;
 
     while(!file.eof() && file.is_open() && !file.fail() && !fileIsEmpty )
     {

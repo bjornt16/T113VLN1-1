@@ -8,6 +8,8 @@ using namespace std;
 class Person
 {
 public:
+    //default constructor
+    //requires name, gender, birthyear, deathyear, nationality
     Person(string n, char g, int bY, int dY, string nat);
 
     //set functions for editing

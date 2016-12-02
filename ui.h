@@ -23,7 +23,7 @@ private:
 
     //prints out the list, changes is based on how it is printed.
     //function is called from other functions. F.x. from search and the list is printed
-    void ListPerson(vector<Person> people, bool search = 0);
+    void listPerson(vector<Person> people, bool search = 0);
 
     //adds a person to the list
     void addPerson();
@@ -32,7 +32,7 @@ private:
     vector<Person> searchPerson(vector<Person> listToSearch);
 
     //function that sorts
-    void sortPerson();
+    vector<Person> sortPerson();
 
     //function that allows the user to select one object from the list to delete
     void removePerson();
@@ -44,7 +44,7 @@ private:
     void clearlist();
 
     //function that allows the user to change default settings. Ascending or descending.
-    void confiqPerson();
+    void configPerson();
 
     //function used to capatalize a string
     string capitalizeString(string stringInput);

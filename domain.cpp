@@ -162,12 +162,52 @@ vector<Person> Domain::searchPersonAge(vector<Person> people, int from, int to)
 
 }
 
+vector<Person> Domain::sortPersonByDefault(vector<Person> pList){
+    Config config = data.getConfig();
+    vector<Person> sortedList;
+    switch(config.sortColumn){
+        case 1 :
+        {
+            sortedList = sortPersonByName(config.SortOrder, pList);
+            break;
+        }
+        case 2 :
+        {
+            sortedList = sortPersonByGender(config.SortOrder, pList);
+            break;
+        }
+        case 3 :
+        {
+            sortedList = sortPersonByBY(config.SortOrder, pList);
+            break;
+        }
+        case 4 :
+        {
+            sortedList = sortPersonByDY(config.SortOrder, pList);
+            break;
+        }
+        case 5 :
+        {
+            sortedList = sortPersonByNat(config.SortOrder, pList);
+            break;
+        }
+        case 6 :
+        {
+            sortedList = sortPersonByAge(config.SortOrder, pList);
+            break;
+        }
+        default : {
+            break;
+        }
+    }
+
+    return sortedList;
+
+}
 
 
-vector<Person> Domain::sortPeopleByName(string sortOrder)
+vector<Person> Domain::sortPersonByName(string sortOrder, vector<Person> pList)
 {
-    vector<Person> sortedName = data.getList();
-
     struct PersonAsc
     {
         bool operator() (Person i,Person j)
@@ -188,21 +228,20 @@ vector<Person> Domain::sortPeopleByName(string sortOrder)
     if(sortOrder == "asc")
     {
         PersonAsc cmp;
-        sort(sortedName.begin(), sortedName.end(), cmp);
+        sort(pList.begin(), pList.end(), cmp);
     }
     //desc sorting if user specifically asks for desc sort
     else if(sortOrder == "desc")
     {
         PersonDesc cmp;
-        sort(sortedName.begin(), sortedName.end(), cmp);
+        sort(pList.begin(), pList.end(), cmp);
     }
 
-    return sortedName;
+    return pList;
 }
 
-vector<Person> Domain::sortPeopleByGender(string sortOrder)
+vector<Person> Domain::sortPersonByGender(string sortOrder, vector<Person> pList)
 {
-    vector<Person> sortedGender = data.getList();
 
     struct PersonAsc
     {
@@ -224,22 +263,20 @@ vector<Person> Domain::sortPeopleByGender(string sortOrder)
     if(sortOrder == "asc")
     {
         PersonAsc cmp;
-        sort(sortedGender.begin(), sortedGender.end(), cmp);
+        sort(pList.begin(), pList.end(), cmp);
     }
     //desc sorting if user specifically asks for desc sort
     else if(sortOrder == "desc")
     {
         PersonDesc cmp;
-        sort(sortedGender.begin(), sortedGender.end(), cmp);
+        sort(pList.begin(), pList.end(), cmp);
     }
 
-    return sortedGender;
+    return pList;
 }
 
-vector<Person> Domain::sortPeopleByBY(string sortOrder)
+vector<Person> Domain::sortPersonByBY(string sortOrder, vector<Person> pList)
 {
-    vector<Person> sortedBY = data.getList();
-
     struct PersonAsc
     {
         bool operator() (Person i,Person j)
@@ -260,21 +297,20 @@ vector<Person> Domain::sortPeopleByBY(string sortOrder)
     if(sortOrder == "asc")
     {
         PersonAsc cmp;
-        sort(sortedBY.begin(), sortedBY.end(), cmp);
+        sort(pList.begin(), pList.end(), cmp);
     }
     //desc sorting if user specifically asks for desc sort
     else if(sortOrder == "desc")
     {
         PersonDesc cmp;
-        sort(sortedBY.begin(), sortedBY.end(), cmp);
+        sort(pList.begin(), pList.end(), cmp);
     }
 
-    return sortedBY;
+    return pList;
 }
 
-vector<Person> Domain::sortPeopleByDY(string sortOrder)
+vector<Person> Domain::sortPersonByDY(string sortOrder, vector<Person> pList)
 {
-    vector<Person> sortedDY = data.getList();
 
     struct PersonAsc
     {
@@ -296,21 +332,20 @@ vector<Person> Domain::sortPeopleByDY(string sortOrder)
     if(sortOrder == "asc")
     {
         PersonAsc cmp;
-        sort(sortedDY.begin(), sortedDY.end(), cmp);
+        sort(pList.begin(), pList.end(), cmp);
     }
     //desc sorting if user specifically asks for desc sort
     else if(sortOrder == "desc")
     {
         PersonDesc cmp;
-        sort(sortedDY.begin(), sortedDY.end(), cmp);
+        sort(pList.begin(), pList.end(), cmp);
     }
 
-    return sortedDY;
+    return pList;
 }
 
-vector<Person> Domain::sortPeopleByNat(string sortOrder)
+vector<Person> Domain::sortPersonByNat(string sortOrder, vector<Person> pList)
 {
-    vector<Person> sortedNat = data.getList();
 
     struct PersonAsc
     {
@@ -332,21 +367,20 @@ vector<Person> Domain::sortPeopleByNat(string sortOrder)
     if(sortOrder == "asc")
     {
         PersonAsc cmp;
-        sort(sortedNat.begin(), sortedNat.end(), cmp);
+        sort(pList.begin(), pList.end(), cmp);
     }
     //desc sorting if user specifically asks for desc sort
     else if(sortOrder == "desc")
     {
         PersonDesc cmp;
-        sort(sortedNat.begin(), sortedNat.end(), cmp);
+        sort(pList.begin(), pList.end(), cmp);
     }
 
-    return sortedNat;
+    return pList;
 }
 
-vector<Person> Domain::sortPeopleByAge(string sortOrder)
+vector<Person> Domain::sortPersonByAge(string sortOrder, vector<Person> pList)
 {
-    vector<Person> sortedAge = data.getList();
 
         struct PersonAsc
         {
@@ -368,16 +402,16 @@ vector<Person> Domain::sortPeopleByAge(string sortOrder)
         if(sortOrder == "asc")
         {
             PersonAsc cmp;
-            sort(sortedAge.begin(), sortedAge.end(), cmp);
+            sort(pList.begin(), pList.end(), cmp);
         }
         //desc sorting if user specifically asks for desc sort
         else if(sortOrder == "desc")
         {
             PersonDesc cmp;
-            sort(sortedAge.begin(), sortedAge.end(), cmp);
+            sort(pList.begin(), pList.end(), cmp);
         }
 
-        return sortedAge;
+        return pList;
 }
 
 void Domain::removePerson(Person personToRemove)
@@ -395,7 +429,7 @@ void Domain::clearPerson()
     data.clearPersonInDataBase();
 }
 
-void Domain::swapPersons(Person& originalP, Person& newP)
+void Domain::swapPerson(Person& originalP, Person& newP)
 {
     data.swapPersonsInDatabase(originalP, newP);
 }

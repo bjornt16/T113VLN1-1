@@ -1,12 +1,17 @@
 #include "config.h"
 
+//Poco class to hold, config settings;
+
+//default constructor
 Config::Config()
 {
     SortOrder = "asc";
-    sortColumn = "name";
+    sortColumn = 1;
 }
 
-Config::Config(string sO, string sC){
+
+//constructor that takes 2 parameters example ("asc",1);
+Config::Config(string sO, int sC){
     SortOrder = sO;
     sortColumn = sC;
 }

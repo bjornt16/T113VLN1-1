@@ -5,13 +5,14 @@
 using namespace std;
 
 
+//poco class that holds config settings;
 class Config
 {
 public:
-    Config();
-    Config(string sO, string sC);
-    string SortOrder;
-    string sortColumn;
+    Config(); //default constructor
+    Config(string sO, int sC); //constructor with 2 parameters usage example ("asc",1)
+    string SortOrder;  //sort order, either "asc" or "desc"
+    int sortColumn;    //sortColumn corresponds to the column position in the list from left to right.
 };
 
 #endif // CONFIG_H
