@@ -130,6 +130,30 @@ vector<Person> Domain::searchPersonDeath(vector<Person> people, int from, int to
     return searchList;
 }
 
+vector<Person> Domain::searchPersonAge(vector<Person> people, int from, int to)
+{
+    vector<Person> searchList;
+
+    if(to == 9999)
+    {
+        to = from;
+    }
+
+    for(size_t i= 0; i < people.size(); i++ )
+    {
+        int age = people[i].getAge();
+
+        if(age >= from && age <= to)
+        {
+            searchList.push_back(people[i]);
+        }
+    }
+
+    return searchList;
+
+}
+
+
 
 vector<Person> Domain::sortPeopleByName(string sortOrder)
 {

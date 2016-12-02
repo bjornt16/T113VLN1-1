@@ -213,6 +213,7 @@ vector<Person> UI::searchPerson(vector<Person> listToSearch)
         cout << "3 : Year of Birth" << endl;
         cout << "4 : Year of Death " << endl;
         cout << "5 : Nationality" << endl;
+        cout << "6 : Age"<< endl;
         cout << "0 : Cancel" << endl;
         column = validateInt("Choose a number between 0-5 to select what column to search in: ");
 
@@ -276,6 +277,21 @@ vector<Person> UI::searchPerson(vector<Person> listToSearch)
                 sSearch = validateString("Nationality: ");
                 listOfFound = domain.searchPersonNationality(listToSearch, sSearch);
                 break;
+            }
+            case 6:         //age
+            {
+            do{
+                cout << endl << "To search from - to, input two numbers with a space between" << endl;
+                iSearch = validateMultipleInt("Age: ");
+                if(iSearch.size() == 2)
+                {
+                    listOfFound = domain.searchPersonAge(listToSearch, iSearch[0], iSearch[1]);
+                }
+                else if(iSearch.size() == 1)
+                {
+                    listOfFound = domain.searchPersonAge(listToSearch, iSearch[0]);
+                }
+            }while(!iSearch.size());
             }
             default :
             {

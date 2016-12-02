@@ -36,6 +36,7 @@ public:
     vector<Person> searchPersonGender(vector<Person> people, char search);           //gender
     vector<Person> searchPersonBirth(vector<Person> people, int from, int to = 9999);//birth year
     vector<Person> searchPersonDeath(vector<Person> people, int from, int to = 9999);//death year
+    vector<Person> searchPersonAge (vector<Person> people, int from, int to = 9999); //age
 
     //Sort functions based on what you want to sort by:
     vector<Person> sortPeopleByName(string sortOrder);  // name
