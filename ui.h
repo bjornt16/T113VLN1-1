@@ -58,7 +58,7 @@ private:
     vector<int> validateMultipleInt(string prompt, int maxSize = maxIntToValidate);
     vector<char> yesOrNo;
     vector<char> acceptedGender;
-    const string illegal = "Illegal entry, try again!";
+    const string invalid = "invalid entry, try again!";
 public:
     UI();
 
