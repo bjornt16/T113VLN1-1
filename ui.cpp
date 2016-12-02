@@ -119,7 +119,7 @@ void UI::ListPerson(vector<Person> people, bool search)
             {
                 cout << people[i].getName()[j];
             }
-            cout << "...";
+            cout << ".. ";
         }
         else
         {
@@ -323,21 +323,30 @@ void UI::sortPeople()
 {
     bool valid = true;
     string sortOrder = "asc";
+    const int failState = 99;
     do{
         valid = true;
-        int column = 0;
-        if(sortOrder == "asc")
-        {
-            cout << "1 : Name" << endl;
-            cout << "2 : Gender" << endl;
-            cout << "3 : Year of Birth" << endl;
-            cout << "4 : Year of Death " << endl;
-            cout << "5 : Nationality" << endl;
-            cout << "9 : to get descending sort" << endl;
-            cout << "0 : Cancel" << endl;
+        int column;
+        string choice = "", sColumn ;
+
+        cout << "1 : Name" << endl;
+        cout << "2 : Gender" << endl;
+        cout << "3 : Year of Birth" << endl;
+        cout << "4 : Year of Death " << endl;
+        cout << "5 : Nationality" << endl;
+        cout << "0 : Cancel" << endl;
+        cout << "To sort in descending order (# desc)" << endl << endl;
+
+
+        choice = validateString("Select a column to sort by: ");
+        column = stoi( choice.substr(0));
+        sortOrder = choice.substr(choice.find(' ')+1);
+        if(sortOrder != "asc" && sortOrder != "desc"){
+            column = failState;
+            sortOrder = "asc";
+            cin.putback('\n');
         }
 
-        column = validateInt("Select a column to sort by: ");
         switch(column)
         {
             case 0 : //cancel
@@ -375,16 +384,10 @@ void UI::sortPeople()
                 ListPerson(domain.sortPeopleByNat(sortOrder));
                 break;
             }
-            case 9 : // desc sort
-            {
-                sortOrder = "desc";
-                valid = false;
-                cout << "Please select a column to sort by: ";
-                break;
-            }
+            case failState:
             default : // loop if incorrect input
             {
-                cout << "Not a valid choice, try again: ";
+                cout << "Not a valid choice, try again: " << endl;
                 valid = false;
                 break;
             }
