@@ -338,7 +338,7 @@ void UI::sortPeople()
 
         choice = validateString("Select a column to sort by: ");
         column = stoi( choice.substr(0));
-        sortOrder = choice.substr(choice.find(' ')+1);
+        sortOrder = choice.size() > 1 ? choice.substr(choice.find(' ')+1) : "asc";
         if(sortOrder != "asc" && sortOrder != "desc"){
             column = failState;
             sortOrder = "asc";
