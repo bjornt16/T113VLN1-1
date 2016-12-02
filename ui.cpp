@@ -70,12 +70,18 @@ void UI::mainMenu()
             cout << "             \\/     \\/     \\/          \\/ " << endl;
             cout << "CREDIT" << endl;
             cout << "(Feður inn í sviga)" << endl;
-            cout << "Anna Kristín Halldórsdóttir(Laxness?)" << endl;
-            cout << "Björn Þórsson(þrumuguð?)" << endl;
-            cout << "Friðrik Snær Tómatsson(Hunts?)" << endl;
-            cout << "Ísak Grétarson" << endl;
-            cout << "Margrét :´( Finnbogadóttir(Hver er þetta?? http://finnbogi.askja.org/ ?)" << endl;
-            cout << "Sólveig Sara Samúelsdóttir(Guð??? https://en.wikipedia.org/wiki/Samuel ??)" << endl;
+            cout << endl;
+            cout << "-Anna Kristín Halldórsdóttir(Laxness?)" << endl;
+            cout << endl;
+            cout << "-Björn Þórsson(þrumuguð?)" << endl;
+            cout << endl;
+            cout << "-Friðrik Snær Tómatsson(Hunts?)" << endl;
+            cout << endl;
+            cout << "-Ísak Grétarson" << endl;
+            cout << endl;
+            cout << "-Margrét :´( Finnbogadóttir(Hver er þetta?? http://finnbogi.askja.org/ ?)" << endl;
+            cout << endl;
+            cout << "-Sólveig Sara Samúelsdóttir(Guð??? https://en.wikipedia.org/wiki/Samuel ??)" << endl;
             cout << endl;
             if (true)
             {
