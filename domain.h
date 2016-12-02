@@ -4,6 +4,7 @@
 #include <vector>
 #include "person.h"
 #include "data.h"
+#include "config.h"
 
 using namespace std;
 
@@ -45,6 +46,9 @@ public:
     vector<Person> sortPeopleByDY(string sortOrder);    // death year
     vector<Person> sortPeopleByNat(string sortOrder);   // nationality
     vector<Person> sortPeopleByAge(string sortOrder);   // age
+
+    Config getConfig();
+    void setConfig(Config c);
 
     //Function used for adding a person to the list vector
     void addPerson(Person p);

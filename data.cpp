@@ -4,6 +4,7 @@
 #include <vector>
 #include <algorithm>
 #include "person.h"
+#include "config.h"
 
 using namespace std;
 //data layer
@@ -11,6 +12,7 @@ using namespace std;
 Data::Data()
 {
     readPeopleFromFile();
+    readConfigFromFile();
 }
 
 vector<Person> Data::getList()
@@ -38,7 +40,6 @@ void Data::writePersonToFile(Person p)
 
 void Data::readPeopleFromFile()
 {
-
     //open and read from file, done every time the program is launched
 
     list.clear();
@@ -63,6 +64,43 @@ void Data::readPeopleFromFile()
         list.push_back(newPerson);
 
     }  
+    file.close();
+}
+
+Config Data::getConfig(){
+    return config;
+}
+
+void Data::writeConfigToFile(Config c)
+{
+    //open and write in file
+    ofstream file;
+    file.open("../T113VLN1/database/settings.txt");
+
+    file << "\n" << c.sortColumn << " " << c.SortOrder;
+
+    config.sortColumn = c.sortColumn;
+    config.SortOrder = c.SortOrder;
+
+    file.close();
+}
+
+void Data::readConfigFromFile(){
+
+    ifstream file;
+    file.open("../T113VLN1/database/settings.txt");
+    bool fileIsEmpty = file.peek() == ifstream::traits_type::eof();
+
+    string sortOrder = "";
+    string sortColumn = "";
+
+    while(!file.eof() && file.is_open() && !file.fail() && !fileIsEmpty )
+    {
+        file >> sortColumn >> sortOrder;
+
+        config.sortColumn = sortColumn;
+        config.SortOrder = sortOrder;
+    }
     file.close();
 }
 

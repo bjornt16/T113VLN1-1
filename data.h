@@ -3,6 +3,7 @@
 
 #include <vector>
 #include "person.h"
+#include "config.h"
 
 using namespace std;
 
@@ -14,6 +15,7 @@ private:
     //vector contains the list
     vector<Person> list;
     const string peopleFile = "../T113VLN1/database/people.txt";
+    Config config;
 public:
     Data();
 
@@ -43,6 +45,10 @@ public:
     void clearPersonInDataBase();
 
     void swapPersonsInDatabase(Person& originalP, Person& newP);
+
+    void readConfigFromFile();
+    void writeConfigToFile(Config c);
+    Config getConfig();
 };
 
 #endif // DATA_H

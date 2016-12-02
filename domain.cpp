@@ -1,3 +1,4 @@
+#include "config.h"
 #include "domain.h"
 #include "data.h"
 #include <algorithm>
@@ -24,6 +25,14 @@ vector<Person> Domain::getPersonList()
 
     return people;
 }
+
+Config Domain::getConfig(){
+    return data.getConfig();
+}
+
+void Domain::setConfig(Config c){
+    data.writeConfigToFile(c);
+};
 
 vector<Person> Domain::searchPersonName(vector<Person> people, string search)
 {

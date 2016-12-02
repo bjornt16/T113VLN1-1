@@ -818,33 +818,39 @@ void UI::confiqPerson()
 {
     bool valid = 1;
     int changeSettings;
+    string setting;
+    Config newConfig = domain.getConfig();
 
-    cout << "1 : cancel" << endl;
-    cout << "2 : sort order" << endl;
-    cout << "3 : default sort" << endl;
+    cout << "1 : default sort order" << endl;
+    cout << "2 : default sort column" << endl;
+    cout << "0 : cancel" << endl;
 
         do
         {
         valid = 1;
-        changeSettings = validateInt("Choose a number between 1-3 to select what column to change settings: ");
+        changeSettings = validateInt("Choose a number between 0-2 to select what column to change settings: ");
 
         switch(changeSettings)
         {
-            case 1: //cancel
+            case 0: //cancel
             {
                 valid = 1;
                 cout << endl;
                 break;
             }
-            case 2 : //sort Order
+            case 1 : //sort Order
             {
-
-
+                setting = validateString("");
+                newConfig.SortOrder = setting;
+                domain.setConfig(newConfig);
+                //domain.setDefaultOrder();
                 break;
             }
-            case 3 : //Choose default sort
+            case 2 : //Choose default sort
             {
-
+                setting = validateString("");
+                newConfig.sortColumn = setting;
+                domain.setConfig(newConfig);
                 break;
             }
             default : // loop if incorrect input
