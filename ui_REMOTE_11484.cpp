@@ -196,21 +196,17 @@ void UI::addPerson()
 
 vector<Person> UI::searchPerson(vector<Person> listToSearch)
 {
-    int column;
-
+    int column, tempYear = 9999;
     char cSearch;
-    string sSearch;
-    vector<int> iSearch;
+    string search, tempSearch;
+    vector<int> yearSearch;
     bool valid;
+    char c = '\0';
     vector<Person> listOfFound;
-
-    vector<char> acceptedGender;
-    acceptedGender.push_back('M');
-    acceptedGender.push_back('F');
 
     do
     {
-        valid = 1;
+        valid = true;
         cout << "1 : Name" << endl;
         cout << "2 : Gender" << endl;
         cout << "3 : Year of Birth" << endl;
@@ -231,67 +227,102 @@ vector<Person> UI::searchPerson(vector<Person> listToSearch)
             case 0 :        //cancel
             {
                 cout << endl;
-                valid = 1;
                 break;
             }
 
             case 1 :        //name
             {
-                sSearch = validateString("Name: ");
-                listOfFound = domain.searchPersonName(listToSearch,sSearch);
+                cout << "Name: ";
+                while(cin.good())
+                {
+                    cin.get(c);
+                    if(c == '\n' && tempSearch != "")
+                    {
+                        break;
+                    }
+                    cin >> tempSearch;
+                    search += " " + tempSearch;
+                }
+                listOfFound = domain.searchPersonName(listToSearch, search);
                 break;
             }
+
             case 2 :        //gender
             {
-                cSearch = validateChar("Gender: ",acceptedGender);
-                listOfFound = domain.searchPersonGender(listToSearch,cSearch);
+                cout << "Gender: ";
+                cin >> cSearch;
+                listOfFound = domain.searchPersonGender(listToSearch, cSearch);
                 break;
             }
+
             case 3 :        //birth
             {
                 cout << endl << "To search from - to, input two numbers with a space between" << endl;
-                iSearch = validateMultipleInt("Year of birth: ");
-                if (iSearch.size() > 1)
+                cout << "Year of birth: ";
+
+                while(cin.good())
                 {
-                    listOfFound = domain.searchPersonBirth(listToSearch, iSearch[0], iSearch[1]);
+                    cin.get(c);
+                    if(c == '\n' && tempYear != 9999)
+                    {
+                        break;
+                    }
+                    cin >> tempYear;
+                    yearSearch.push_back(tempYear);
+                }
+                if (yearSearch.size() > 1)
+                {
+                    listOfFound = domain.searchPersonBirth(listToSearch, yearSearch[0], yearSearch[1]);
                 }
                 else
                 {
-                    listOfFound = domain.searchPersonBirth(listToSearch, iSearch[0]);
+                    listOfFound = domain.searchPersonBirth(listToSearch, yearSearch[0]);
                 }
                 break;
             }
+
             case 4 :        //death
             {
                 cout << endl << "To search from - to, input two numbers with a space between" << endl;
-                iSearch = validateMultipleInt("Year of Death: ");
-                if(iSearch.size() > 1)
+                cout << "Year of death: ";
+                while(cin.good())
                 {
-                    listOfFound = domain.searchPersonDeath(listToSearch, iSearch[0], iSearch[1]);
+                    cin.get(c);
+                    if(c == '\n' && tempYear != 9999)
+                    {
+                        break;
+                    }
+                    cin >> tempYear;
+                    yearSearch.push_back(tempYear);
+                }
+                if(yearSearch.size() > 1)
+                {
+                    listOfFound = domain.searchPersonDeath(listToSearch, yearSearch[0], yearSearch[1]);
                 }
                 else
                 {
-                    listOfFound = domain.searchPersonDeath(listToSearch, iSearch[0]);
+                    listOfFound = domain.searchPersonDeath(listToSearch, yearSearch[0]);
                 }
                 break;
-            }
-            case 5 :        //nationality
-            {
-                sSearch = validateString("Nationality: ");
-                listOfFound = domain.searchPersonNationality(listToSearch, sSearch);
-                break;
-            }
-            default :
-            {
-                cout << illegal;
-                valid = 0;
-                break;
-            }
+                }
+                case 5 :        //nationality
+                {
+                    cout << "Nationality: ";
+                    cin >> search;
+                    listOfFound = domain.searchPersonNationality(listToSearch, search);
+                    break;
+                }
+                default :
+                {
+                    cout << illegal;
+                    valid = false;
+                    break;
+                }
         }
 
-        if ( (listOfFound.size()) == 0)
+        if ( (listOfFound.size() == 0) && !valid)
         {
-            valid = 0;
+            valid=0;
             cout << "No entry found. Try again:" << endl;
         }
 
@@ -448,7 +479,7 @@ void UI::editPerson()
 
             case 1 : //Edit name
             {
-                string newName = validateString("Please enter the new name:");
+                string newName = validateString("Please enter the new name: ");
                 personToEdit.setName(newName);
                 break;
             }
@@ -588,38 +619,6 @@ int UI::validateInt(string prompt){
 
     return integer;
 }
-
-vector<int> UI::validateMultipleInt(string prompt){
-
-    vector<int> intList;
-    int tempInt = 0;
-    char c = '\0';
-
-
-    while(cin.good())
-    {
-        if(intList.size() == 0){
-            cout << prompt << endl;
-        }
-        cin.get(c);
-        if(c == '\n' && intList.size() > 0)
-        {
-            break;
-        }
-        cin >> tempInt;
-        intList.push_back(tempInt);
-        if(cin.fail()){
-            cout << endl << illegal << endl;
-            cin.clear();
-            cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-            cin.putback('\n');
-            intList.clear();
-        }
-    }
-
-    return intList;
-}
-
 
 string UI::capitalizeString(string stringInput)
 {
