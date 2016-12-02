@@ -22,19 +22,24 @@ UI::UI()
 void UI::mainMenu()
 {
     string command;
+    bool valid = 1;
 
     do
     {
-        cout << endl << setw(7) << left << "list" << "List all entries in the database" << endl;
-        cout << setw(7) << "add"   << "Add a new entry" << endl;
-        cout << setw(7) << "delete"<< "Removes an entry" << endl;
-        cout << setw(7) << "clear" << "Removes all entries" << endl;
-        cout << setw(7) << "edit"  << "Edit an entry" << endl;
-        cout << setw(7) << "search"<< "Search the database" << endl;
-        cout << setw(7) << "sort"  << "Sort the entries" << endl;
-        cout << setw(7) << "quit"  << "To quit" << endl;
+        if(valid){
+            cout << setw(7) << left << "list" << ": List all entries in the database" << endl;
+            cout << setw(7) << "add" << ": Add a new entry" << endl;
+            cout << setw(7) << "delete" << ": Removes an entry" << endl;
+            cout << setw(7) << "clear" << ": Removes all entries" << endl;
+            cout << setw(7) << "edit" << ": Edit an entry" << endl;
+            cout << setw(7) << "search" << ": Search the database" << endl;
+            cout << setw(7) << "sort" << ": Sort the entries" << endl;
+            cout << setw(7) << "config" << ": To change default settings" << endl;
+            cout << setw(7) << "quit" << ": To quit" << endl;
+        }
         command = validateString("Please enter one of the commands: ");
         cout << endl;
+        valid = 1;
 
         if (command == "list")
         {
@@ -75,6 +80,7 @@ void UI::mainMenu()
         else
         {
             cout << invalid << endl;
+            valid = 0;
         }
     } while( !(command == "quit") );
 }
@@ -325,13 +331,7 @@ vector<Person> UI::searchPerson(vector<Person> listToSearch)
     do
     {
         valid = 1;
-        cout << "1 : Name" << endl;
-        cout << "2 : Gender" << endl;
-        cout << "3 : Year of Birth" << endl;
-        cout << "4 : Year of Death " << endl;
-        cout << "5 : Nationality" << endl;
-        cout << "6 : Age"<< endl;
-        cout << "0 : Cancel" << endl;
+        numberedOptions(1);
         column = validateInt("Select a column to search by: ");
 
         switch(column)
@@ -467,13 +467,7 @@ void UI::sortPerson()
 
     //asks what you want to sort by
     cout << endl;
-    cout << "1 : Name" << endl;
-    cout << "2 : Gender" << endl;
-    cout << "3 : Year of Birth" << endl;
-    cout << "4 : Year of Death " << endl;
-    cout << "5 : Nationality" << endl;
-    cout << "6 : Age" << endl;
-    cout << "0 : Cancel" << endl;
+    numberedOptions(1);
 
     //option to sort descendingly
     do{
@@ -575,13 +569,7 @@ void UI::editPerson()
 
         //selecting what you want to edit about the person
         int choiseToEdit;
-        cout << "1 : Name" << endl;
-        cout << "2 : Gender" << endl;
-        cout << "3 : Year of Birth" << endl;
-        cout << "4 : Year of Death " << endl;
-        cout << "5 : Nationality" << endl;
-        cout << "0 : Cancel" << endl;
-
+        numberedOptions();
         choiseToEdit = validateInt("Please select what you would like to edit: ");
 
         bool valid = true;
@@ -837,6 +825,18 @@ void UI::confiqPerson()
             }
         }
         }while(!valid);
+}
+
+void UI::numberedOptions(bool includeAge){
+    cout << "1 : Name" << endl;
+    cout << "2 : Gender" << endl;
+    cout << "3 : Year of Birth" << endl;
+    cout << "4 : Year of Death " << endl;
+    cout << "5 : Nationality" << endl;
+    if(includeAge){
+        cout << "6 : Age" << endl;
+    }
+    cout << "0 : Cancel" << endl;
 }
 
 void UI::projectCredit(){

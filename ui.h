@@ -66,6 +66,7 @@ private:
     const string invalid = "Invalid entry, try again!";
 
     void projectCredit();
+    void numberedOptions(bool includeAge = 0);
 public:
     UI();
 
