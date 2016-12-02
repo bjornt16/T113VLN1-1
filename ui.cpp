@@ -80,7 +80,7 @@ void UI::mainMenu()
             cout << "           -Anna Kristín Halldórsdóttir" << endl;
             cout << "           -Björn Þórsson" << endl;
             cout << "           -Friðrik Snær Tómasson" << endl;
-            cout << "  ()_()     -Ísak Grétarson" << endl;
+            cout << "  ()_()    -Ísak Grétarson" << endl;
             cout << "  (*.*)    -Margrét Finnbogadóttir" << endl;
             cout << " c(\")(\")   -Sólveig Sara Samúelsdóttir" << endl;
             cout << endl;
