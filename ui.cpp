@@ -437,7 +437,7 @@ vector<Person> UI::searchPerson(vector<Person> listToSearch)
         }
 
         //nothing was returned from user search
-        if ( (listOfFound.size()) == 0 && valid)
+        if ( (listOfFound.size()) == 0 && column != 0)
         {
             valid = 0;
             cout << "No entry found. Try again: " << endl;
@@ -456,7 +456,7 @@ vector<Person> UI::searchPerson(vector<Person> listToSearch)
             cout << "1 : Search Again " << endl;
             cout << "2 : Search within search result" << endl;
             cout << "3 : Sort search result" << endl;
-            cout << "0 : Back to main menu " << endl;
+            cout << "0 : Continue" << endl;
 
             searchAgain = validateInt("What would you like to do now: ");
 
