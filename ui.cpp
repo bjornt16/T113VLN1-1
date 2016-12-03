@@ -487,7 +487,7 @@ vector<Person> UI::searchPerson(vector<Person> listToSearch)
                 }
                 default:
                 {
-                    cout << invalid;
+                    cout << endl << invalid << endl;
                     valid = 0;
                 }
             }
@@ -603,12 +603,25 @@ vector<Person> UI::sortPerson(vector<Person> personList, int sortColumn)
 void UI::removePerson()
 {
     int idOfPerson = 0;
+    size_t vectorCheck = 0;
+    bool valid = 1;
     cout << endl << "Search for the person you wish to delete:" << endl;
     vector<Person> searchResult = searchPerson(domain.getPersonList());
     if(searchResult.size())
     {
-        idOfPerson = validateInt("Select ID of the person you want to delete: ");
-        domain.removePerson(searchResult[idOfPerson]);
+        do{
+            valid = 1;
+            idOfPerson = validateInt("Select ID of the person you want to delete: ");
+            vectorCheck = (int)idOfPerson;
+            if(vectorCheck < searchResult.size() && idOfPerson >= 0){
+                domain.removePerson(searchResult[idOfPerson]);
+            }else{
+                cout << endl << invalid << endl;
+                valid = 0;
+            }
+
+        }while(!valid);
+
     }
 }
 
@@ -616,12 +629,23 @@ void UI::removePerson()
 void UI::editPerson()
 {
     int idOfPerson = 0;
+    size_t vectorCheck = 0;
+    bool valid = 1;
     cout << endl << "Search for the person you wish to edit: " << endl;
     vector<Person> searchResult = searchPerson(domain.getPersonList());
     if(searchResult.size())
     {
-        idOfPerson = validateInt("Select ID of the person you want to edit: ");
 
+        do{
+            valid = 1;
+            idOfPerson = validateInt("Select ID of the person you want to edit: ");
+            vectorCheck = (int)idOfPerson;
+            if(!(vectorCheck < searchResult.size() && idOfPerson >= 0)){
+                cout << endl << invalid << endl;
+                valid = 0;
+            }
+
+        }while(!valid);
 
         //finding the person you want to edit
         Person personToEdit = searchResult[idOfPerson];
