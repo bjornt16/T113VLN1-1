@@ -447,7 +447,8 @@ vector<Person> UI::searchPerson(vector<Person> listToSearch)
 
     if ( column != 0)
     {
-        listPerson(domain.sortPersonByDefault(listOfFound), true);
+        listOfFound = domain.sortPersonByDefault(listOfFound);
+        listPerson(listOfFound, true);
         do
         {
             valid=1;
