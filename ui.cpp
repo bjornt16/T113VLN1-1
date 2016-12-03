@@ -26,7 +26,8 @@ void UI::mainMenu()
     do
     {
         //lists the main menu, if the last input was valid
-        if(valid){
+        if(valid)
+        {
             cout << setw(7) << left << "list" << ": List all entries in the database" << endl;
             cout << setw(7) << "add" << ": Add a new entry" << endl;
             cout << setw(7) << "delete" << ": Removes an entry" << endl;
@@ -63,7 +64,7 @@ void UI::mainMenu()
         }
         else if (command == "sort")
         {
-            listPerson(sortPerson());
+            listPerson(sortPerson(domain.getPersonList()));
         }
         else if (command == "quit")
         {
@@ -71,7 +72,7 @@ void UI::mainMenu()
         }
         else if (command == "clear")
         {
-            clearlist();
+            clearList();
         }
         else if(command =="config")
         {
@@ -335,6 +336,12 @@ vector<Person> UI::searchPerson(vector<Person> listToSearch)
     bool valid = 1;
     vector<Person> listOfFound;
 
+    int const searchA = 1;
+    int const searchS = 2;
+    int const sortS = 3;
+    int const mM = 0;
+
+
 
     //asks what you want to search by
     do
@@ -444,22 +451,46 @@ vector<Person> UI::searchPerson(vector<Person> listToSearch)
         do
         {
             valid=1;
-            char searchAgain;
+            int searchAgain;
 
-            searchAgain = validateChar("Do you wish to search within the search results? (y/n): ",yesOrNo);
+            cout << "1 : Search Again " << endl;
+            cout << "2 : Search within search result" << endl;
+            cout << "3 : Sort search result" << endl;
+            cout << "0 : Back to main menu " << endl;
 
-            if(searchAgain == yesOrNo[0])
+            searchAgain = validateInt("What would you like to do now: ");
+
+            switch(searchAgain)
             {
-                listOfFound = searchPerson(listOfFound);
-            } else if(searchAgain == yesOrNo[1])
-            {
-                cout << endl;
-                break;
-            } else
-            {
-                cout << invalid;
-                valid = 0;
+                case searchA:
+                {
+                    listOfFound = searchPerson(domain.getPersonList());
+                    break;
+                }
+                case searchS:
+                {
+                    listOfFound = searchPerson(listOfFound);
+                    break;
+                }
+                case sortS:
+                {
+                    listOfFound = sortPerson(listOfFound);
+                    listPerson(listOfFound);
+                    valid = 0;
+                    break;
+                }
+                case mM:
+                {
+                    cout << endl;
+                    break;
+                }
+                default:
+                {
+                    cout << invalid;
+                    valid = 0;
+                }
             }
+
         }while(!valid);
     }
     return listOfFound;
@@ -467,15 +498,12 @@ vector<Person> UI::searchPerson(vector<Person> listToSearch)
 
 //prompts user with sort options (by name, age etc) can also search "asc" or "desc"
 //returns sorted person list, based on choices.
-vector<Person> UI::sortPerson()
+vector<Person> UI::sortPerson(vector<Person> personList, int sortColumn)
 {
     Config config = domain.getConfig();
-    vector<Person> personList = domain.getPersonList();
     vector<Person> sortedList;
     bool valid = 1;
     string sortOrder = config.SortOrder; //default is saved sortOrder
-    const int failState = 99;
-    int sortColumn = failState;
     string choice = "";
 
     //asks what you want to sort by
@@ -486,25 +514,29 @@ vector<Person> UI::sortPerson()
     //option to sort descendingly
     do{
         valid = 1;
-        cout << endl << "Choose sort order by adding 'asc' or 'desc', example: (1 desc)";
-
-        //asks what you want to sort by
-        choice = validateString("Select a column to sort by: ");
-
-        //get digit from string, and order if available, else use saved sortOrder
-        //accepted inputs "#", "# desc", "# asc" .. # being the column number
-        if(isdigit(choice[0]))
+        if(sortColumn == dummyNull)
         {
-            sortColumn = stoi(choice.substr(0));
+            cout << endl << "Choose sort order by adding 'asc' or 'desc', example: (1 desc)";
 
-            if(choice.size() > 1 ){
-                sortOrder = choice.substr(choice.find(' ')+1);
-            }
+            //asks what you want to sort by
+            choice = validateString("Select a column to sort by: ");
 
-            if(sortOrder != "asc" && sortOrder != "desc")
+            //get digit from string, and order if available, else use saved sortOrder
+            //accepted inputs "#", "# desc", "# asc" .. # being the column number
+            if(isdigit(choice[0]))
             {
-                sortColumn = failState;
-                cin.putback('\n');
+                sortColumn = stoi(choice.substr(0));
+
+                if(choice.size() > 1 )
+                {
+                    sortOrder = choice.substr(choice.find(' ')+1);
+                }
+
+                if(sortOrder != "asc" && sortOrder != "desc")
+                {
+                    sortColumn = dummyNull;
+                    cin.putback('\n');
+                }
             }
         }
 
@@ -552,7 +584,7 @@ vector<Person> UI::sortPerson()
                 sortedList = domain.sortPersonByAge(sortOrder,personList);
                 break;
             }
-            case failState:
+            case dummyNull:
             default : // loop if incorrect input
             {
                 cout << endl << invalid << endl;
@@ -654,7 +686,7 @@ void UI::editPerson()
 
 //function that allows the user to delete the whole list
 //aka drop table / format
-void UI::clearlist()
+void UI::clearList()
 {
    char choice;
    choice = validateChar("Are you sure you want to clear the list? (y/n) : ", yesOrNo);
@@ -668,7 +700,8 @@ void UI::clearlist()
 //prompt is the message to prompt user input example: (want to quit (y/n), and the vector is list of acceptable characters.
 //only accepts single character inputs "yes" != 'y'+'e'+'s'..
 //trailing whitespace removed, "y   " = 'y'
-char UI::validateChar(string prompt, vector<char> accepts){
+char UI::validateChar(string prompt, vector<char> accepts)
+{
 
     string tempString = "";
     char validChar = ' ';
@@ -702,7 +735,8 @@ char UI::validateChar(string prompt, vector<char> accepts){
 //function that validates string input, takes string (prompt) parameter and has optional skip paramter, used if input is optional.
 //prompt is the message to prompt user input example: "Enter name: "
 //accepts input like "test    " as "test" .. and "test test  " as one input "test test" (doesn't skip over input from the space)
-string UI::validateString(string prompt, string skipString){
+string UI::validateString(string prompt, string skipString)
+{
     string validString = "";
 
     //combines a multiple input strings into one, for example first and second names
@@ -868,12 +902,15 @@ void UI::configPerson()
                 cout << "0 : Cancel" << endl;
                 setting = validateInt("Choose a number between 0-2 to change default sort order: ");
                 cout << endl;
-                if(setting == cancel){
+                if(setting == cancel)
+                {
                     break;
                 }
-                else if(setting == ascending){
+                else if(setting == ascending)
+                {
                     sortOrder = "asc";
-                }else if(setting == descending){
+                }else if(setting == descending)
+                {
                     sortOrder = "desc";
                 }
                 //override old config
@@ -903,20 +940,23 @@ void UI::configPerson()
 
 //function that prints the columns from 1-6, used to choose columns easily.
 //saved in a function cause it is reused multiple times, optional parameter if age option should be shown.
-void UI::numberedOptions(bool includeAge){
+void UI::numberedOptions(bool includeAge)
+{
     cout << "1 : Name" << endl;
     cout << "2 : Gender" << endl;
     cout << "3 : Year of Birth" << endl;
     cout << "4 : Year of Death " << endl;
     cout << "5 : Nationality" << endl;
-    if(includeAge){
+    if(includeAge)
+    {
         cout << "6 : Age" << endl;
     }
     cout << "0 : Cancel" << endl;
 }
 
 //function that displays project credits. (on exit/quit)
-void UI::projectCredit(){
+void UI::projectCredit()
+{
     cout << "    _______  _______  _______  __   __       _____         " << endl
          << "   |       ||       ||   _   ||  |_|  |     |  _  |        " << endl
          << "   |_     _||    ___||  |_|  ||       |     | |_| |        " << endl

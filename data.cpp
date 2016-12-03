@@ -71,7 +71,8 @@ void Data::readPeopleFromFile()
 }
 
 //getConfig returns a copy of the config object
-Config Data::getConfig(){
+Config Data::getConfig()
+{
     return config;
 }
 
@@ -93,7 +94,8 @@ void Data::writeConfigToFile(Config c)
 
 //readConfigFromFile reads current config entries into main config object.
 //done at start up
-void Data::readConfigFromFile(){
+void Data::readConfigFromFile()
+{
 
     ifstream file;
     file.open(configFile);

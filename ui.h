@@ -22,6 +22,8 @@ private:
     //declare domain variable, to have access to lower layer.
     Domain domain;
 
+    static const int dummyNull = 9999;
+
     //listPerson displays the person list passed to it, if search is true, "dummy id's" are shown (used for edit/delete)
     //function is called from other functions. F.x. from search and the list is printed
     void listPerson(vector<Person> people, bool search = 0);
@@ -36,7 +38,7 @@ private:
 
     //prompts user with sort options (by name, age etc) can also search "asc" or "desc"
     //returns sorted person list, based on choices.
-    vector<Person> sortPerson();
+    vector<Person> sortPerson(vector<Person> personList, int sortColumn = dummyNull );
 
     //prompts user to search, after search temporary id's are visible, user can further narrow down search or delete person based on the id.
     void removePerson();
@@ -46,7 +48,7 @@ private:
 
     //function that allows the user to delete the whole list
     //aka drop table / format
-    void clearlist();
+    void clearList();
 
     //function that allows the user to change default list display settings. Which column to order by, ascending or descending.
     void configPerson();

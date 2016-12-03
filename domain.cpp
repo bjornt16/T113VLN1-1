@@ -28,13 +28,15 @@ vector<Person> Domain::getPersonList()
 }
 
 //Gets the config object that holds the config settings from the data layer
-Config Domain::getConfig(){
+Config Domain::getConfig()
+{
     return data.getConfig();
 }
 
 //passes a config object to the data layer for processing
 //overwrite old config
-void Domain::setConfig(Config c){
+void Domain::setConfig(Config c)
+{
     data.writeConfigToFile(c);
 };
 
@@ -178,10 +180,12 @@ vector<Person> Domain::searchPersonAge(vector<Person> people, int from, int to)
 
 }
 //sortPersonByDefault takes in a vector of person and returns it sorted in the saved default sort order
-vector<Person> Domain::sortPersonByDefault(vector<Person> pList){
+vector<Person> Domain::sortPersonByDefault(vector<Person> pList)
+{
     Config config = data.getConfig();
     vector<Person> sortedList;
-    switch(config.sortColumn){
+    switch(config.sortColumn)
+    {
         case 1 :
         {
             sortedList = sortPersonByName(config.SortOrder, pList);
