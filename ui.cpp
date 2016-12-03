@@ -902,64 +902,88 @@ void UI::configPerson()
     const int sortOrderNum = 1;
     const int sortColumnNum = 2;
 
+    bool sortCheck = 1;
+
     cout << "1 : Set default sort order" << endl;
     cout << "2 : Set default sort column" << endl;
     cout << "0 : cancel" << endl;
 
         do
         {
-        valid = 1;
-        changeSettings = validateInt("Choose a number between 0-2 to select what column to change settings: ");
-        cout << endl;
+            valid = 1;
+            changeSettings = validateInt("Choose a number between 0-2 to select what column to change settings: ");
+            cout << endl;
 
-        switch(changeSettings)
-        {
-            case cancel: //cancel
+            switch(changeSettings)
             {
-                valid = 1;
-                cout << endl;
-                break;
-            }
-            case sortOrderNum : //sort Order
-            {
-                cout << "1 : Ascending" << endl;
-                cout << "2 : Descending" << endl;
-                cout << "0 : Cancel" << endl;
-                setting = validateInt("Choose a number between 0-2 to change default sort order: ");
-                cout << endl;
-                if(setting == cancel)
+                case cancel: //cancel
                 {
+                    valid = 1;
+                    cout << endl;
                     break;
                 }
-                else if(setting == ascending)
+                case sortOrderNum : //sort Order
                 {
-                    sortOrder = "asc";
-                }else if(setting == descending)
-                {
-                    sortOrder = "desc";
+                    do
+                    {
+                        sortCheck = 1;
+                        cout << "1 : Ascending" << endl;
+                        cout << "2 : Descending" << endl;
+                        cout << "0 : Cancel" << endl;
+                        setting = validateInt("Choose a number between 0-2 to change default sort order: ");
+                        cout << endl;
+                        if(setting == cancel)
+                        {
+                            sortOrder = newConfig.SortOrder;
+                            break;
+                        }
+                        else if(setting == ascending)
+                        {
+                            sortOrder = "asc";
+                        }else if(setting == descending)
+                        {
+                            sortOrder = "desc";
+                        }else
+                        {
+                            cout << invalid << endl <<endl;
+                            sortCheck = 0;
+                        }
+                    }while(!sortCheck);
+                    //override old config
+                    newConfig.SortOrder = sortOrder;
+                    domain.setConfig(newConfig);
+                    break;
                 }
-                //override old config
-                newConfig.SortOrder = sortOrder;
-                domain.setConfig(newConfig);
-                break;
+                case sortColumnNum : //Choose default sort
+                {
+                    do
+                    {
+                        sortCheck = 1;
+                        numberedOptions(1);
+                        setting = validateInt("Choose a number between 0-6 to change default sort column: ");
+                        cout << endl;
+                        if(setting == cancel)
+                        {
+                            setting = newConfig.sortColumn;
+                            break;
+                        }else if(!(setting > cancel && setting <= ageColumn))
+                        {
+                            cout << invalid << endl <<endl;
+                            sortCheck = 0;
+                        }
+                    }while(!sortCheck);
+                    //override old config
+                    newConfig.sortColumn = setting;
+                    domain.setConfig(newConfig);
+                    break;
+                }
+                default : // loop if incorrect input
+                {
+                    cout << "Not a valid choice, try again: ";
+                    valid = 0;
+                    break;
+                }
             }
-            case sortColumnNum : //Choose default sort
-            {
-                numberedOptions(1);
-                setting = validateInt("Choose a number between 0-6 to change default sort column: ");
-                cout << endl;
-                //override old config
-                newConfig.sortColumn = setting;
-                domain.setConfig(newConfig);
-                break;
-            }
-            default : // loop if incorrect input
-            {
-                cout << "Not a valid choice, try again: ";
-                valid = 0;
-                break;
-            }
-        }
         }while(!valid);
 }
 
